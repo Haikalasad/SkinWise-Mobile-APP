@@ -1,15 +1,13 @@
 <resources>
     <string name="app_name">SkinWise</string>
     <string name="login">Login</string>
-    <string name="username">Username</string>
+    <string name="nama">Nama</string>
     <string name="password">password</string>
     <string name="selamat_datang">Selamat datang</string>
-    <string name="login_description">Ayo masukan akunmu terlebih dahulu</string>
+    <string name="login_description">Ayo masuk ke akunmu terlebih dahulu</string>
     <string name="email">Email</string>
-    <string name="nama">Nama</string>
     <string name="signup_description">Daftarkan akunmu dulu yuk!</string>
     <string name="signupCTA">Belum mempunyai akun? daftar</string>
-    <string name="name">Name</string>
     <string name="signupCTALink">disini</string>
     <string name="sign_up">Sign Up</string>
     <string name="loginCTA">Sudah mempunyai akun? login</string>
