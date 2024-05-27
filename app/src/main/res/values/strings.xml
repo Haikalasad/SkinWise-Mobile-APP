@@ -27,4 +27,7 @@
     <string name="categoryArticle">Vitiligo</string>
     <string name="dateArticle">25 Juni 2023</string>
     <string name="tittleHospitalSection">Rumah sakit favoritmu</string>
+    <string name="title">RS UNAIR</string>
+    <string name="streetHospital">Jl. Teluk Nibung Utara No 39 Surabaya</string>
+    <string name="tittleScanningSection">History Scanning</string>
 </resources>
