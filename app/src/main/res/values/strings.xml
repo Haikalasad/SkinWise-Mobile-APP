@@ -12,4 +12,10 @@
     <string name="sign_up">Sign Up</string>
     <string name="loginCTA">Sudah mempunyai akun? login</string>
     <string name="loginCTALink">disini</string>
+    <string name="search_hint">Masukan nama penyakit</string>
+    <string name="source">source</string>
+    <string name="article">Artikel</string>
+    <string name="article_title">Judul Artikel</string>
+    <string name="article_writer">penulis</string>
+    <string name="article_date">tanggal</string>
 </resources>

@@ -16,7 +16,6 @@ interface ApiService {
         @Field("role") role : String = "customer"
     ): RegisterResponse
 
-
     @FormUrlEncoded
     @POST("/login")
     suspend fun login(
