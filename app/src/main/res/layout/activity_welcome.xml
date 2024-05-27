@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/blue_primary"
+tools:context=".ui.welcome.seksek">
+
+
+<ImageView
+    android:id="@+id/imageView"
+    android:layout_width="702dp"
+    android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:srcCompat="@drawable/texture" />
+
+<ImageView
+    android:id="@+id/logo"
+    android:layout_width="120dp"
+    android:layout_height="40dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginTop="32dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:srcCompat="@drawable/logo" />
+
+<ImageView
+    android:id="@+id/doctor"
+    android:layout_width="314dp"
+    android:layout_height="312dp"
+    android:backgroundTint="#FFFFFF"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/logo"
+    app:srcCompat="@drawable/doctor" />
+
+<ImageView
+    android:id="@+id/roundedSquare"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:backgroundTint="#FFFFFF"
+    android:scaleType="fitXY"
+    app:layout_constraintTop_toBottomOf="@id/doctor"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:srcCompat="@drawable/rounded_square" />
+
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="@color/white"
+    android:backgroundTint="#FFFFFF"
+    android:foregroundTint="#FFFFFF"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintEnd_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/roundedSquare">
+</View>
+
+<TextView
+    android:id="@+id/title"
+    android:layout_marginHorizontal="32dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/inter_bold"
+    android:textAlignment="center"
+    android:text="@string/welcomeTitle"
+    android:textSize="24sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/roundedSquare" />
+
+<TextView
+    android:id="@+id/description"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/inter_regular"
+    android:text="@string/welcomeDesc"
+    android:textColor="@color/gray_disabled"
+    android:textSize="14sp"
+    android:textAlignment="center"
+    android:layout_marginHorizontal="32dp"
+    android:layout_marginTop="8dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/title" />
+
+<Button
+    android:id="@+id/loginButton"
+    android:layout_width="0dp"
+    android:layout_height="64dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginEnd="32dp"
+    android:layout_marginBottom="96dp"
+    android:layout_marginTop="60dp"
+    android:backgroundTint="@color/blue_primary"
+    android:text="@string/login"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/description" />
+
+<Button
+    android:id="@+id/signupButton"
+    style="@style/Widget.Material3.Button.TextButton"
+    android:layout_width="0dp"
+    android:layout_height="64dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginEnd="32dp"
+    android:layout_marginTop="4dp"
+    android:text="@string/sign_up"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

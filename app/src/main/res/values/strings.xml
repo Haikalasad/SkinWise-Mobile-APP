@@ -18,4 +18,22 @@
     <string name="article_title">Judul Artikel</string>
     <string name="article_writer">penulis</string>
     <string name="article_date">tanggal</string>
+
+    <string name="welcomeTitle">Selamat Datang di SkinWise</string>
+    <string name="welcomeDesc">Aplikasi mobile pertama di Indonesia yang menyediakan layanan kesehatan kulit!</string>
+    <string name="greetingProfile">Hai, Selamat datang  🎉</string>
+    <string name="nameProfile">Owner Loly</string>
+
+    <string name="searchbarSearch">Ketikan nama penyakit atau rumah sakit</string>
+
+    <string name="homearticlesessionTittle">Artikel Terkait</string>
+    <string name="homearticlesessionSeeall">lihat semua</string>
+    <string name="filterArticle">Vitiligo</string>
+    <string name="tittleArticle">Apakah Vitiligo Bisa Disembuhkan? Ini Faktanya</string>
+    <string name="categoryArticle">Vitiligo</string>
+    <string name="dateArticle">25 Juni 2023</string>
+    <string name="tittleHospitalSection">Rumah sakit favoritmu</string>
+    <string name="title">RS UNAIR</string>
+    <string name="streetHospital">Jl. Teluk Nibung Utara No 39 Surabaya</string>
+    <string name="tittleScanningSection">History Scanning</string>
 </resources>
