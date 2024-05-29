@@ -184,7 +184,7 @@
         android:id="@+id/pictArticle"
         android:layout_width="93dp"
         android:layout_height="93dp"
-        android:src="@tools:sample/avatars"
+        tools:srcCompat="@tools:sample/avatars"
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"

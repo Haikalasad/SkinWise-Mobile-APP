@@ -19,8 +19,7 @@ object Injection {
 //    }
 
     fun provideArticleRepo() :ArticleRepository{
-        val articleApiService = ArticleApiConfig.getApiService()
-        return ArticleRepository(articleApiService)
+        return ArticleRepository()
     }
 
 }

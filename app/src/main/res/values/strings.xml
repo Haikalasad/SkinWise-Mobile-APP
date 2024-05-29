@@ -36,4 +36,6 @@
     <string name="title">RS UNAIR</string>
     <string name="streetHospital">Jl. Teluk Nibung Utara No 39 Surabaya</string>
     <string name="tittleScanningSection">History Scanning</string>
+    <string name="info">Info</string>
+    <string name="article_deskripsi">deskripsi</string>
 </resources>
