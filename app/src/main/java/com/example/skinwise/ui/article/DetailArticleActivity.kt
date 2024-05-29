@@ -5,14 +5,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.skinwise.R
 import com.example.skinwise.databinding.ActivityDetailArticleBinding
-import com.example.skinwise.ui.ViewModelFactory
+import com.example.skinwise.ui.main.ViewModelFactory
 
 class DetailArticleActivity : AppCompatActivity() {
 

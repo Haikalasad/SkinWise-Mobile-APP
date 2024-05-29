@@ -14,7 +14,7 @@ import com.example.skinwise.R
 import com.example.skinwise.adapter.ArticleAdapter
 import com.example.skinwise.data.api.article.ArticleModel
 import com.example.skinwise.databinding.ActivityArticleBinding
-import com.example.skinwise.ui.ViewModelFactory
+import com.example.skinwise.ui.main.ViewModelFactory
 
 class ArticleActivity : AppCompatActivity(), ArticleAdapter.ArticleClickListener {
 

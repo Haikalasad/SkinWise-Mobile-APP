@@ -18,7 +18,7 @@ import androidx.activity.viewModels
 import com.example.skinwise.R
 import com.example.skinwise.data.Result
 import com.example.skinwise.databinding.ActivitySignupBinding
-import com.example.skinwise.ui.ViewModelFactory
+import com.example.skinwise.ui.main.ViewModelFactory
 import com.example.skinwise.ui.login.LoginActivity
 
 class SignupActivity : AppCompatActivity() {

@@ -1,14 +1,11 @@
-package com.example.skinwise.ui
+package com.example.skinwise.ui.main
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.skinwise.data.ArticleRepository
-import com.example.skinwise.data.Repository
 import com.example.skinwise.di.Injection
 import com.example.skinwise.ui.article.ArticleViewModel
-import com.example.skinwise.ui.login.LoginViewModel
-import com.example.skinwise.ui.signup.SignupViewModel
 
 class ViewModelFactory private constructor(
 //    private val userRepository: Repository,
