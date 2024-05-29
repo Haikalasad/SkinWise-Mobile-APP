@@ -72,4 +72,7 @@ dependencies {
     implementation ("io.jsonwebtoken:jjwt-api:0.11.2")
     implementation ("io.jsonwebtoken:jjwt-impl:0.11.2")
     implementation ("io.jsonwebtoken:jjwt-jackson:0.11.2")
+
+    //splash library
+    implementation ("androidx.core:core-splashscreen:1.0.1")
 }

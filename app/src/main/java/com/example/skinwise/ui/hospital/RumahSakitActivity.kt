@@ -1,4 +1,4 @@
-package com.example.skinwise.ui.rumah_sakit
+package com.example.skinwise.ui.hospital
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

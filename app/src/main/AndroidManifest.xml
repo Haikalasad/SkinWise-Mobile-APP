@@ -18,7 +18,7 @@
         android:theme="@style/Theme.SkinWise"
         tools:targetApi="31">
         <activity
-            android:name=".ui.rumah_sakit.RumahSakitActivity"
+            android:name=".ui.hospital.RumahSakitActivity"
             android:exported="false" />
         <activity
             android:name=".ui.article.DetailArticleActivity"
@@ -40,7 +40,8 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AnimatedSplash"/>
     </application>
 
 </manifest>
