@@ -3,17 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal="24dp">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <View
+        android:id="@+id/viewBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="132dp"
+        android:backgroundTint="@color/blue_primary"
+        android:foregroundTint="@color/blue_primary"
+        android:background="@color/blue_primary" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
+        android:src="@drawable/texture_home"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
+        android:id="@+id/roundedSquareBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:src="@drawable/rounded_square_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/blue_primary"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toBottomOf="@+id/viewBackground" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/mainProfile"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="69dp"
+        android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:src="@drawable/profile" />
 
     <LinearLayout
         android:id="@+id/layoutProfile"
@@ -31,7 +57,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_regular"
             android:text="@string/greetingProfile"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="14sp" />
 
         <TextView
@@ -41,16 +67,18 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/inter_bold"
             android:text="@string/nameProfile"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>
 
     <ImageView
         android:layout_width="26dp"
         android:layout_height="26dp"
+        app:tint="@color/white"
         android:src="@drawable/baseline_edit_square_24"
         app:layout_constraintBottom_toBottomOf="@+id/layoutProfile"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"
         app:layout_constraintTop_toTopOf="@+id/layoutProfile" />
 
 
@@ -58,20 +86,25 @@
         android:id="@+id/accountSetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="24dp"
         android:fontFamily="@font/inter_regular"
         android:text="@string/accountSetting"
         android:textColor="@color/gray_500"
         android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainProfile" />
 
     <com.google.android.material.divider.MaterialDivider
-        android:layout_width="match_parent"
         android:id="@+id/divider"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="24dp"
         app:dividerColor="@color/gray_300"
-        app:layout_constraintTop_toBottomOf="@+id/accountSetting"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountSetting" />
 
     <TextView
         android:id="@+id/personalinformation"
@@ -82,6 +115,7 @@
         android:text="@string/personalinformation"
         android:textColor="@color/black"
         android:textSize="14sp"
+        android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -91,6 +125,7 @@
         android:layout_height="22dp"
         android:src="@drawable/baseline_navigate_next_24"
         app:layout_constraintBottom_toBottomOf="@+id/personalinformation"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/personalinformation" />
 
@@ -103,6 +138,7 @@
         android:text="@string/notification"
         android:textColor="@color/black"
         android:textSize="14sp"
+        android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personalinformation" />
 
@@ -113,6 +149,7 @@
         android:src="@drawable/baseline_navigate_next_24"
         app:layout_constraintBottom_toBottomOf="@+id/notification"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"
         app:layout_constraintTop_toTopOf="@+id/notification" />
 
     <TextView
@@ -123,6 +160,7 @@
         android:fontFamily="@font/inter_regular"
         android:text="@string/articlefav"
         android:textColor="@color/black"
+        android:layout_marginStart="24dp"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notification" />
@@ -131,6 +169,7 @@
         android:id="@+id/nextarticlefav"
         android:layout_width="22dp"
         android:layout_height="22dp"
+        android:layout_marginEnd="24dp"
         android:src="@drawable/baseline_navigate_next_24"
         app:layout_constraintBottom_toBottomOf="@+id/articlefav"
         app:layout_constraintEnd_toEndOf="parent"
@@ -145,6 +184,7 @@
         android:text="@string/hospitalfav"
         android:textColor="@color/black"
         android:textSize="14sp"
+        android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/articlefav" />
 
@@ -153,6 +193,7 @@
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:src="@drawable/baseline_navigate_next_24"
+        android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/hospitalfav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/hospitalfav" />
@@ -166,6 +207,7 @@
         android:text="@string/managescan"
         android:textColor="@color/black"
         android:textSize="14sp"
+        android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hospitalfav" />
 
@@ -173,6 +215,7 @@
         android:id="@+id/nextmanagescan"
         android:layout_width="22dp"
         android:layout_height="22dp"
+        android:layout_marginEnd="24dp"
         android:src="@drawable/baseline_navigate_next_24"
         app:layout_constraintBottom_toBottomOf="@+id/managescan"
         app:layout_constraintEnd_toEndOf="parent"
@@ -182,20 +225,25 @@
         android:id="@+id/helpandsupport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/inter_regular"
         android:text="@string/helpandsupport"
         android:textColor="@color/gray_500"
         android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/managescan" />
 
     <com.google.android.material.divider.MaterialDivider
-        android:layout_width="match_parent"
         android:id="@+id/divider2"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="24dp"
         app:dividerColor="@color/gray_300"
-        app:layout_constraintTop_toBottomOf="@+id/helpandsupport"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/helpandsupport" />
 
     <TextView
         android:id="@+id/privasi"
@@ -205,6 +253,7 @@
         android:fontFamily="@font/inter_regular"
         android:text="@string/privasi"
         android:textColor="@color/black"
+        android:layout_marginStart="24dp"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
@@ -213,6 +262,7 @@
         android:id="@+id/nextprivasi"
         android:layout_width="22dp"
         android:layout_height="22dp"
+        android:layout_marginEnd="24dp"
         android:src="@drawable/baseline_navigate_next_24"
         app:layout_constraintBottom_toBottomOf="@+id/privasi"
         app:layout_constraintEnd_toEndOf="parent"
@@ -227,6 +277,7 @@
         android:text="@string/termcondition"
         android:textColor="@color/black"
         android:textSize="14sp"
+        android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/privasi" />
 
@@ -234,6 +285,7 @@
         android:id="@+id/nexttermcondition"
         android:layout_width="22dp"
         android:layout_height="22dp"
+        android:layout_marginEnd="24dp"
         android:src="@drawable/baseline_navigate_next_24"
         app:layout_constraintBottom_toBottomOf="@+id/termcondition"
         app:layout_constraintEnd_toEndOf="parent"
@@ -247,6 +299,7 @@
         android:fontFamily="@font/inter_regular"
         android:text="@string/faq"
         android:textColor="@color/black"
+        android:layout_marginStart="24dp"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/termcondition" />
@@ -255,6 +308,7 @@
         android:id="@+id/nextfaq"
         android:layout_width="22dp"
         android:layout_height="22dp"
+        android:layout_marginEnd="24dp"
         android:src="@drawable/baseline_navigate_next_24"
         app:layout_constraintBottom_toBottomOf="@+id/faq"
         app:layout_constraintEnd_toEndOf="parent"
@@ -270,9 +324,50 @@
         app:backgroundTint="#FFEBEE"
         android:textColor="#F44336"
         android:layout_marginTop="28dp"
+        android:layout_marginHorizontal="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/faq" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/white"
+        app:fabAlignmentMode="center"
+        app:fabAnchorMode="cradle"
+        app:fabCradleMargin="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="BottomAppBar">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/buttom_app_bar_menu" />
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fabScan"
+        android:backgroundTint="@color/blue_primary"
+        android:src="@drawable/baseline_add_24"
+        app:fabCustomSize="68dp"
+        app:layout_anchor="@id/bottomAppBar"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/white"
+        app:maxImageSize="40dp" />
 
 
 

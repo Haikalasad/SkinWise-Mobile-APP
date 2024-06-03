@@ -38,4 +38,15 @@
     <string name="tittleScanningSection">History Scanning</string>
     <string name="info">Info</string>
     <string name="article_deskripsi">deskripsi</string>
+    <string name="accountSetting">Pengaturan Akun</string>
+    <string name="personalinformation">Informasi Pribadi</string>
+    <string name="notification">Notifikasi</string>
+    <string name="articlefav">Artikel Favorit</string>
+    <string name="hospitalfav">Rumah Sakit Favorit</string>
+    <string name="managescan">History Scan</string>
+    <string name="helpandsupport">Bantuan dan Dukungan</string>
+    <string name="privasi">Kebijakan Privasi</string>
+    <string name="termcondition">Syarat dan Ketentuan</string>
+    <string name="faq">FAQ dan Bantuan</string>
+    <string name="logout">Keluar</string>
 </resources>

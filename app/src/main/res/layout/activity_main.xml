@@ -33,15 +33,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/mainProfile"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="48dp"
+        android:src="@drawable/profile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/layoutProfile"
@@ -82,8 +82,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:backgroundTint="@color/white"
-        android:src="@drawable/baseline_notification"
-        app:backgroundTint="@color/black"/>
+
+        app:srcCompat="@drawable/baseline_notification"
+        app:tint="@color/black"/>
 
 
     <com.google.android.material.search.SearchBar
@@ -429,6 +430,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/white"
         app:maxImageSize="40dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
