@@ -49,4 +49,7 @@
     <string name="termcondition">Syarat dan Ketentuan</string>
     <string name="faq">FAQ dan Bantuan</string>
     <string name="logout">Keluar</string>
+    <string name="editprofile">Edit Profile</string>
+    <string name="editphoto">Edit Foto Profil</string>
+    <string name="nameuser">Ibu Owner Loli</string>
 </resources>
