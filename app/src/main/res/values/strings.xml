@@ -38,15 +38,4 @@
     <string name="tittleScanningSection">History Scanning</string>
     <string name="info">Info</string>
     <string name="article_deskripsi">deskripsi</string>
-    <string name="accountSetting">Pengaturan Akun</string>
-    <string name="personalinformation">Informasi Pribadi</string>
-    <string name="notification">Notifikasi</string>
-    <string name="articlefav">Artikel Favorit</string>
-    <string name="hospitalfav">Rumah Sakit Favorit</string>
-    <string name="managescan">Kelola History Scan</string>
-    <string name="helpandsupport"><![CDATA[Bantuan & Dukungan]]></string>
-    <string name="privasi">Kebijakan Privasi</string>
-    <string name="termcondition"><![CDATA[Syarat & Ketentuan]]></string>
-    <string name="faq"><![CDATA[FAQ & Bantuan]]></string>
-    <string name="logout">Keluar</string>
 </resources>
