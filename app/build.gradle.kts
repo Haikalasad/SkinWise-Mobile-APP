@@ -76,6 +76,7 @@ dependencies {
 
     //splash library
     implementation ("androidx.core:core-splashscreen:1.0.1")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 
     ksp("androidx.room:room-compiler:2.5.2")
     implementation("androidx.room:room-runtime:2.5.2")
