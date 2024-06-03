@@ -102,6 +102,7 @@ tools:context=".ui.welcome.WelcomeActivity">
     android:layout_marginTop="60dp"
     android:backgroundTint="@color/blue_primary"
     android:text="@string/login"
+    app:cornerRadius="12dp"
     android:textSize="16sp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"

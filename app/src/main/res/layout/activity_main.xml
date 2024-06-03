@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.main.MainActivity"
+    android:background="@color/white">
 
     <View
         android:id="@+id/viewBackground"
@@ -33,15 +34,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/mainProfile"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="48dp"
+        android:src="@drawable/profile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/layoutProfile"
@@ -82,8 +83,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:backgroundTint="@color/white"
-        android:src="@drawable/baseline_notification"
-        app:backgroundTint="@color/black"/>
+        app:srcCompat="@drawable/baseline_notification"
+        app:tint="@color/black"/>
 
 
     <com.google.android.material.search.SearchBar
@@ -130,9 +131,10 @@
     <Button
         android:id="@+id/filterArticle"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="42dp"
         android:fontFamily="@font/inter_medium"
         android:text="@string/filterArticle"
+        app:cornerRadius="8dp"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:layout_marginStart="24dp"
@@ -143,12 +145,14 @@
     <Button
         android:id="@+id/filterArticle2"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/inter_medium"
         android:text="@string/filterArticle"
-        android:textColor="@color/gray_disabled"
+        android:textColor="@color/gray_400"
+        android:backgroundTint="@color/gray_200"
         android:textSize="14sp"
+        app:cornerRadius="8dp"
         style="@style/Widget.Material3.Button.TonalButton"
         app:layout_constraintBottom_toBottomOf="@+id/filterArticle"
         app:layout_constraintStart_toEndOf="@id/filterArticle"
@@ -156,11 +160,13 @@
     <Button
         android:id="@+id/filterArticle3"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/inter_medium"
         android:text="@string/filterArticle"
-        android:textColor="@color/gray_disabled"
+        android:textColor="@color/gray_400"
+        android:backgroundTint="@color/gray_200"
+        app:cornerRadius="8dp"
         android:textSize="14sp"
         style="@style/Widget.Material3.Button.TonalButton"
         app:layout_constraintBottom_toBottomOf="@+id/filterArticle2"
@@ -169,12 +175,14 @@
     <Button
         android:id="@+id/filterArticle4"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/inter_medium"
         android:text="@string/filterArticle"
-        android:textColor="@color/gray_disabled"
+        app:cornerRadius="8dp"
         android:textSize="14sp"
+        android:textColor="@color/gray_400"
+        android:backgroundTint="@color/gray_200"
         style="@style/Widget.Material3.Button.TonalButton"
         app:layout_constraintBottom_toBottomOf="@+id/filterArticle3"
         app:layout_constraintStart_toEndOf="@id/filterArticle3"
@@ -429,6 +437,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/white"
         app:maxImageSize="40dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
