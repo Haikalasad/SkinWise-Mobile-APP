@@ -2,25 +2,27 @@ package com.example.skinwise.adapter
 
 
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.skinwise.R
 import com.example.skinwise.data.api.article.ArticleModel
-import com.example.skinwise.data.api.article.ArticlesItem
+import com.example.skinwise.data.database.favoriteArticle.FavoriteArticleRepository
+import com.example.skinwise.data.database.favoriteArticle.favoriteArticle
 import com.example.skinwise.databinding.ItemRowArticleBinding
 import com.example.skinwise.ui.article.DetailArticleActivity
-import com.google.android.material.button.MaterialButton
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class ArticleAdapter(private val articleClickListener: ArticleClickListener) :
-    ListAdapter<ArticleModel, ArticleAdapter.ArticleViewHolder>(DiffCallback) {
+
+class ArticleAdapter(
+    private val favoriteArticleRepository: FavoriteArticleRepository
+) : ListAdapter<ArticleModel, ArticleAdapter.ArticleViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<ArticleModel>() {
         override fun areItemsTheSame(oldItem: ArticleModel, newItem: ArticleModel): Boolean {
@@ -40,16 +42,12 @@ class ArticleAdapter(private val articleClickListener: ArticleClickListener) :
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = getItem(position)
         holder.bind(article)
-        holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, DetailArticleActivity::class.java)
-            intent.putExtra("article_id", article.id)
-
-            holder.itemView.context.startActivity(intent)
-        }
     }
 
     inner class ArticleViewHolder(private val binding: ItemRowArticleBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        private val coroutineScope = CoroutineScope(Dispatchers.Main)
         fun bind(article: ArticleModel) {
             with(binding) {
                 tvSource.text = article.category
@@ -60,6 +58,45 @@ class ArticleAdapter(private val articleClickListener: ArticleClickListener) :
                     .load(article.imageUrl)
                     .centerCrop()
                     .into(imgItemPhoto)
+
+                itemView.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailArticleActivity::class.java)
+                    intent.putExtra("article_id", article.id)
+                    itemView.context.startActivity(intent)
+                }
+
+                coroutineScope.launch {
+                    val isFavorite = favoriteArticleRepository.isArticleFavorite(article.title)
+                    val favoriteIcon = if (isFavorite) R.drawable.baseline_favorite_24 else R.drawable.baseline_favorite_border_24
+                    btnAddFavorite.setImageResource(favoriteIcon)
+                }
+
+
+                btnAddFavorite.setOnClickListener {
+                    val favoriteArticle = favoriteArticle(
+                        title = article.title,
+                        image = article.imageUrl,
+                        writer = article.author,
+                        date = article.date,
+                        category = article.category
+                    )
+
+                    article.isFavorite = !article.isFavorite
+
+                    val updatedFavoriteIcon = if (article.isFavorite) R.drawable.baseline_favorite_24 else R.drawable.baseline_favorite_border_24
+                    btnAddFavorite.setImageResource(updatedFavoriteIcon)
+
+                    coroutineScope.launch {
+                        if (article.isFavorite) {
+                            favoriteArticleRepository.insert(favoriteArticle)
+                            Toast.makeText(itemView.context, "${article.title} berhasil ditambahkan ke favorite", Toast.LENGTH_SHORT).show()
+                        } else {
+                            favoriteArticleRepository.deleteByTitle(article.title)
+                            Toast.makeText(itemView.context, "${article.title} berhasil dihapus dari favorite", Toast.LENGTH_SHORT).show()
+
+                        }
+                    }
+                }
             }
         }
     }
@@ -67,7 +104,23 @@ class ArticleAdapter(private val articleClickListener: ArticleClickListener) :
     interface ArticleClickListener {
         fun onArticleClicked(article: ArticleModel)
     }
+
+    interface FavoriteClickListener {
+        fun onFavoriteClicked(article: favoriteArticle)
+    }
+
+
+    fun updateFavoriteStatus(articleId: Int, isFavorite: Boolean) {
+        val position = currentList.indexOfFirst { it.id == articleId }
+        if (position != RecyclerView.NO_POSITION) {
+            val currentListMutable = currentList.toMutableList()
+            currentListMutable[position].isFavorite = isFavorite
+            submitList(currentListMutable)
+        }
+    }
+
 }
+
 
 
 //class ArticleAdapter : ListAdapter<ArticlesItem, ArticleAdapter.MyViewHolder>(DIFF_CALLBACK) {

@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
 
 class Repository(private val preferences: UserPreference, private val apiService: ApiService) {
 
-    suspend fun register(nama:String,email:String,password:String) : Result<RegisterResponse>{
+    suspend fun register(nama:String,email:String,password:String,role:String) : Result<RegisterResponse>{
         return try{
-            val response = apiService.register(nama,email,password)
+            val response = apiService.register(nama,email,password,role)
             if(response.status == "fail"){
                 Result.Error("Registrasi gagal")
             }else{
@@ -37,8 +37,8 @@ class Repository(private val preferences: UserPreference, private val apiService
     }
 
 
-    suspend fun SaveUserInfo(token: String) {
-        preferences.SaveUserInfo(token)
+    suspend fun saveUserInfo(token: String) {
+        preferences.saveUserInfo(token)
     }
     fun getSession(): Flow<loginModel> {
         return preferences.getSession()

@@ -10,10 +10,10 @@ interface ApiService {
     @FormUrlEncoded
     @POST("/register")
     suspend fun register(
-        @Field("nama") name: String,
         @Field("email") email: String,
         @Field("password") password: String,
-        @Field("role") role : String = "customer"
+        @Field("nama") nama: String,
+        @Field("role") role : String
     ): RegisterResponse
 
     @FormUrlEncoded

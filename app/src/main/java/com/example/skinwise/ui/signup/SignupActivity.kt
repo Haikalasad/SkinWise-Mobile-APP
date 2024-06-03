@@ -61,9 +61,10 @@ class SignupActivity : AppCompatActivity() {
             val email = binding.edSignupEmail.text.toString()
             val password = binding.edSignupPassword.text.toString()
             val nama = binding.edSignupName.text.toString()
+            val role = "customer"
 
             if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(nama)) {
-                handleRegister(nama, email, password)
+                handleRegister(email,password,nama, role)
             } else {
                 Log.e("Register Activity","Gagal")
             }
@@ -71,9 +72,9 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleRegister(nama:String,email : String, password : String){
+    private fun handleRegister(email:String,password : String, nama : String,role : String){
         signupViewModel.setLoading(true)
-        signupViewModel.register(nama, email, password)
+        signupViewModel.register(email, password, nama,role)
         signupViewModel.registerResult.observe(this){ result->
             when(result){
                 is Result.Success ->{

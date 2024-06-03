@@ -38,11 +38,26 @@
             android:textSize="12sp"
             android:textStyle="italic"
             android:fontFamily="@font/inter_regular"
-            card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="1.0"
             card_view:layout_constraintStart_toStartOf="@+id/guideline"
             card_view:layout_constraintTop_toTopOf="parent" />
 
+
+        <ImageButton
+            android:id="@+id/btn_addFavorite"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:background="@color/white"
+            android:contentDescription="Tambahkan ke favorite"
+            android:onClick="iconButtonClick"
+            android:padding="10dp"
+            android:src="@drawable/baseline_favorite_border_24"
+            card_view:layout_constraintBottom_toTopOf="@id/tv_title"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="1.0"
+            card_view:layout_constraintStart_toEndOf="@id/tv_source"
+            card_view:layout_constraintTop_toTopOf="@id/tv_source"
+            card_view:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tv_title"

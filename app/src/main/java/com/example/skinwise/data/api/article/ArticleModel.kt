@@ -11,7 +11,9 @@ data class ArticleModel(
     val imageUrl : String,
     val content: String,
     val author: String,
-    val date: String
+    val date: String,
+    var isFavorite: Boolean = false
+
 ) : Parcelable
 
 

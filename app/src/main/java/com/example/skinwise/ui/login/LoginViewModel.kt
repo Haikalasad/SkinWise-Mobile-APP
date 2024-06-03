@@ -26,9 +26,11 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
 
             if (result is Result.Success) {
                 val token = result.data.data?.token
+
                 if (token != null) {
-                    repository.SaveUserInfo(token)
+                    repository.saveUserInfo(token)
                 }
+
             }
             _isLoading.value = false
         }

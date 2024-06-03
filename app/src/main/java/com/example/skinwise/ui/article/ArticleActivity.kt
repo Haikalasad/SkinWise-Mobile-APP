@@ -13,17 +13,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.skinwise.R
 import com.example.skinwise.adapter.ArticleAdapter
 import com.example.skinwise.data.api.article.ArticleModel
+import com.example.skinwise.data.database.favoriteArticle.favoriteArticle
 import com.example.skinwise.databinding.ActivityArticleBinding
+import com.example.skinwise.ui.article.favorite.FavoriteArticleViewModel
+import com.example.skinwise.ui.article.favorite.FavoriteArticleViewModelFactory
 import com.example.skinwise.ui.main.ViewModelFactory
+import com.example.skinwise.data.database.favoriteArticle.FavoriteArticleRepository
 
-class ArticleActivity : AppCompatActivity(), ArticleAdapter.ArticleClickListener {
+
+class ArticleActivity : AppCompatActivity(), ArticleAdapter.ArticleClickListener, ArticleAdapter.FavoriteClickListener {
 
     private lateinit var binding: ActivityArticleBinding
-
     private lateinit var factory: ViewModelFactory
+    private lateinit var favoriteFactory: FavoriteArticleViewModelFactory
     private val viewModel: ArticleViewModel by viewModels { factory }
-
+    private val favoriteViewModel: FavoriteArticleViewModel by viewModels { favoriteFactory }
     private lateinit var articleAdapter: ArticleAdapter
+    private lateinit var favoriteArticleRepository: FavoriteArticleRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +37,8 @@ class ArticleActivity : AppCompatActivity(), ArticleAdapter.ArticleClickListener
         setContentView(binding.root)
 
         factory = ViewModelFactory.getInstance(this)
+        favoriteArticleRepository = FavoriteArticleRepository(application) // Inisialisasi favoriteArticleRepository di sini
+        favoriteFactory = FavoriteArticleViewModelFactory.getInstance(application, favoriteArticleRepository)
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = "Artikel"
@@ -39,7 +47,7 @@ class ArticleActivity : AppCompatActivity(), ArticleAdapter.ArticleClickListener
         val upArrow: Drawable? = ContextCompat.getDrawable(this, R.drawable.baseline_arrow_back_24)
         supportActionBar?.setHomeAsUpIndicator(upArrow)
 
-        articleAdapter = ArticleAdapter(this)
+        articleAdapter = ArticleAdapter(favoriteArticleRepository)
         binding.rvListArticle.layoutManager = LinearLayoutManager(this)
         binding.rvListArticle.adapter = articleAdapter
 
@@ -68,7 +76,6 @@ class ArticleActivity : AppCompatActivity(), ArticleAdapter.ArticleClickListener
         viewModel.fetchArticles()
     }
 
-
     override fun onCreateOptionsMenu(menu: android.view.Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar, menu)
         return true
@@ -87,20 +94,41 @@ class ArticleActivity : AppCompatActivity(), ArticleAdapter.ArticleClickListener
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    override fun onFavoriteClicked(article: favoriteArticle) {
+        val favoriteArticle = favoriteArticle(
+            title = article.title,
+            image = article.image,
+            writer = article.writer,
+            date = article.date,
+            category = article.category
+        )
+        favoriteViewModel.insertFavoriteArticle(favoriteArticle)
+
+        articleAdapter.updateFavoriteStatus(article.id, true)
+    }
+
+
+
     override fun onArticleClicked(article: ArticleModel) {
         Toast.makeText(this, "Article clicked: ${article.title}", Toast.LENGTH_SHORT).show()
     }
+
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
 
-    private fun observeLoading(){
+    private fun observeLoading() {
         viewModel.isLoading.observe(this) { isLoading ->
             binding.loading.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
     }
 
+
+    companion object{
+        val TAG = "ArticleActivity"
+    }
 
 }

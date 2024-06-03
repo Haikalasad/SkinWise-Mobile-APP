@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
     id("kotlin-parcelize")
 }
 
@@ -75,4 +76,7 @@ dependencies {
 
     //splash library
     implementation ("androidx.core:core-splashscreen:1.0.1")
+
+    ksp("androidx.room:room-compiler:2.5.2")
+    implementation("androidx.room:room-runtime:2.5.2")
 }
