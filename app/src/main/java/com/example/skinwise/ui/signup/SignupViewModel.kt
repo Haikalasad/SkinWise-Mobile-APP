@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.skinwise.data.Repository
+import com.example.skinwise.data.repository.Repository
 import com.example.skinwise.data.Result
 import com.example.skinwise.data.api.response.RegisterResponse
 import kotlinx.coroutines.launch

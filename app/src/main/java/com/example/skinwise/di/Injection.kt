@@ -1,10 +1,9 @@
 package com.example.skinwise.di
 
 import android.content.Context
-import com.example.skinwise.data.ArticleRepository
-import com.example.skinwise.data.Repository
+import com.example.skinwise.data.repository.ArticleRepository
+import com.example.skinwise.data.repository.Repository
 import com.example.skinwise.data.api.ApiConfig
-import com.example.skinwise.data.api.article.ArticleApiConfig
 import com.example.skinwise.data.pref.UserPreference
 import com.example.skinwise.data.pref.dataStore
 import kotlinx.coroutines.flow.first
@@ -18,9 +17,13 @@ object Injection {
         return Repository.getInstance(preferences,apiService)
     }
 
-    fun provideArticleRepo() :ArticleRepository{
+    fun provideArticleRepo() : ArticleRepository {
         return ArticleRepository()
     }
+
+//    fun provideHospitalRepo() : HospitalRepository{
+//        return HospitalRepository()
+//    }
 
 
 

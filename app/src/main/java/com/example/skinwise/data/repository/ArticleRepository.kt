@@ -1,14 +1,6 @@
-package com.example.skinwise.data
+package com.example.skinwise.data.repository
 
-import com.example.skinwise.data.api.article.ArticleApiService
-import com.example.skinwise.data.api.article.ArticleResponse
-import com.example.skinwise.data.Result
-import com.example.skinwise.data.api.article.ArticleModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-
-
-
+import com.example.skinwise.data.model.ArticleModel
 
 
 // Article Repository using API

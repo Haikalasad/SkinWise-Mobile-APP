@@ -1,4 +1,4 @@
-package com.example.skinwise.data.api.article
+package com.example.skinwise.data.api.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -48,4 +48,17 @@ data class Source(
 
 	@field:SerializedName("id")
 	val id: String? = null
+)
+
+
+data class HospitalResponse(
+	@field:SerializedName("name")
+	val name: String? = null,
+
+	@field:SerializedName("id")
+	val id: String? = null,
+
+	@field:SerializedName("status")
+	val status: String? = null
+
 )

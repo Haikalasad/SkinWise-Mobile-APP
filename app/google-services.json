@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "193024850455",
+    "project_id": "skinwise-5c4ef",
+    "storage_bucket": "skinwise-5c4ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193024850455:android:aa534c499377cbcc583a52",
+        "android_client_info": {
+          "package_name": "com.example.skinwise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA11Y_Nh2hOhkw13INjetr82P-JXq9A7kY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,11 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.skinwise.data.ArticleRepository
-import com.example.skinwise.data.api.article.ArticleResponse
+import com.example.skinwise.data.repository.ArticleRepository
 import kotlinx.coroutines.launch
-import com.example.skinwise.data.Result
-import com.example.skinwise.data.api.article.ArticleModel
+import com.example.skinwise.data.model.ArticleModel
 import kotlinx.coroutines.delay
 
 

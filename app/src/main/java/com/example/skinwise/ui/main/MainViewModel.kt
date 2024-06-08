@@ -5,9 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.skinwise.data.Repository
+import com.example.skinwise.data.repository.Repository
 import com.example.skinwise.data.model.loginModel
-import com.example.skinwise.data.pref.UserModel
 import kotlinx.coroutines.launch
 
 class MainViewModel (private val repository: Repository) : ViewModel() {

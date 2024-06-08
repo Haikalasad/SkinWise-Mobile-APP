@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.skinwise.R
-import com.example.skinwise.data.api.article.ArticleModel
+import com.example.skinwise.data.model.ArticleModel
 import com.example.skinwise.data.database.favoriteArticle.FavoriteArticleRepository
 import com.example.skinwise.data.database.favoriteArticle.favoriteArticle
 import com.example.skinwise.databinding.ItemRowArticleBinding

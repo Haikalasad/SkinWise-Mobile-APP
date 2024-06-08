@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.skinwise.R
 import com.example.skinwise.adapter.ArticleAdapter
-import com.example.skinwise.data.api.article.ArticleModel
+import com.example.skinwise.data.model.ArticleModel
 import com.example.skinwise.data.database.favoriteArticle.favoriteArticle
 import com.example.skinwise.databinding.ActivityArticleBinding
 import com.example.skinwise.ui.article.favorite.FavoriteArticleViewModel
@@ -37,7 +37,7 @@ class ArticleActivity : AppCompatActivity(), ArticleAdapter.ArticleClickListener
         setContentView(binding.root)
 
         factory = ViewModelFactory.getInstance(this)
-        favoriteArticleRepository = FavoriteArticleRepository(application) // Inisialisasi favoriteArticleRepository di sini
+        favoriteArticleRepository = FavoriteArticleRepository(application)
         favoriteFactory = FavoriteArticleViewModelFactory.getInstance(application, favoriteArticleRepository)
 
         setSupportActionBar(binding.toolbar)

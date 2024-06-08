@@ -4,10 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.skinwise.data.Repository
+import com.example.skinwise.data.repository.Repository
 import com.example.skinwise.data.Result
 import com.example.skinwise.data.api.response.LoginResponse
-import com.example.skinwise.data.model.loginModel
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repository: Repository) : ViewModel() {

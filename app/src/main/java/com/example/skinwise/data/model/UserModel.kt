@@ -1,4 +1,4 @@
-package com.example.skinwise.data.pref
+package com.example.skinwise.data.model
 
 data class UserModel(
     val userId: String,

@@ -35,3 +35,7 @@ class ArticleApiConfig {
         }
     }
 }
+
+
+
+// Konfigurasi untuk API (sebelumnya)

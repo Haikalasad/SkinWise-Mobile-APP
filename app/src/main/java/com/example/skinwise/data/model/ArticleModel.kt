@@ -1,4 +1,4 @@
-package com.example.skinwise.data.api.article
+package com.example.skinwise.data.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

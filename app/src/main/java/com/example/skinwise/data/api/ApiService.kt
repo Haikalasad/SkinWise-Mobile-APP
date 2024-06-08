@@ -1,10 +1,13 @@
 package com.example.skinwise.data.api
 
+import com.example.skinwise.data.api.response.HospitalResponse
 import com.example.skinwise.data.api.response.LoginResponse
 import com.example.skinwise.data.api.response.RegisterResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
     @FormUrlEncoded
@@ -22,6 +25,16 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): LoginResponse
+
+//    @GET("/hospitals")
+//    fun getHospital(
+//        @Query("kota") city: String,
+//    ): HospitalResponse
+
+//    @GET("/doctors")
+//    fun getDoctors() : DoctorResponse
+
+
 
 
 
