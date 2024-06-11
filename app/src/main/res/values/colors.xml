@@ -9,4 +9,5 @@
     <color name="gray_200">#F5F5F5</color>
     <color name="gray_400">#A0A6B1</color>
     <color name="background_received">#E2E5EB</color>
+    <color name="gray">#DADADA</color>
 </resources>
