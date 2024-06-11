@@ -72,4 +72,8 @@
     <string name="recomendationArticle">Artikel Terkait</string>
     <string name="HospitalSection">Rumah Sakit Sekitar Anda</string>
     <string name="image_classifier_failed">Gagal Classifier</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="diseasename">Penyakit Vitiligo</string>
+    <string name="datescan">Discan pada tanggal : 24/02/2024</string>
 </resources>
