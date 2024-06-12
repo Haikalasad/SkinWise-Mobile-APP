@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 
 object ApiConfig {
 
-    val BASE_URL = "http://192.168.56.1:3000"
+    val BASE_URL = "http://34.101.250.159:3000"
 
 
     fun getApiService(token : String) :ApiService{

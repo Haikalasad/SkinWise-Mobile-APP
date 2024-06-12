@@ -102,6 +102,7 @@
             app:backgroundTint="@color/white"
             app:strokeColor="@color/white"
             app:strokeWidth="1dp"
+            android:maxLines="1"
             android:text="@string/searchbarSearch"
             app:layout_constraintTop_toBottomOf="@+id/layoutProfile" />
 
@@ -260,7 +261,7 @@
             android:id="@+id/pictArticle"
             android:layout_width="93dp"
             android:layout_height="93dp"
-            tools:srcCompat="@tools:sample/avatars"
+            android:src="@drawable/article"
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"

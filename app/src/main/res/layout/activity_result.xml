@@ -142,7 +142,7 @@
                 android:layout_marginTop="16dp">
 
                 <ImageView
-                    android:id="@+id/pictArticle"
+                    android:id="@+id/pictArticle1"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_marginEnd="8dp"
@@ -153,7 +153,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/tv_title_article"
+                        android:id="@+id/tittlearticle1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -161,12 +161,12 @@
                         android:fontFamily="@font/inter_bold"
                         android:text="@string/tittleArticle" />
                     <TextView
-                        android:id="@id/dateArticle"
+                        android:id="@+id/dateArticle1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/dateArticle"
                         android:textSize="12sp"
-                        android:fontFamily="@font/inter_regular"
+                        android:fontFamily="@font/inter_regular"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -180,7 +180,7 @@
                 android:layout_marginTop="16dp">
 
                 <ImageView
-                    android:id="@+id/pictArticle"
+                    android:id="@+id/pictArticle2"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_marginEnd="8dp"
@@ -191,7 +191,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/tv_title_article"
+                        android:id="@+id/tittlearticle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -199,12 +199,12 @@
                         android:fontFamily="@font/inter_bold"
                         android:text="@string/tittleArticle" />
                     <TextView
-                        android:id="@id/dateArticle"
+                        android:id="@+id/dateArticle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/dateArticle"
                         android:textSize="12sp"
-                        android:fontFamily="@font/inter_regular"
+                        android:fontFamily="@font/inter_regular"/>
                 </LinearLayout>
 
 
