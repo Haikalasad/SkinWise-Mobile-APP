@@ -2,19 +2,32 @@ package com.example.skinwise.data.repository
 
 import android.util.Log
 import com.example.skinwise.data.model.ChatModel
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.coroutines.tasks.await
 
 class ChatRepository {
     private val db = FirebaseFirestore.getInstance()
 
-    suspend fun sendMessage(doctorId: String, chatMessage: ChatModel): Boolean {
+    suspend fun sendMessage(senderId: String, receiverId: String, chatMessage: ChatModel): Boolean {
         return try {
+
             db.collection("chats")
-                .document(doctorId)
+                .document(senderId)
+                .collection("doctors")
+                .document(receiverId)
+                .set(mapOf("doctorId" to receiverId))
+                .await()
+
+            db.collection("chats")
+                .document(senderId)
+                .collection("doctors")
+                .document(receiverId)
                 .collection("messages")
                 .add(chatMessage)
                 .await()
+
             true
         } catch (e: Exception) {
             Log.e("ChatRepository", "Error sending message", e)
@@ -22,20 +35,47 @@ class ChatRepository {
         }
     }
 
-    fun getMessages(doctorId: String, onResult: (List<ChatModel>) -> Unit) {
-        db.collection("chats")
-            .document(doctorId)
-            .collection("messages")
-            .orderBy("timestamp")
-            .addSnapshotListener { snapshot, e ->
-                if (e != null || snapshot == null) {
-                    Log.e("ChatRepository", "Error getting messages", e)
-                    onResult(emptyList())
-                    return@addSnapshotListener
-                }
+    fun getChatList(userEmail: String, onChatListUpdated: (List<ChatModel>) -> Unit) {
+        Log.d("ChatRepository", "Listening for chat list updates for user: $userEmail")
 
-                val messages = snapshot.toObjects(ChatModel::class.java)
-                onResult(messages)
-            }
+        try {
+            db.collection("chats")
+                .document(userEmail)
+                .collection("doctors")
+                .addSnapshotListener { doctorsQuery, error ->
+                    if (error != null) {
+                        Log.e("ChatRepository", "Error listening for chat list updates", error)
+                        return@addSnapshotListener
+                    }
+
+                    val updatedChatList = mutableListOf<ChatModel>()
+
+                    val tasks = doctorsQuery?.documents?.map { doctorDoc ->
+                        val doctorId = doctorDoc.id
+
+                        db.collection("chats")
+                            .document(userEmail)
+                            .collection("doctors")
+                            .document(doctorId)
+                            .collection("messages")
+                            .orderBy("timestamp", Query.Direction.DESCENDING)
+                            .limit(1)
+                            .get()
+                            .continueWith { messagesQuery ->
+                                if (messagesQuery.isSuccessful) {
+                                    val lastMessageDoc = messagesQuery.result.documents.firstOrNull()
+                                    val message = lastMessageDoc?.toObject(ChatModel::class.java)
+                                    message?.let { updatedChatList.add(it) }
+                                }
+                            }
+                    } ?: emptyList()
+
+                    Tasks.whenAllComplete(tasks).addOnCompleteListener {
+                        onChatListUpdated(updatedChatList)
+                    }
+                }
+        } catch (e: Exception) {
+            Log.e("ChatRepository", "Error listening for chat list updates", e)
+        }
     }
 }

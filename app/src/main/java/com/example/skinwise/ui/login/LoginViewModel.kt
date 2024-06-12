@@ -1,5 +1,6 @@
 package com.example.skinwise.ui.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,10 +26,11 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
 
             if (result is Result.Success) {
                 val token = result.data.data?.token
-
                 if (token != null) {
+                    Log.d("LoginActivity","Token : $token")
                     repository.saveUserInfo(token)
                 }
+
 
             }
             _isLoading.value = false

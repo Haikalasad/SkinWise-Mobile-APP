@@ -2,30 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_home"
-        android:background="#FFFFFF"
         android:icon="@drawable/baseline_home"
-        android:title="Home" />
-
+        android:title="Beranda" />
     <item
         android:id="@+id/action_hospital"
-        android:title="Hospital"
         android:icon="@drawable/baseline_hospital"
-        android:background="#FFFFFF" />
+        android:title="Rumah sakit" />
     <item
         android:id="@+id/action_scan"
-        android:title="Scanner"
-        android:enabled="true"
-        android:background="#FFFFFF" />
-
+        android:icon="@drawable/baseline_add"
+        android:title="Scanner" />
     <item
-        android:id="@+id/action_chat"
-        android:title="Konsul"
+        android:id="@+id/action_consultation"
         android:icon="@drawable/baseline_chat"
-        android:background="#FFFFFF" />
-
+        android:title="Konsultasi" />
     <item
         android:id="@+id/action_profile"
-        android:title="Profile"
         android:icon="@drawable/baseline_person_24"
-        android:background="#FFFFFF" />
+        android:title="Profil" />
 </menu>

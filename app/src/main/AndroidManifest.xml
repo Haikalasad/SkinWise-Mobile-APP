@@ -18,14 +18,8 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.Consultation.ListDoctorActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".ui.Consultation.ConsultationActivity"
+            android:exported="false"/>
         <activity
             android:name=".ui.Consultation.ChatActivity"
             android:exported="false" />
@@ -34,35 +28,42 @@
             android:exported="false" />
         <activity
             android:name=".ui.article.ArticleActivity"
-            android:exported="false"
-            android:theme="@style/SplashScreenTheme" />
+            android:exported="false"/>
+        <activity
+            android:name=".ui.article.DetailArticleActivity"
+            android:exported="false" />
 <!--        <activity-->
-<!--            android:name=".ui.hospital.HospitalActivity"-->
+<!--            android:name=".ui.SplashScreenActivity"-->
 <!--            android:exported="true">-->
+
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
+
 <!--        </activity>-->
-        <activity
-            android:name=".ui.article.DetailArticleActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.SplashScreenActivity"
-            android:exported="false" />
         <activity
             android:name=".ui.signup.SignupActivity"
             android:exported="false" />
         <activity
             android:name=".ui.login.LoginActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.welcome.WelcomeActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
     </application>
 
 </manifest>

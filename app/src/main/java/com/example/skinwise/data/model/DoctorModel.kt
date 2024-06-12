@@ -5,6 +5,7 @@ data class DoctorModel (
     val doctorId : String = "1",
     val name: String = "",
     val email: String = "",
-    val photoUrl: String = ""
+    val photoUrl: String = "",
+    val isLogin: Boolean = true,
 
 )

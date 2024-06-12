@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.skinwise.data.repository.Repository
-import com.example.skinwise.data.model.loginModel
+import com.example.skinwise.data.model.UserModel
 import kotlinx.coroutines.launch
 
 class MainViewModel (private val repository: Repository) : ViewModel() {
@@ -15,7 +15,7 @@ class MainViewModel (private val repository: Repository) : ViewModel() {
     private val _message = MutableLiveData<String>()
     val message: LiveData<String> get() = _message
 
-    fun getSession(): LiveData<loginModel> {
+    fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
     }
 

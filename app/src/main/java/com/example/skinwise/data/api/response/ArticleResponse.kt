@@ -51,14 +51,3 @@ data class Source(
 )
 
 
-data class HospitalResponse(
-	@field:SerializedName("name")
-	val name: String? = null,
-
-	@field:SerializedName("id")
-	val id: String? = null,
-
-	@field:SerializedName("status")
-	val status: String? = null
-
-)

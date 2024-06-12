@@ -21,10 +21,4 @@ object Injection {
         return ArticleRepository()
     }
 
-//    fun provideHospitalRepo() : HospitalRepository{
-//        return HospitalRepository()
-//    }
-
-
-
 }

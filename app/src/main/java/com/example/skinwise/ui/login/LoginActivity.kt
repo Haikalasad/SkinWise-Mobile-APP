@@ -13,7 +13,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.skinwise.ui.main.MainActivity
 import com.example.skinwise.R
 import com.example.skinwise.data.Result
 import com.example.skinwise.databinding.ActivityLoginBinding

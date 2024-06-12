@@ -2,9 +2,13 @@ package com.example.skinwise.ui.Consultation
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.skinwise.R
 import com.example.skinwise.adapter.FirestoreChatAdapter
 import com.example.skinwise.data.model.ChatModel
 import com.example.skinwise.data.pref.UserPreference
@@ -26,11 +30,15 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var chatAdapter: FirestoreChatAdapter
     private lateinit var userPreference: UserPreference
+    private lateinit var currentUserEmail: String
     private lateinit var currentUserToken: String
     private lateinit var currentUserName: String
     private lateinit var currentUserPhotoUrl: String
     private lateinit var chatRepository: ChatRepository
     private lateinit var doctorId: String
+    private lateinit var doctorName: String
+    private lateinit var doctorPhotoUrl: String
+    private var doctorIsLogin: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,20 +49,22 @@ class ChatActivity : AppCompatActivity() {
         userPreference = UserPreference.getInstance(dataStore)
         chatRepository = ChatRepository()
 
-        // Initialize views using binding
         val recyclerView = binding.recyclerView
         val sendButton = binding.sendButton
         val messageEditText = binding.messageEditText
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Get doctorId from intent or savedInstanceState
         doctorId = intent.getStringExtra("doctorId") ?: savedInstanceState?.getString("doctorId") ?: ""
+        doctorName = intent.getStringExtra("doctorName") ?: ""
+        doctorPhotoUrl = intent.getStringExtra("doctorPhotoUrl") ?: ""
+        doctorIsLogin = intent.getBooleanExtra("doctorIsOnline", false)
 
         CoroutineScope(Dispatchers.Main).launch {
             val session = userPreference.getSession().first()
             currentUserToken = session.token
-            currentUserName = session.name
+            currentUserEmail = session.email
+            currentUserName = session.nama
             currentUserPhotoUrl = session.photoUrl
 
             setupRecyclerView(recyclerView)
@@ -62,10 +72,24 @@ class ChatActivity : AppCompatActivity() {
                 sendMessage(messageEditText.text.toString())
             }
         }
+
+        setupDoctorStatus()
+
+        binding.buttonBack.setOnClickListener{
+            onBackPressed()
+        }
+
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
         val query: Query = firestore.collection("chats")
+            .document(currentUserEmail)
+            .collection("doctors")
             .document(doctorId)
             .collection("messages")
             .orderBy("timestamp", Query.Direction.ASCENDING)
@@ -74,23 +98,50 @@ class ChatActivity : AppCompatActivity() {
             .setQuery(query, ChatModel::class.java)
             .build()
 
-        chatAdapter = FirestoreChatAdapter(currentUserToken, options)
+        chatAdapter = FirestoreChatAdapter(currentUserEmail, options)
         recyclerView.adapter = chatAdapter
+
         chatAdapter.startListening()
+    }
+
+
+
+    private fun setupDoctorStatus() {
+        val doctorProfileImageView: ImageView = findViewById(R.id.doctorProfileImageView)
+        val doctorNameTextView: TextView = findViewById(R.id.doctorNameTextView)
+        val doctorStatusTextView: TextView = findViewById(R.id.doctorStatusTextView)
+        val onlineStatusImageView: ImageView = findViewById(R.id.onlineStatusImageView)
+
+        doctorNameTextView.text = doctorName
+        doctorStatusTextView.text = if (doctorIsLogin) "Online" else "Offline"
+        val statusColor = if (doctorIsLogin) R.color.green else R.color.gray_disabled
+        onlineStatusImageView.setColorFilter(resources.getColor(statusColor, null))
+
+        Glide.with(this)
+            .load(doctorPhotoUrl)
+            .placeholder(R.drawable.ic_baseline_account_circle_24)
+            .error(R.drawable.ic_baseline_account_circle_24)
+            .circleCrop()
+            .into(doctorProfileImageView)
+
     }
 
     private fun sendMessage(message: String) {
         if (message.isNotEmpty()) {
             val chatMessage = ChatModel(
                 senderId = currentUserToken,
+                email = currentUserEmail,
+                receiverId = doctorId,
                 senderName = currentUserName,
                 message = message,
                 timestamp = System.currentTimeMillis(),
-                photoUrl = currentUserPhotoUrl
+                receivephotoUrl = doctorPhotoUrl,
+                senderphotoUrl =currentUserPhotoUrl,
+                receiverName = doctorName
             )
 
             CoroutineScope(Dispatchers.IO).launch {
-                val success = chatRepository.sendMessage(doctorId, chatMessage)
+                val success = chatRepository.sendMessage(currentUserEmail,doctorId, chatMessage)
                 withContext(Dispatchers.Main) {
                     if (success) {
                         binding.messageEditText.text.clear()

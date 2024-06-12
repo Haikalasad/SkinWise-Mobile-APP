@@ -59,4 +59,9 @@
     <string name="rate">rate</string>
     <string name="message_hint">Ketikkan sesuatu...</string>
     <string name="chat">Chat</string>
+    <string name="nama_dokter">Nama dokter</string>
+    <string name="Status_dokter">status dokter</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="timestamp">timestamp</string>
 </resources>

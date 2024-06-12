@@ -1,5 +1,6 @@
 package com.example.skinwise.data.api
 
+import com.example.skinwise.data.api.response.DoctorResponse
 import com.example.skinwise.data.api.response.HospitalResponse
 import com.example.skinwise.data.api.response.LoginResponse
 import com.example.skinwise.data.api.response.RegisterResponse
@@ -26,13 +27,13 @@ interface ApiService {
         @Field("password") password: String
     ): LoginResponse
 
-//    @GET("/hospitals")
-//    fun getHospital(
-//        @Query("kota") city: String,
-//    ): HospitalResponse
+    @GET("/hospitals")
+    fun getHospital(
+        @Query("kota") kota: String,
+    ): HospitalResponse
 
-//    @GET("/doctors")
-//    fun getDoctors() : DoctorResponse
+    @GET("/doctors")
+    fun getDoctors() : DoctorResponse
 
 
 
