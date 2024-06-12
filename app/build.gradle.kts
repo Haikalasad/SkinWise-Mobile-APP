@@ -108,4 +108,7 @@ dependencies {
 
     implementation ("androidx.fragment:fragment-ktx:1.3.6")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+
+    implementation ("com.github.yalantis:ucrop:2.2.8-native")
+
 }

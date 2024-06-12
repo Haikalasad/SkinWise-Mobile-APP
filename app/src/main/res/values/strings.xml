@@ -76,4 +76,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="diseasename">Penyakit Vitiligo</string>
     <string name="datescan">Discan pada tanggal : 24/02/2024</string>
+    <string name="no_disease_detected">tidak ada penyakit terdeteksi</string>
+    <string name="try_again">coba lagi</string>
 </resources>
