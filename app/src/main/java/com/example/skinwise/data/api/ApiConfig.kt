@@ -16,7 +16,7 @@ object ApiConfig {
 
     val BASE_URL = "http://34.101.250.159:3000"
 
-//    http://34.101.241.95:3000
+
     fun getApiService(token : String) :ApiService{
         val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         val authInterceptor = Interceptor{ chain ->

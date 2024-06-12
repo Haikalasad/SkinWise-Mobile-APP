@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,415 +8,60 @@
     tools:context=".ui.main.MainActivity"
     android:background="@color/white">
 
-    <View
-        android:id="@+id/viewBackground"
-        android:layout_width="wrap_content"
-        android:layout_height="180dp"
-        android:backgroundTint="@color/blue_primary"
-        android:foregroundTint="@color/blue_primary"
-        android:background="@color/blue_primary" />
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        android:layout_above="@id/bottomAppBar" />
 
-    <ImageView
-        android:id="@+id/roundedSquareBlue"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:src="@drawable/rounded_square_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/blue_primary"
-        android:scaleType="fitXY"
-        app:layout_constraintTop_toBottomOf="@+id/viewBackground" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="180dp"
-        android:src="@drawable/texture_home"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/mainProfile"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
-        android:src="@drawable/profile"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/layoutProfile"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="48dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toEndOf="@+id/mainProfile"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/greetingProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/greetingProfile"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/nameProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/nameProfile"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="bottom"
         android:backgroundTint="@color/white"
-        app:srcCompat="@drawable/baseline_notification"
-        app:tint="@color/black"/>
-
-
-    <com.google.android.material.search.SearchBar
-        android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="24dp"
+        app:fabAlignmentMode="center"
+        app:fabAnchorMode="cradle"
+        app:fabCradleMargin="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:backgroundTint="@color/white"
-        app:strokeColor="@color/white"
-        app:strokeWidth="1dp"
-        android:text="@string/searchbarSearch"
-        app:layout_constraintTop_toBottomOf="@+id/layoutProfile"/>
-
-    <TextView
-        android:id="@+id/tittleArticleSection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_bold"
-        android:text="@string/homearticlesessionTittle"
-        android:textColor="@color/black"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roundedSquareBlue" />
-
-    <Button
-        android:id="@+id/textButton"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/inter_medium"
-        android:text="@string/homearticlesessionSeeall"
-        android:textColor="@color/blue_primary"
-        android:textSize="14sp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roundedSquareBlue" />
-
-    <Button
-        android:id="@+id/filterArticle"
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:fontFamily="@font/inter_medium"
-        android:text="@string/filterArticle"
-        app:cornerRadius="8dp"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/tittleArticleSection"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <Button
-        android:id="@+id/filterArticle2"
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/inter_medium"
-        android:text="@string/filterArticle"
-        android:textColor="@color/gray_400"
-        android:backgroundTint="@color/gray_200"
-        android:textSize="14sp"
-        app:cornerRadius="8dp"
-        style="@style/Widget.Material3.Button.TonalButton"
-        app:layout_constraintBottom_toBottomOf="@+id/filterArticle"
-        app:layout_constraintStart_toEndOf="@id/filterArticle"
-        app:layout_constraintTop_toTopOf="@+id/filterArticle" />
-    <Button
-        android:id="@+id/filterArticle3"
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/inter_medium"
-        android:text="@string/filterArticle"
-        android:textColor="@color/gray_400"
-        android:backgroundTint="@color/gray_200"
-        app:cornerRadius="8dp"
-        android:textSize="14sp"
-        style="@style/Widget.Material3.Button.TonalButton"
-        app:layout_constraintBottom_toBottomOf="@+id/filterArticle2"
-        app:layout_constraintStart_toEndOf="@id/filterArticle2"
-        app:layout_constraintTop_toTopOf="@+id/filterArticle2" />
-    <Button
-        android:id="@+id/filterArticle4"
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/inter_medium"
-        android:text="@string/filterArticle"
-        app:cornerRadius="8dp"
-        android:textSize="14sp"
-        android:textColor="@color/gray_400"
-        android:backgroundTint="@color/gray_200"
-        style="@style/Widget.Material3.Button.TonalButton"
-        app:layout_constraintBottom_toBottomOf="@+id/filterArticle3"
-        app:layout_constraintStart_toEndOf="@id/filterArticle3"
-        app:layout_constraintTop_toTopOf="@+id/filterArticle3" />
-
-    <ImageView
-        android:id="@+id/pictArticle"
-        android:layout_width="93dp"
-        android:layout_height="93dp"
-        tools:srcCompat="@tools:sample/avatars"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filterArticle" />
-    <TextView
-        android:id="@+id/categoryArticle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_bold"
-        android:text="@string/categoryArticle"
-        android:textColor="@color/blue_primary"
-        android:layout_marginStart="12dp"
-        android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/pictArticle"
-        app:layout_constraintTop_toTopOf="@+id/pictArticle"/>
-    <TextView
-        android:id="@+id/tittleArticle"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_bold"
-        android:text="@string/tittleArticle"
-        android:textColor="@color/black"
-        android:layout_marginStart="12dp"
-        android:textSize="16sp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintStart_toEndOf="@+id/pictArticle"
-        app:layout_constraintTop_toBottomOf="@+id/categoryArticle"/>
-    <TextView
-        android:id="@+id/dateArticle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_regular"
-        android:text="@string/dateArticle"
-        android:textColor="@color/black"
-        android:layout_marginStart="12dp"
-        android:textSize="10sp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintStart_toEndOf="@+id/pictArticle"
-        app:layout_constraintTop_toBottomOf="@+id/tittleArticle"
-        app:layout_constraintBottom_toBottomOf="@+id/pictArticle"/>
-
-    <TextView
-        android:id="@+id/tittleHospitalSection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_bold"
-        android:text="@string/tittleHospitalSection"
-        android:textColor="@color/black"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pictArticle" />
-
-    <Button
-        android:id="@+id/textButton2"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/inter_medium"
-        android:text="@string/homearticlesessionSeeall"
-        android:textColor="@color/blue_primary"
-        android:textSize="14sp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pictArticle" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tittleHospitalSection">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Media -->
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="92dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/illustration_hospital" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <!-- Title, secondary and supporting text -->
-                <TextView
-                    android:id="@+id/tittleHospital"
-                    android:layout_width="89dp"
-                    android:layout_height="20dp"
-                    android:text="@string/title"
-                    android:textSize="13sp"
-                    android:fontFamily="@font/inter_medium"
-                    android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                <TextView
-                    android:id="@+id/streetHospital"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/streetHospital"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:ellipsize="end"
-                    android:maxLines="1"/>
-
-
-            </LinearLayout>
-
-            <!-- Buttons -->
-
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card2"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        app:layout_constraintStart_toEndOf="@id/card"
-        app:layout_constraintTop_toTopOf="@+id/card"
-        app:layout_constraintBottom_toBottomOf="@+id/card">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Media -->
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="92dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/illustration_hospital" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <!-- Title, secondary and supporting text -->
-                <TextView
-                    android:id="@+id/tittleHospital2"
-                    android:layout_width="89dp"
-                    android:layout_height="20dp"
-                    android:text="@string/title"
-                    android:textSize="13sp"
-                    android:fontFamily="@font/inter_medium"
-                    android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                <TextView
-                    android:id="@+id/streetHospital2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/streetHospital"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:ellipsize="end"
-                    android:maxLines="1"/>
-
-
-            </LinearLayout>
-
-            <!-- Buttons -->
-
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
+        app:layout_constraintStart_toStartOf="parent">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:backgroundTint="@color/white"
-            app:fabAlignmentMode="center"
-            app:fabAnchorMode="cradle"
-            app:fabCradleMargin="0dp">
+            app:labelVisibilityMode="labeled"
+            android:background="@color/blue_primary"
+            app:itemIconTint="@drawable/nav_item_color_state"
+            app:itemTextColor="@drawable/nav_item_color_state"
+            app:menu="@menu/buttom_app_bar_menu" />
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavigationView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                app:labelVisibilityMode="labeled"
-                app:menu="@menu/buttom_app_bar_menu" />
+<!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--            android:id="@+id/bottomNavigationView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            -->
+<!--            android:background="@android:color/transparent"-->
+<!--            app:labelVisibilityMode="labeled"-->
+<!--            app:menu="@menu/buttom_app_bar_menu" />-->
 
-        </com.google.android.material.bottomappbar.BottomAppBar>
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/baseline_add"
-            app:backgroundTint="@color/blue_primary"
-            app:layout_anchor="@id/bottomAppBar"
-            android:tint="@color/white"
-            app:layout_anchorGravity="center" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fabScan"
+        android:backgroundTint="@color/blue_primary"
+        android:src="@drawable/iconly"
+        app:fabCustomSize="68dp"
+        app:layout_anchor="@id/bottomAppBar"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/white"
+        app:maxImageSize="40dp" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

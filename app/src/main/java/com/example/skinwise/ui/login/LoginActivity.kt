@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.skinwise.R
 import com.example.skinwise.data.Result
 import com.example.skinwise.databinding.ActivityLoginBinding
+import com.example.skinwise.ui.HomeFragment
 import com.example.skinwise.ui.article.ArticleActivity
 import com.example.skinwise.ui.main.ViewModelFactory
 import com.example.skinwise.ui.signup.SignupActivity
@@ -94,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun moveToHome() {
-        val intent = Intent(this@LoginActivity, ArticleActivity::class.java)
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
         startActivity(intent)
         finish()
     }

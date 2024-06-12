@@ -9,7 +9,6 @@ import com.example.skinwise.di.Injection
 import com.example.skinwise.ui.Consultation.ConsultationViewModel
 import com.example.skinwise.ui.article.ArticleViewModel
 import com.example.skinwise.ui.hospital.HospitalViewModel
-//import com.example.skinwise.ui.hospital.HospitalViewModel
 import com.example.skinwise.ui.login.LoginViewModel
 import com.example.skinwise.ui.signup.SignupViewModel
 

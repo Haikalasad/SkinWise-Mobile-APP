@@ -59,6 +59,23 @@
     <string name="rate">rate</string>
     <string name="message_hint">Ketikkan sesuatu...</string>
     <string name="chat">Chat</string>
+
+
+    <string name="typedisease">Jenis penyakit :</string>
+    <string name="disease">Vitiligo 90%</string>
+    <string name="descriptiondiseasesection">Deskripsi penyakit</string>
+    <string name="descriptiondisease">Vitiligo adalah kelainan kulit pigmentasi yang disebabkan karena tidak adanya sel pigmen dari epidermis yang menghasilkan makula putih dan bercak pada bagian tubuh. Kondisi ini berkaitan dengan gangguan autoimun, kelainan tiroid.</string>
+    <string name="factortittle">Faktor penyebab</string>
+    <string name="factordesc">• Kelainan genetik yang diturunkan\\n• Penyakit autoimun, seperti penyakit Graves, penyakit Hashimoto, atau diabetes tipe 1\\n• Paparan sinar matahari (radiasi ultraviolet)\\n• Paparan bahan kimia</string>
+    <string name="treatment">Pengobatan</string>
+    <string name="treatmentdetail">Vitiligo adalah penyebab yang umum dari depigmentasi yang muncul segala umur dan jenis kelamin. Berbagai jenis obat topikal dan sistemik, terapi bedah dapat digunakan untuk pengobatan vitiligo. Untuk pengobatan topikal seperti kortikosteroid, inhibitor kalsineurin, dan analog vitamin-D. Untuk pengobatan lainnya dengan fototerapi, dimana pengobatan ini sangat efektif dengan cara menginduksi repigmentasi pada tahap awal. Excimer Laser dapat juga digunakan untuk pengobatan vitiligo dimana penyakit ini sangat resisten terhadap sebagian besarpengobatan, seperti kombinasi antara acrolimus dan kortikosteroid sistemik. Untuk terapi bisa menggunakan terapi penghambat Afamelanotide.</string>
+    <string name="recomendationArticle">Artikel Terkait</string>
+    <string name="HospitalSection">Rumah Sakit Sekitar Anda</string>
+    <string name="image_classifier_failed">Gagal Classifier</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="diseasename">Penyakit Vitiligo</string>
+    <string name="datescan">Discan pada tanggal : 24/02/2024</string>
     <string name="nama_dokter">Nama dokter</string>
     <string name="Status_dokter">status dokter</string>
     <!-- TODO: Remove or change this placeholder text -->
