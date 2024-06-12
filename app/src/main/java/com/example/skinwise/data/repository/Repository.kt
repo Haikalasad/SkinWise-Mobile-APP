@@ -13,27 +13,27 @@ import kotlinx.coroutines.flow.Flow
 
 class Repository(private val preferences: UserPreference, private val apiService: ApiService) {
 
-    fun getAllDoctors(): List<DoctorModel> {
-        return doctors
-    }
-
-    private val doctors: List<DoctorModel> = listOf(
-        DoctorModel(
-            doctorId ="1",
-            name = "jhon doe",
-            email = "jhon@gmail.com",
-            photoUrl = "https://img.freepik.com/free-photo/smiling-doctor-with-strethoscope-isolated-grey_651396-974.jpg?w=1800&t=st=1717772918~exp=1717773518~hmac=fbef65044e0a888a9be4a5ebea2ca21c4725549b8be8d9bfe1c880165722b9d7"
-
-        ),
-        DoctorModel(
-            doctorId ="2",
-            name = "Ini dokter 2",
-            email = "jhon@gmail.com",
-            photoUrl = "https://img.freepik.com/free-photo/smiling-doctor-with-strethoscope-isolated-grey_651396-974.jpg?w=1800&t=st=1717772918~exp=1717773518~hmac=fbef65044e0a888a9be4a5ebea2ca21c4725549b8be8d9bfe1c880165722b9d7"
-
-        )
-
-    )
+//    fun getAllDoctors(): List<DoctorModel> {
+//        return doctors
+//    }
+//
+//    private val doctors: List<DoctorModel> = listOf(
+//        DoctorModel(
+//            doctorId ="1",
+//            name = "jhon doe",
+//            email = "jhon@gmail.com",
+//            photoUrl = "https://img.freepik.com/free-photo/smiling-doctor-with-strethoscope-isolated-grey_651396-974.jpg?w=1800&t=st=1717772918~exp=1717773518~hmac=fbef65044e0a888a9be4a5ebea2ca21c4725549b8be8d9bfe1c880165722b9d7"
+//
+//        ),
+//        DoctorModel(
+//            doctorId ="2",
+//            name = "Ini dokter 2",
+//            email = "jhon@gmail.com",
+//            photoUrl = "https://img.freepik.com/free-photo/smiling-doctor-with-strethoscope-isolated-grey_651396-974.jpg?w=1800&t=st=1717772918~exp=1717773518~hmac=fbef65044e0a888a9be4a5ebea2ca21c4725549b8be8d9bfe1c880165722b9d7"
+//
+//        )
+//
+//    )
     suspend fun register(nama:String,email:String,password:String,role:String) : Result<RegisterResponse> {
         return try{
             val response = apiService.register(nama,email,password,role)

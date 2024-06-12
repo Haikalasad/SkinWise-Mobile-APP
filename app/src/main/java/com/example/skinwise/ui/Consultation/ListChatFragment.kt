@@ -55,7 +55,6 @@ class ListChatFragment : Fragment() {
             chatAdapter.updateChatList(updatedChatList)
         }
 
-        // Get chat list from ViewModel
         CoroutineScope(Dispatchers.Main).launch {
             val session = userPreference.getSession().first()
             val userEmail = session.email
