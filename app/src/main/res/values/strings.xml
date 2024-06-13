@@ -13,7 +13,7 @@
     <string name="loginCTA">Sudah mempunyai akun? login</string>
     <string name="loginCTALink">disini</string>
     <string name="search_article_hint">Masukan nama penyakit</string>
-    <string name="search_doctor_hint">Masukan nama dokter</string>
+    <string name="search_doctor_hint">Masukan nama penyakit</string>
     <string name="source">source</string>
     <string name="article">Artikel</string>
     <string name="article_title">Judul Artikel</string>
@@ -53,7 +53,6 @@
     <string name="editprofile">Edit Profile</string>
     <string name="editphoto">Edit Foto Profil</string>
     <string name="nameuser">Ibu Owner Loli</string>
-    <string name="hospital_toolbar">List Rumah Sakit</string>
     <string name="hospital_name">Nama rumah sakit</string>
     <string name="hospital_address">alamat rumah sakit</string>
     <string name="open_hours">24 jam</string>
@@ -81,4 +80,6 @@
     <string name="Status_dokter">status dokter</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="timestamp">timestamp</string>
+    <string name="no_disease_detected">tidak ada penyakit terdeteksi</string>
+    <string name="try_again">coba lagi</string>
 </resources>
