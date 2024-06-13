@@ -20,6 +20,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/baseline_circle_notifications_24" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/blue_primary" />
+
         <activity
             android:name=".ui.Consultation.ChatActivity"
             android:exported="false" />

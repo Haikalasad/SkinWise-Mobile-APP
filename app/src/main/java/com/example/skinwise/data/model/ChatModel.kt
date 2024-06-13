@@ -11,7 +11,8 @@ data class ChatModel(
     val senderphotoUrl: String = "",
     val receivephotoUrl: String = "",
     val senderIsOnline: Boolean = true,
-    val receiverIsOnline: Boolean = true
+    val receiverIsOnline: Boolean = true,
+    val fcmToken : String = ""
 ) {
     // Default no-argument constructor required by Firestore
     constructor() : this(
@@ -25,7 +26,8 @@ data class ChatModel(
         senderphotoUrl = "",
         receivephotoUrl = "",
         senderIsOnline = true,
-        receiverIsOnline = true
+        receiverIsOnline = true,
+        fcmToken = ""
     )
 }
 

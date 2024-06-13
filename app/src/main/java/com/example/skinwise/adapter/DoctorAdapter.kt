@@ -52,7 +52,7 @@ class DoctorAdapter : ListAdapter<DoctorsItem,DoctorAdapter.MyViewHolder>(diffCa
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, ChatActivity::class.java).apply {
-                putExtra("receiverId", item.uID)
+                putExtra("receiverId", item.uEmail)
                 putExtra("receiverName", item.uNama)
                 putExtra("receiverPhotoUrl", item.uFoto)
                 putExtra("receiverIsOnline", item.isOnline)

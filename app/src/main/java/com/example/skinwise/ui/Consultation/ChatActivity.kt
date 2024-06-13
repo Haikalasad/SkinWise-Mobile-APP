@@ -2,12 +2,12 @@ package com.example.skinwise.ui.Consultation
 
 import android.os.Bundle
 import android.util.Log
-import com.google.firebase.messaging.FirebaseMessaging
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.toolbox.JsonObjectRequest
 import com.bumptech.glide.Glide
+import com.example.skinwise.BuildConfig
 import com.example.skinwise.R
 import com.example.skinwise.adapter.FirestoreChatAdapter
 import com.example.skinwise.data.model.ChatModel
@@ -18,6 +18,7 @@ import com.example.skinwise.databinding.ActivityChatBinding
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.first
 import org.json.JSONObject
@@ -128,33 +129,47 @@ class ChatActivity : AppCompatActivity() {
 
     private fun sendMessage(message: String) {
         if (message.isNotEmpty()) {
-            val chatMessage = ChatModel(
-                senderId = currentUserToken,
-                email = currentUserEmail,
-                receiverId = receiverEmail,
-                senderName = currentUserName,
-                message = message,
-                timestamp = System.currentTimeMillis(),
-                receivephotoUrl = receiverPhotoUrl,
-                senderphotoUrl = currentUserPhotoUrl,
-                receiverName = receiverName
-            )
-
-            CoroutineScope(Dispatchers.IO).launch {
-                val success = chatRepository.sendMessage(chatId, currentUserEmail, receiverEmail, chatMessage)
-                withContext(Dispatchers.Main) {
-                    if (success) {
-                        binding.messageEditText.text.clear()
-                        sendNotificationToRecipient(receiverId, message)
-                    } else {
-                        Log.e("ChatActivity", "Error sending message")
-                    }
+            FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w("ChatActivity", "Fetching FCM registration token failed", task.exception)
+                    return@addOnCompleteListener
                 }
+
+                val fcmToken = task.result
+
+                Log.d("ChatActivity", "FCM token saved to Firestore")
+
+                        val chatMessage = ChatModel(
+                            senderId = currentUserToken,
+                            email = currentUserEmail,
+                            receiverId = receiverEmail,
+                            senderName = currentUserName,
+                            message = message,
+                            timestamp = System.currentTimeMillis(),
+                            receivephotoUrl = receiverPhotoUrl,
+                            senderphotoUrl = currentUserPhotoUrl,
+                            receiverName = receiverName,
+                            fcmToken = fcmToken
+                        )
+
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val success = chatRepository.sendMessage(chatId, currentUserEmail, receiverEmail, chatMessage)
+                            withContext(Dispatchers.Main) {
+                                if (success) {
+                                    binding.messageEditText.text.clear()
+                                    sendNotificationToRecipient(receiverId, message,fcmToken)
+                                } else {
+                                    Log.e("ChatActivity", "Error sending message")
+                                }
+                            }
+                        }
+
             }
         }
     }
 
-    private fun sendNotificationToRecipient(receiverId: String, message: String) {
+
+    private fun sendNotificationToRecipient(receiverId: String, message: String, fcmToken: String?) {
         FirebaseFirestore.getInstance().collection("users").document(receiverId).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
@@ -165,38 +180,38 @@ class ChatActivity : AppCompatActivity() {
 
                         try {
                             notificationBody.put("title", "New Message from $currentUserName")
-                            notificationBody.put("message", message)
+                            notificationBody.put("body", message)
                             notification.put("to", token)
                             notification.put("data", notificationBody)
                         } catch (e: Exception) {
-                            Log.e("ChatActivity", "onCreate: " + e.message)
+                            Log.e("ChatActivity", "Error creating notification JSON: ${e.message}")
                         }
 
-                        sendNotification(notification)
+                        if (fcmToken != null) {
+                            sendNotification(notification,fcmToken)
+                        }
                     }
                 }
             }
     }
-
-    private fun sendNotification(notification: JSONObject) {
+    private fun sendNotification(notification: JSONObject, accessToken: String) {
         val jsonObjectRequest = object : JsonObjectRequest(
-            Method.POST, "https://fcm.googleapis.com/fcm/send",
+            Method.POST, "https://fcm.googleapis.com/v1/projects/skinwise-5c4ef/messages:send",
             notification,
             { response ->
-                Log.i("ChatActivity", "onResponse: $response")
+                Log.i("ChatActivity", "Notification sent: $response")
             },
             { error ->
-                Log.i("ChatActivity", "onErrorResponse: Didn't work")
+                Log.e("ChatActivity", "Error sending notification: ${error.message}")
             }) {
             override fun getHeaders(): Map<String, String> {
                 val params: MutableMap<String, String> = HashMap()
-                params["Authorization"] = "AIzaSyA11Y_Nh2hOhkw13INjetr82P-JXq9A7kY"
+                params["Authorization"] = "Bearer $accessToken"
                 params["Content-Type"] = "application/json"
                 return params
             }
         }
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
-
     }
 
     override fun onStart() {

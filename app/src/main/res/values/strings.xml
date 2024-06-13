@@ -53,6 +53,7 @@
     <string name="editprofile">Edit Profile</string>
     <string name="editphoto">Edit Foto Profil</string>
     <string name="nameuser">Ibu Owner Loli</string>
+    <string name="hospital_toolbar">Rumah Sakit</string>
     <string name="hospital_name">Nama rumah sakit</string>
     <string name="hospital_address">alamat rumah sakit</string>
     <string name="open_hours">24 jam</string>

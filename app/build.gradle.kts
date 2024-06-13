@@ -23,6 +23,8 @@ android {
         //Artikel
         buildConfigField("String", "API_KEY", "\"08791ed361504d93aec152aabfdd0627\"")
         buildConfigField("String", "BASE_URL_ARTICLE", "\"https://newsapi.org/\"")
+
+        buildConfigField("String","SERVER_KEY","\"AIzaSyA11Y_Nh2hOhkw13INjetr82P-JXq9A7kY\"")
     }
 
     buildTypes {
@@ -113,6 +115,5 @@ dependencies {
     implementation ("androidx.fragment:fragment-ktx:1.3.6")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
 
-    implementation ("com.github.yalantis:ucrop:2.2.8-native")
 
 }
