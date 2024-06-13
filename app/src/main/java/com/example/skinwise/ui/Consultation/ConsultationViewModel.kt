@@ -9,6 +9,7 @@ import com.example.skinwise.data.model.ChatModel
 import com.example.skinwise.data.repository.ChatRepository
 import com.example.skinwise.data.repository.Repository
 import com.example.skinwise.data.Result
+import com.example.skinwise.data.model.ListChatModel
 import kotlinx.coroutines.launch
 
 class ConsultationViewModel(private val repository: Repository) : ViewModel(){
@@ -21,8 +22,8 @@ class ConsultationViewModel(private val repository: Repository) : ViewModel(){
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val chatRepository = ChatRepository()
-    private val _chatList = MutableLiveData<List<ChatModel>>()
-    val chatList: LiveData<List<ChatModel>>
+    private val _chatList = MutableLiveData<List<ListChatModel>>()
+    val chatList: LiveData<List<ListChatModel>>
         get() = _chatList
 
 

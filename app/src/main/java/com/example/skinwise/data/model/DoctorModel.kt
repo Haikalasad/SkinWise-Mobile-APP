@@ -6,6 +6,6 @@ data class DoctorModel (
     val name: String = "",
     val email: String = "",
     val photoUrl: String = "",
-    val isLogin: Boolean = true,
+    val isOnline: Boolean = true,
 
 )

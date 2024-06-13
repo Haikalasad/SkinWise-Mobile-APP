@@ -39,24 +39,6 @@ class HospitalActivity : AppCompatActivity() {
         supportActionBar?.title = "Rumah Sakit"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
-        val bottomNavigationView: BottomNavigationView = binding.bottomNavigationView
-
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            val intent: Intent? = when (item.itemId) {
-                R.id.action_home -> Intent(this, MainActivity::class.java)
-                R.id.action_hospital -> Intent(this, HospitalActivity::class.java)
-                // R.id.action_scan -> Intent(this, ScanActivity::class.java)
-                R.id.action_consultation -> Intent(this, ConsultationActivity::class.java)
-                // R.id.action_profile -> Intent(this, ProfileActivity::class.java)
-                else -> null
-            }
-            if (intent != null) {
-                startActivity(intent)
-            }
-            true
-        }
-
         val upArrow: Drawable? = ContextCompat.getDrawable(this, R.drawable.baseline_arrow_back_24)
         supportActionBar?.setHomeAsUpIndicator(upArrow)
 

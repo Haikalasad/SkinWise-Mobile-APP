@@ -20,10 +20,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.example.skinwise.R
-import com.example.skinwise.ui.Consultation.ListDoctorFragment
 import com.example.skinwise.ui.HomeFragment
 import com.example.skinwise.ui.ProfileFragment
 import com.example.skinwise.ui.Result.ResultActivity
+import com.example.skinwise.ui.Consultation.ConsultationFragment
 import com.example.skinwise.ui.hospital.HospitalFragment
 import com.example.skinwise.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.action_home -> selectedFragment = HomeFragment()
                 R.id.action_profile -> selectedFragment = ProfileFragment()
                 R.id.action_hospital -> selectedFragment = HospitalFragment()
-                R.id.action_chat -> selectedFragment = ListDoctorFragment()
+                R.id.action_consultation-> selectedFragment = ConsultationFragment()
             }
 
             if (selectedFragment != null) {

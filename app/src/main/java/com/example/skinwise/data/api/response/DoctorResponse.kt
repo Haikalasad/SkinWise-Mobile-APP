@@ -25,11 +25,14 @@ data class DoctorsItem(
 	@field:SerializedName("U_nama")
 	val uNama: String? = null,
 
+	@field:SerializedName("U_foto")
+	val uFoto: String? = null,
+
 	@field:SerializedName("U_role")
 	val uRole: String? = null,
 
 	@field:SerializedName("U_ID")
 	val uID: String? = null,
 
-	val isLogin: Boolean = true,
+	val isOnline: Boolean = true,
 )

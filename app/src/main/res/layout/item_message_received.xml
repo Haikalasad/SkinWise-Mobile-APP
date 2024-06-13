@@ -49,6 +49,7 @@
         android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@id/tvMessage"
         tools:layout_editor_absoluteX="38dp"
+       app:layout_constraintStart_toEndOf="@id/ivMessenger"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Just Now"
         tools:ignore="MissingConstraints" />

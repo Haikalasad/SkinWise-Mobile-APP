@@ -16,14 +16,12 @@ object ApiConfig {
 
     val BASE_URL = "http://34.101.250.159:3000"
 
-
     fun getApiService(token : String) :ApiService{
         val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         val authInterceptor = Interceptor{ chain ->
             val req = chain.request()
             val requestHeaders = req.newBuilder()
                 .addHeader("Authorization","Bearer $token")
-                //ini buat header token biar ga perlu di set ulang-ulang lagi
                 .build()
             chain.proceed(requestHeaders)
         }

@@ -2,11 +2,11 @@ package com.example.skinwise.ui.Consultation
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
+import com.google.firebase.messaging.FirebaseMessaging
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.toolbox.JsonObjectRequest
 import com.bumptech.glide.Glide
 import com.example.skinwise.R
 import com.example.skinwise.adapter.FirestoreChatAdapter
@@ -18,11 +18,9 @@ import com.example.skinwise.databinding.ActivityChatBinding
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import org.json.JSONObject
 
 class ChatActivity : AppCompatActivity() {
 
@@ -35,62 +33,72 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var currentUserName: String
     private lateinit var currentUserPhotoUrl: String
     private lateinit var chatRepository: ChatRepository
-    private lateinit var doctorId: String
-    private lateinit var doctorName: String
-    private lateinit var doctorPhotoUrl: String
-    private var doctorIsLogin: Boolean = false
+    private lateinit var receiverId: String
+    private lateinit var receiverEmail: String
+    private lateinit var receiverName: String
+    private lateinit var receiverPhotoUrl: String
+    private var receiverIsOnline: Boolean = false
+    private lateinit var chatId: String
+    private var isDoctor: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
         firestore = FirebaseFirestore.getInstance()
         userPreference = UserPreference.getInstance(dataStore)
         chatRepository = ChatRepository()
 
-        val recyclerView = binding.recyclerView
-        val sendButton = binding.sendButton
-        val messageEditText = binding.messageEditText
-
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-        doctorId = intent.getStringExtra("doctorId") ?: savedInstanceState?.getString("doctorId") ?: ""
-        doctorName = intent.getStringExtra("doctorName") ?: ""
-        doctorPhotoUrl = intent.getStringExtra("doctorPhotoUrl") ?: ""
-        doctorIsLogin = intent.getBooleanExtra("doctorIsOnline", false)
+        receiverId = intent.getStringExtra("receiverId") ?: ""
+        receiverName = intent.getStringExtra("receiverName") ?: ""
+        receiverEmail = receiverId // Assuming receiverId is the email
+        receiverPhotoUrl = intent.getStringExtra("receiverPhotoUrl") ?: ""
+        receiverIsOnline = intent.getBooleanExtra("receiverIsOnline", true)
 
         CoroutineScope(Dispatchers.Main).launch {
-            val session = userPreference.getSession().first()
-            currentUserToken = session.token
-            currentUserEmail = session.email
-            currentUserName = session.nama
-            currentUserPhotoUrl = session.photoUrl
-
+            initializeUserDetails()
             setupRecyclerView(recyclerView)
-            sendButton.setOnClickListener {
-                sendMessage(messageEditText.text.toString())
+            binding.sendButton.setOnClickListener {
+                sendMessage(binding.messageEditText.text.toString())
             }
         }
 
         setupDoctorStatus()
 
-        binding.buttonBack.setOnClickListener{
+        binding.buttonBack.setOnClickListener {
             onBackPressed()
         }
-
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        super.onBackPressed()
+    private suspend fun initializeUserDetails() {
+        val session = withContext(Dispatchers.IO) {
+            userPreference.getSession().first()
+        }
+        currentUserToken = session.token
+        currentUserEmail = session.email
+        currentUserName = session.nama
+        currentUserPhotoUrl = session.photoUrl
+
+        isDoctor = session.role == "doctor"
+
+        chatId = generateChatId(currentUserEmail, receiverEmail)
+    }
+
+    private fun generateChatId(userId: String, doctorId: String): String {
+        return if (userId < doctorId) {
+            "$userId$doctorId"
+        } else {
+            "$doctorId$userId"
+        }
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
         val query: Query = firestore.collection("chats")
-            .document(currentUserEmail)
-            .collection("doctors")
-            .document(doctorId)
+            .document(chatId)
             .collection("messages")
             .orderBy("timestamp", Query.Direction.ASCENDING)
 
@@ -99,31 +107,23 @@ class ChatActivity : AppCompatActivity() {
             .build()
 
         chatAdapter = FirestoreChatAdapter(currentUserEmail, options)
-        recyclerView.adapter = chatAdapter
 
+        recyclerView.adapter = chatAdapter
         chatAdapter.startListening()
     }
 
-
-
     private fun setupDoctorStatus() {
-        val doctorProfileImageView: ImageView = findViewById(R.id.doctorProfileImageView)
-        val doctorNameTextView: TextView = findViewById(R.id.doctorNameTextView)
-        val doctorStatusTextView: TextView = findViewById(R.id.doctorStatusTextView)
-        val onlineStatusImageView: ImageView = findViewById(R.id.onlineStatusImageView)
-
-        doctorNameTextView.text = doctorName
-        doctorStatusTextView.text = if (doctorIsLogin) "Online" else "Offline"
-        val statusColor = if (doctorIsLogin) R.color.green else R.color.gray_disabled
-        onlineStatusImageView.setColorFilter(resources.getColor(statusColor, null))
+        binding.doctorNameTextView.text = receiverName
+        binding.doctorStatusTextView.text = if (receiverIsOnline) "Online" else "Offline"
+        val statusColor = if (receiverIsOnline) R.color.green else R.color.gray_disabled
+        binding.onlineStatusImageView.setColorFilter(resources.getColor(statusColor, null))
 
         Glide.with(this)
-            .load(doctorPhotoUrl)
+            .load(receiverPhotoUrl)
             .placeholder(R.drawable.ic_baseline_account_circle_24)
             .error(R.drawable.ic_baseline_account_circle_24)
             .circleCrop()
-            .into(doctorProfileImageView)
-
+            .into(binding.doctorProfileImageView)
     }
 
     private fun sendMessage(message: String) {
@@ -131,34 +131,78 @@ class ChatActivity : AppCompatActivity() {
             val chatMessage = ChatModel(
                 senderId = currentUserToken,
                 email = currentUserEmail,
-                receiverId = doctorId,
+                receiverId = receiverEmail,
                 senderName = currentUserName,
                 message = message,
                 timestamp = System.currentTimeMillis(),
-                receivephotoUrl = doctorPhotoUrl,
-                senderphotoUrl =currentUserPhotoUrl,
-                receiverName = doctorName
+                receivephotoUrl = receiverPhotoUrl,
+                senderphotoUrl = currentUserPhotoUrl,
+                receiverName = receiverName
             )
 
             CoroutineScope(Dispatchers.IO).launch {
-                val success = chatRepository.sendMessage(currentUserEmail,doctorId, chatMessage)
+                val success = chatRepository.sendMessage(chatId, currentUserEmail, receiverEmail, chatMessage)
                 withContext(Dispatchers.Main) {
                     if (success) {
                         binding.messageEditText.text.clear()
+                        sendNotificationToRecipient(receiverId, message)
                     } else {
-                        Log.e("com.example.skinwise.ui.Consultation.ChatActivity", "Error sending message")
+                        Log.e("ChatActivity", "Error sending message")
                     }
                 }
             }
         }
     }
 
+    private fun sendNotificationToRecipient(receiverId: String, message: String) {
+        FirebaseFirestore.getInstance().collection("users").document(receiverId).get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    val token = document.getString("fcmToken")
+                    if (!token.isNullOrEmpty()) {
+                        val notification = JSONObject()
+                        val notificationBody = JSONObject()
+
+                        try {
+                            notificationBody.put("title", "New Message from $currentUserName")
+                            notificationBody.put("message", message)
+                            notification.put("to", token)
+                            notification.put("data", notificationBody)
+                        } catch (e: Exception) {
+                            Log.e("ChatActivity", "onCreate: " + e.message)
+                        }
+
+                        sendNotification(notification)
+                    }
+                }
+            }
+    }
+
+    private fun sendNotification(notification: JSONObject) {
+        val jsonObjectRequest = object : JsonObjectRequest(
+            Method.POST, "https://fcm.googleapis.com/fcm/send",
+            notification,
+            { response ->
+                Log.i("ChatActivity", "onResponse: $response")
+            },
+            { error ->
+                Log.i("ChatActivity", "onErrorResponse: Didn't work")
+            }) {
+            override fun getHeaders(): Map<String, String> {
+                val params: MutableMap<String, String> = HashMap()
+                params["Authorization"] = "AIzaSyA11Y_Nh2hOhkw13INjetr82P-JXq9A7kY"
+                params["Content-Type"] = "application/json"
+                return params
+            }
+        }
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+
+    }
+
     override fun onStart() {
         super.onStart()
         if (::chatAdapter.isInitialized) {
             chatAdapter.startListening()
-        } else {
-            Log.e("com.example.skinwise.ui.Consultation.ChatActivity", "chatAdapter is not initialized yet")
         }
     }
 
@@ -171,6 +215,6 @@ class ChatActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString("doctorId", doctorId)
+        outState.putString("receiverId", receiverId)
     }
 }

@@ -18,6 +18,7 @@ import com.example.skinwise.data.Result
 import com.example.skinwise.databinding.ActivityLoginBinding
 import com.example.skinwise.ui.HomeFragment
 import com.example.skinwise.ui.article.ArticleActivity
+import com.example.skinwise.ui.main.MainActivity
 import com.example.skinwise.ui.main.ViewModelFactory
 import com.example.skinwise.ui.signup.SignupActivity
 

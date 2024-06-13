@@ -28,12 +28,12 @@ interface ApiService {
     ): LoginResponse
 
     @GET("/hospitals")
-    fun getHospital(
+    suspend fun getHospital(
         @Query("kota") kota: String,
     ): HospitalResponse
 
     @GET("/doctors")
-    fun getDoctors() : DoctorResponse
+    suspend fun getDoctors() : DoctorResponse
 
 
 

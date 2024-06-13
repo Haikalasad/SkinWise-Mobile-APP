@@ -1,6 +1,5 @@
 package com.example.skinwise.ui.Consultation
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +14,8 @@ import com.example.skinwise.databinding.FragmentListChatBinding
 import com.example.skinwise.ui.main.ViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.first
 
 class ListChatFragment : Fragment() {
 
@@ -24,6 +23,7 @@ class ListChatFragment : Fragment() {
     private lateinit var chatAdapter: ListChatAdapter
     private lateinit var viewModel: ConsultationViewModel
     private lateinit var userPreference: UserPreference
+    private lateinit var currentEmail: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +33,6 @@ class ListChatFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -42,33 +41,35 @@ class ListChatFragment : Fragment() {
             ViewModelProvider(this, it)[ConsultationViewModel::class.java]
         } ?: throw Exception("ViewModelFactory not initialized properly")
 
-        userPreference = context?.let { UserPreference(it.dataStore) } ?: throw Exception("Invalid Activity")
+        userPreference = context?.let { UserPreference(it.dataStore) }
+            ?: throw Exception("Invalid Activity")
 
         val recyclerView = binding.recyclerViewChat
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        chatAdapter = ListChatAdapter(mutableListOf())
-        recyclerView.adapter = chatAdapter
 
-        chatAdapter.notifyDataSetChanged()
-
-        viewModel.chatList.observe(viewLifecycleOwner) { updatedChatList ->
-            chatAdapter.updateChatList(updatedChatList)
-        }
 
         CoroutineScope(Dispatchers.Main).launch {
             val session = userPreference.getSession().first()
-            val userEmail = session.email
-            viewModel.fetchChatList(userEmail)
+            currentEmail = session.email
+
+            chatAdapter = ListChatAdapter(emptyList(), currentEmail)
+            recyclerView.adapter = chatAdapter
+
+            observeViewModel()
+
+            viewModel.fetchChatList(currentEmail)
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.chatList.observe(viewLifecycleOwner) { updatedChatList ->
+            chatAdapter.updateChatList(updatedChatList)
         }
     }
 
     override fun onResume() {
         super.onResume()
-
-        CoroutineScope(Dispatchers.Main).launch {
-            val session = userPreference.getSession().first()
-            val userEmail = session.email
-            viewModel.fetchChatList(userEmail)
-        }
+        // Re-observe view model saat fragment di-resume
+        observeViewModel()
     }
 }

@@ -92,11 +92,9 @@ class FirestoreChatAdapter(
             messengerTextView.text = chatMessage.senderName
             messageTextView.text = chatMessage.message
 
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-            val timestampString = dateFormat.format(Date(chatMessage.timestamp))
+            val timestampString = getRelativeTimeSpan(chatMessage.timestamp)
             timestampTextView.text = timestampString
 
-            // Load sender's photo using Glide
             Glide.with(itemView.context)
                 .load(chatMessage.senderphotoUrl)
                 .placeholder(R.drawable.ic_baseline_account_circle_24)

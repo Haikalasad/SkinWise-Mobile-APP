@@ -11,11 +11,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.skinwise.R
-import com.example.skinwise.data.model.ChatModel
+import com.example.skinwise.data.model.ListChatModel
 import com.example.skinwise.ui.Consultation.ChatActivity
 import java.util.concurrent.TimeUnit
 
-class ListChatAdapter(private var chatList: MutableList<ChatModel>) :
+class ListChatAdapter(private var chatList: List<ListChatModel>, private val currentUserUid: String) :
     RecyclerView.Adapter<ListChatAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,34 +24,37 @@ class ListChatAdapter(private var chatList: MutableList<ChatModel>) :
         return ViewHolder(view)
     }
 
+
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val chat = chatList[position]
         holder.bind(chat)
+        val lastMessage = chat.messages.lastOrNull()
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, ChatActivity::class.java).apply {
-                putExtra("doctorId", chat.receiverId)
-                putExtra("doctorName", chat.receiverName)
-                putExtra("doctorPhotoUrl", chat.receivephotoUrl)
-                putExtra("doctorIsOnline", chat.receiverIsOnline)
+                putExtra("receiverId", if (currentUserUid == chat.user1Id) chat.user2Id else chat.user1Id)
+                putExtra("receiverName", if (currentUserUid == chat.user1Id) lastMessage?.receiverName else lastMessage?.senderName)
+                putExtra("receiverPhotoUrl", if (currentUserUid == chat.user1Id) lastMessage?.receivephotoUrl else lastMessage?.senderphotoUrl)
+                putExtra("receiverIsOnline", true) // Default to false, update as necessary
+                putExtra("currentUserEmail", currentUserUid)
+                putExtra("senderId", currentUserUid)
             }
             context.startActivity(intent)
         }
     }
 
+
     override fun getItemCount(): Int {
-        Log.d("ChatListAdapter", chatList.size.toString())
         return chatList.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateChatList(newChatList: List<ChatModel>) {
-        chatList.clear()
-        chatList.addAll(newChatList.sortedByDescending { it.timestamp })
+    fun updateChatList(newChatList: List<ListChatModel>) {
+        chatList = newChatList
         notifyDataSetChanged()
     }
-
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val doctorNameTextView: TextView = itemView.findViewById(R.id.tv_receiver_name)
@@ -59,13 +62,34 @@ class ListChatAdapter(private var chatList: MutableList<ChatModel>) :
         private val messageTextView: TextView = itemView.findViewById(R.id.tv_message)
         private val imageView: ImageView = itemView.findViewById(R.id.img_item_photo)
 
-        fun bind(chat: ChatModel) {
-            doctorNameTextView.text = chat.receiverName
-            timestampTextView.text = getRelativeTimeSpan(chat.timestamp)
-            messageTextView.text = chat.message
+        fun bind(chat: ListChatModel) {
+            val lastMessage = chat.messages.lastOrNull()
 
-            Glide.with(itemView.context).load(chat.receivephotoUrl).circleCrop().into(imageView)
+            val isCurrentUserSender = lastMessage?.email == currentUserUid
+            val photoUrl = if (isCurrentUserSender) lastMessage?.receivephotoUrl else lastMessage?.senderphotoUrl
+
+            Log.d("ListChatAdapter", isCurrentUserSender.toString())
+
+            doctorNameTextView.text = if (isCurrentUserSender) {
+                lastMessage?.receiverName ?: ""
+            } else {
+                lastMessage?.senderName ?: ""
+            }
+
+            if (photoUrl.isNullOrEmpty()) {
+                imageView.setImageResource(R.drawable.baseline_person_24)
+            } else {
+                Glide.with(itemView.context)
+                    .load(photoUrl)
+                    .circleCrop()
+                    .placeholder(R.drawable.baseline_person_24)
+                    .into(imageView)
+            }
+
+            timestampTextView.text = getRelativeTimeSpan(lastMessage?.timestamp ?: 0L)
+            messageTextView.text = lastMessage?.message ?: ""
         }
+
     }
 
     private fun getRelativeTimeSpan(timestamp: Long): String {
@@ -85,4 +109,3 @@ class ListChatAdapter(private var chatList: MutableList<ChatModel>) :
         }
     }
 }
-

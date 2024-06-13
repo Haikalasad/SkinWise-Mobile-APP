@@ -55,7 +55,7 @@ class ListDoctorFragment : Fragment() {
                     }
                 }
                 is Result.Error -> {
-                   Log.e("ListDoctorFragment","Gagal mendapatkan list dokter")
+                    Log.e("ListDoctorFragment", "Gagal mendapatkan list dokter: ${result.data}")
                 }
 
                 else -> {

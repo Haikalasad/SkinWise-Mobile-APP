@@ -33,7 +33,7 @@ class DoctorAdapter : ListAdapter<DoctorsItem,DoctorAdapter.MyViewHolder>(diffCa
 
         fun bind(item : DoctorsItem){
             binding.tvDoctorName.text = item.uNama
-//            Glide.with(binding.root).load(item.photoUrl).into(binding.imgItemPhoto)
+            Glide.with(binding.root).load(item.uFoto).into(binding.imgItemPhoto)
         }
     }
 
@@ -52,10 +52,11 @@ class DoctorAdapter : ListAdapter<DoctorsItem,DoctorAdapter.MyViewHolder>(diffCa
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, ChatActivity::class.java).apply {
-                putExtra("doctorId", item.uID)
-                putExtra("doctorName", item.uNama)
-//                putExtra("doctorPhotoUrl", item.)
-                putExtra("doctorIsOnline", item.isLogin)
+                putExtra("receiverId", item.uID)
+                putExtra("receiverName", item.uNama)
+                putExtra("receiverPhotoUrl", item.uFoto)
+                putExtra("receiverIsOnline", item.isOnline)
+                putExtra("receiverEmail",item.uEmail)
             }
             context.startActivity(intent)
         }
