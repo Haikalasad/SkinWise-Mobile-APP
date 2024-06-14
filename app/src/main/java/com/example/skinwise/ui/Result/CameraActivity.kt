@@ -16,41 +16,93 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import com.doanda.easymeal.ui.detection.result.DetectionResultActivity
+import com.example.skinwise.R
 import com.example.skinwise.databinding.ActivityCameraBinding
 import java.io.File
+import java.nio.file.Files.createFile
 import java.util.concurrent.Executor
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class CameraActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityCameraBinding
-    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+    private val binding by lazy { ActivityCameraBinding.inflate(layoutInflater) }
+
     private var imageCapture: ImageCapture? = null
+    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+    private lateinit var cameraExecutor: ExecutorService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.switchCamera.setOnClickListener {
-            cameraSelector =
-                if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
-                else CameraSelector.DEFAULT_BACK_CAMERA
-            startCamera()
-        }
-        binding.captureImage.setOnClickListener { takePhoto() }
+        cameraExecutor = Executors.newSingleThreadExecutor()
+        setupView()
     }
 
-    public override fun onResume() {
+    private fun setupView() {
+        binding.captureImage.setOnClickListener {
+            Toast.makeText(this, getString(R.string.detecting), Toast.LENGTH_SHORT).show()
+            takePhoto()
+        }
+        binding.switchCamera.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun takePhoto() {
+        val imageCapture = imageCapture ?: return
+        val photoFile = createFile(application)
+
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+        imageCapture.takePicture(
+            outputOptions,
+            ContextCompat.getMainExecutor(this),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                    goToResult(photoFile)
+                }
+
+                override fun onError(exception: ImageCaptureException) {
+                    Toast.makeText(
+                        this@CameraActivity,
+                        "Gagal mengambil gambar.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        )
+    }
+
+    private fun goToResult(photoFile: File) {
+        val intent = Intent(this, DetectionResultActivity::class.java)
+        intent.putExtra(DetectionResultActivity.EXTRA_PICTURE, photoFile)
+        intent.putExtra(
+            DetectionResultActivity.EXTRA_IS_BACK_CAMERA,
+            cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
+        )
+        startActivity(intent)
+        finish()
+    }
+
+    override fun onResume() {
         super.onResume()
         hideSystemUI()
         startCamera()
     }
 
-    private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+    override fun onDestroy() {
+        super.onDestroy()
+        cameraExecutor.shutdown()
+    }
 
-        cameraProviderFuture.addListener({
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+    private fun startCamera() {
+        val cameraProvideFuture = ProcessCameraProvider.getInstance(this)
+
+        cameraProvideFuture.addListener({
+            val cameraProvider: ProcessCameraProvider = cameraProvideFuture.get()
             val preview = Preview.Builder()
                 .build()
                 .also {
@@ -67,93 +119,22 @@ class CameraActivity : AppCompatActivity() {
                     preview,
                     imageCapture
                 )
-
-            } catch (exc: Exception) {
-                Toast.makeText(
-                    this@CameraActivity,
-                    "Gagal memunculkan kamera.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                Log.e(TAG, "startCamera: ${exc.message}")
+            } catch (e: Exception) {
+                Toast.makeText(this, getString(R.string.open_camera_failed), Toast.LENGTH_SHORT).show()
             }
         }, ContextCompat.getMainExecutor(this))
     }
 
-    private fun takePhoto() {
-        val imageCapture = imageCapture ?: return
-
-        val photoFile = createCustomTempFile(application)
-
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
-
-        imageCapture.takePicture(
-            outputOptions,
-            ContextCompat.getMainExecutor(this),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val intent = Intent()
-                    intent.putExtra(EXTRA_CAMERAX_IMAGE, photoFile.absolutePath)
-                    setResult(CAMERAX_RESULT, intent)
-                    finish()
-                }
-
-                override fun onError(exc: ImageCaptureException) {
-                    Toast.makeText(
-                        this@CameraActivity,
-                        "Gagal mengambil gambar.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    Log.e(TAG, "onError: ${exc.message}")
-                }
-            }
-        )
-    }
-
     private fun hideSystemUI() {
-        @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
         } else {
+            @Suppress("DEPRECATION")
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
         supportActionBar?.hide()
-    }
-
-    private val orientationEventListener by lazy {
-        object : OrientationEventListener(this) {
-            override fun onOrientationChanged(orientation: Int) {
-                if (orientation == ORIENTATION_UNKNOWN) {
-                    return
-                }
-
-                val rotation = when (orientation) {
-                    in 45 until 135 -> Surface.ROTATION_270
-                    in 135 until 225 -> Surface.ROTATION_180
-                    in 225 until 315 -> Surface.ROTATION_90
-                    else -> Surface.ROTATION_0
-                }
-
-                imageCapture?.targetRotation = rotation
-            }
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        orientationEventListener.enable()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        orientationEventListener.disable()
-    }
-
-    companion object {
-        private const val TAG = "CameraActivity"
-        const val EXTRA_CAMERAX_IMAGE = "CameraX Image"
-        const val CAMERAX_RESULT = 200
     }
 }

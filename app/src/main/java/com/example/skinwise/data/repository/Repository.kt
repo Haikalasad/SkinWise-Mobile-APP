@@ -1,5 +1,7 @@
 package com.example.skinwise.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import com.example.skinwise.data.Result
 import com.example.skinwise.data.api.ApiService
 import com.example.skinwise.data.api.response.DoctorResponse
@@ -87,6 +89,10 @@ class Repository(private val preferences: UserPreference, private val apiService
             Result.Error(e.message ?: "Unkown error occured")
 
         }
+    }
+
+    fun getUser(): LiveData<UserModel> {
+        return preferences.getSession().asLiveData()
     }
 
 

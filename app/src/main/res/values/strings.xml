@@ -88,4 +88,13 @@
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
     <string name="stayLoggedIn">Tetap Login</string>
+    <string name="take_photo">Ambil Foto</string>
+    <string name="import_from_gallery">Import dari Galeri</string>
+    <string name="ingredient_not_recognized">Tidak yakin dengan Penyakit Anda?</string>
+    <string name="ingredient_not_recognized_desc">Silahkan mengupload gambar penyakit anda</string>
+    <string name="permission_camera_not_granted">Permssion Denied</string>
+    <string name="import_gallery">Ambil dari Galeri</string>
+    <string name="detecting">Mendeteksi</string>
+    <string name="open_camera_failed">Buka Kamera</string>
+    <string name="detection_failed">Gagal Mendeteksi</string>
 </resources>

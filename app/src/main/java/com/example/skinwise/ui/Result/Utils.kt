@@ -1,106 +1,111 @@
 package com.example.skinwise.ui.Result
 
-import android.content.ContentValues
+import android.app.Application
+import android.content.ContentResolver
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
-import android.os.Build
 import android.os.Environment
-import android.provider.MediaStore
-import androidx.core.content.FileProvider
-import androidx.exifinterface.media.ExifInterface
-import com.example.skinwise.BuildConfig
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
+import com.example.skinwise.R
+import java.io.*
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
-private const val MAXIMAL_SIZE = 1000000 //1 MB
-private const val FILENAME_FORMAT = "yyyyMMdd_HHmmss"
-private val timeStamp: String = SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(Date())
 
-fun getImageUri(context: Context): Uri {
-    var uri: Uri? = null
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, "$timeStamp.jpg")
-            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-            put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/MyCamera/")
-        }
-        uri = context.contentResolver.insert(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            contentValues
+private const val FILENAME_FORMAT = "dd-MM-yyyy"
+
+val timeStamp: String = SimpleDateFormat(
+    FILENAME_FORMAT,
+    Locale.US
+).format(System.currentTimeMillis())
+
+fun createTempFile(context: Context): File {
+    val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+    return File.createTempFile(timeStamp, ".jpg", storageDir)
+}
+
+fun createFile(application: Application): File {
+    val mediaDir = application.externalMediaDirs.firstOrNull()?.let {
+        File(it, application.resources.getString(R.string.app_name)).apply { mkdirs() }
+    }
+
+    val outputDirectory =
+        if (mediaDir != null && mediaDir.exists()) mediaDir else application.filesDir
+
+    return File(outputDirectory, "${timeStamp}_EasyMeal.jpg")
+}
+
+fun rotateFile(file: File, isBackCamera: Boolean = false) {
+    val matrix = Matrix()
+    val bitmap = BitmapFactory.decodeFile(file.path)
+    val rotation = if (isBackCamera) 90f else -90f
+    matrix.postRotate(rotation)
+    if (!isBackCamera) {
+        matrix.postScale(-1f, 1f, bitmap.width / 2f, bitmap.height / 2f)
+    }
+    val result = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+    result.compress(Bitmap.CompressFormat.JPEG, 100, FileOutputStream(file))
+}
+
+fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = false): Bitmap {
+    val matrix = Matrix()
+    return if (isBackCamera) {
+        matrix.postRotate(90f)
+        Bitmap.createBitmap(
+            bitmap,
+            0,
+            0,
+            bitmap.width,
+            bitmap.height,
+            matrix,
+            true
+        )
+    } else {
+        matrix.postRotate(-90f)
+        matrix.postScale(-1f, 1f, bitmap.width / 2f, bitmap.height / 2f)
+        Bitmap.createBitmap(
+            bitmap,
+            0,
+            0,
+            bitmap.width,
+            bitmap.height,
+            matrix,
+            true
         )
     }
-    return uri ?: getImageUriForPreQ(context)
 }
 
-private fun getImageUriForPreQ(context: Context): Uri {
-    val filesDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-    val imageFile = File(filesDir, "/MyCamera/$timeStamp.jpg")
-    if (imageFile.parentFile?.exists() == false) imageFile.parentFile?.mkdir()
-    return FileProvider.getUriForFile(
-        context,
-        "${BuildConfig.APPLICATION_ID}.fileprovider",
-        imageFile
-    )
-}
+fun fromUriToFile(selectedImage: Uri, context: Context): File {
+    val contentResolver: ContentResolver = context.contentResolver
+    val myFile = createTempFile(context)
 
-fun createCustomTempFile(context: Context): File {
-    val filesDir = context.externalCacheDir
-    return File.createTempFile(timeStamp, ".jpg", filesDir)
-}
+    val inputStream = contentResolver.openInputStream(selectedImage) as InputStream
+    val outputStream: OutputStream = FileOutputStream(myFile)
+    val buf = ByteArray(1024)
+    var len: Int
 
-fun uriToFile(imageUri: Uri, context: Context): File {
-    val myFile = createCustomTempFile(context)
-    val inputStream = context.contentResolver.openInputStream(imageUri) as InputStream
-    val outputStream = FileOutputStream(myFile)
-    val buffer = ByteArray(1024)
-    var length: Int
-    while (inputStream.read(buffer).also { length = it } > 0) outputStream.write(buffer, 0, length)
+    while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
     outputStream.close()
     inputStream.close()
+
     return myFile
 }
 
-fun File.reduceFileImage(): File {
-    val file = this
-    val bitmap = BitmapFactory.decodeFile(file.path).getRotatedBitmap(file)
+fun reduceFileImage(file: File): File {
+    val bitmap = BitmapFactory.decodeFile(file.path)
+
     var compressQuality = 100
     var streamLength: Int
     do {
         val bmpStream = ByteArrayOutputStream()
-        bitmap?.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
         val bmpPicByteArray = bmpStream.toByteArray()
         streamLength = bmpPicByteArray.size
         compressQuality -= 5
-    } while (streamLength > MAXIMAL_SIZE)
-    bitmap?.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
+    } while (streamLength > 100000 && compressQuality > 30)
+    bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
     return file
 }
 
-fun Bitmap.getRotatedBitmap(file: File): Bitmap? {
-    val orientation = ExifInterface(file).getAttributeInt(
-        ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED
-    )
-    return when (orientation) {
-        ExifInterface.ORIENTATION_ROTATE_90 -> rotateImage(this, 90F)
-        ExifInterface.ORIENTATION_ROTATE_180 -> rotateImage(this, 180F)
-        ExifInterface.ORIENTATION_ROTATE_270 -> rotateImage(this, 270F)
-        ExifInterface.ORIENTATION_NORMAL -> this
-        else -> this
-    }
-}
-
-fun rotateImage(source: Bitmap, angle: Float): Bitmap? {
-    val matrix = Matrix()
-    matrix.postRotate(angle)
-    return Bitmap.createBitmap(
-        source, 0, 0, source.width, source.height, matrix, true
-    )
-}

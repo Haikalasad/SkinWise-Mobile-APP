@@ -14,17 +14,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.example.skinwise.R
 import com.example.skinwise.databinding.ActivityMainBinding
 import com.example.skinwise.ui.HomeFragment
 import com.example.skinwise.ui.ProfileFragment
-//import com.example.skinwise.ui.Result.ResultActivity
 import com.example.skinwise.ui.Consultation.ConsultationFragment
-import com.example.skinwise.ui.Result.CameraActivity
-import com.example.skinwise.ui.Result.CameraActivity.Companion.CAMERAX_RESULT
+import com.example.skinwise.ui.Result.DetectionActivity
 import com.example.skinwise.ui.hospital.HospitalFragment
 import com.example.skinwise.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,30 +28,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
-    private var currentImageUri: Uri? = null
-    private var displayResult: String? = null
-
     private val viewModel by viewModels<MainViewModel> {
         ViewModelFactory.getInstance(this)
     }
-
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
-            }
-        }
-
-    private fun allPermissionsGranted() =
-        ContextCompat.checkSelfPermission(
-            this,
-            REQUIRED_PERMISSION
-        ) == PackageManager.PERMISSION_GRANTED
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,104 +77,14 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.fragment_container, HomeFragment())
                 .commit()
         }
-
-        if (!allPermissionsGranted()) {
-            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
-        }
-
         // Handle floating action button click
-        val fab = findViewById<FloatingActionButton>(R.id.fabScan)
-        fab.setOnClickListener {
-            showPictureDialog()
+        binding.fabScan.setOnClickListener {
+            goToDetection()
         }
     }
 
-    private fun showPictureDialog() {
-        val pictureDialog = AlertDialog.Builder(this)
-        pictureDialog.setTitle("Ambil gambar melalui")
-        val pictureDialogItems = arrayOf("Camera", "Gallery")
-        pictureDialog.setItems(pictureDialogItems) { _, which ->
-            when (which) {
-                0 -> startCameraX()
-                1 -> startGallery()
-            }
-        }
-        pictureDialog.show()
-    }
-
-    private fun generateUniqueFilename(): String {
-        val timestamp = System.currentTimeMillis().toString()
-        return "analyzed_image_$timestamp.jpg"
-    }
-
-    private fun startGallery() {
-        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-    }
-
-    private val launcherGallery = registerForActivityResult(
-        ActivityResultContracts.PickVisualMedia()
-    ) { uri: Uri? ->
-        if (uri != null) {
-            currentImageUri = uri
-            showImagePreview(uri)
-        } else {
-            showToast("No media selected")
-        }
-    }
-
-    private fun startCameraX() {
-        val intent = Intent(this, CameraActivity::class.java)
-        launcherIntentCameraX.launch(intent)
-    }
-
-    private val launcherIntentCameraX = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode == CAMERAX_RESULT) {
-            currentImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
-            currentImageUri?.let { uri -> showImagePreview(uri) }
-        }
-    }
-
-    private fun getImageUri(context: Context): Uri {
-        val filename = generateUniqueFilename()
-        val values = ContentValues().apply {
-            put(MediaStore.Images.Media.DISPLAY_NAME, filename)
-            put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-        }
-        return context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)!!
-    }
-
-    private fun showImagePreview(imageUri: Uri) {
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            setDataAndType(imageUri, "image/*")
-            flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-        }
-        startActivityForResult(intent, REQUEST_IMAGE_PREVIEW)
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_PREVIEW && resultCode == RESULT_OK) {
-//            moveToResult()
-        }
-    }
-
-//    private fun moveToResult() {
-//        val intent = Intent(this, ResultActivity::class.java).apply {
-//            putExtra(ResultActivity.EXTRA_RESULT, displayResult)
-//            currentImageUri?.let { putExtra(ResultActivity.EXTRA_IMG, it.toString()) }
-//        }
-//        startActivity(intent)
-//    }
-
-    companion object {
-        private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
-        private const val REQUEST_IMAGE_PREVIEW = 103
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    private fun goToDetection() {
+        val intent = Intent(this@MainActivity, DetectionActivity::class.java)
+        startActivity(intent)
     }
 }
