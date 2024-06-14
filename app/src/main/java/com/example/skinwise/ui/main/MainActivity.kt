@@ -15,23 +15,22 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.example.skinwise.R
 import com.example.skinwise.databinding.ActivityMainBinding
-import com.example.skinwise.ui.Consultation.ListDoctorFragment
 import com.example.skinwise.ui.HomeFragment
 import com.example.skinwise.ui.ProfileFragment
 import com.example.skinwise.ui.Result.ResultActivity
 import com.example.skinwise.ui.Consultation.ConsultationFragment
+import com.example.skinwise.ui.Result.CameraActivity
+import com.example.skinwise.ui.Result.CameraActivity.Companion.CAMERAX_RESULT
 import com.example.skinwise.ui.hospital.HospitalFragment
 import com.example.skinwise.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
-
-    private val CAMERA_REQUEST_CODE = 102
-
     private lateinit var binding: ActivityMainBinding
 
     private var currentImageUri: Uri? = null
@@ -121,7 +120,7 @@ class MainActivity : AppCompatActivity() {
         val pictureDialogItems = arrayOf("Camera", "Gallery")
         pictureDialog.setItems(pictureDialogItems) { _, which ->
             when (which) {
-                0 -> startCamera()
+                0 -> startCameraX()
                 1 -> startGallery()
             }
         }
@@ -148,18 +147,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun startCamera() {
-        currentImageUri = getImageUri(this)
-        launcherIntentCamera.launch(currentImageUri)
+    private fun startCameraX() {
+        val intent = Intent(this, CameraActivity::class.java)
+        launcherIntentCameraX.launch(intent)
     }
 
-    private val launcherIntentCamera = registerForActivityResult(
-        ActivityResultContracts.TakePicture()
-    ) { isSuccess ->
-        if (isSuccess) {
-            currentImageUri?.let {
-                showImagePreview(it)
-            }
+    private val launcherIntentCameraX = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == CAMERAX_RESULT) {
+            currentImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
+            currentImageUri?.let { uri -> showImagePreview(uri) }
         }
     }
 
@@ -191,7 +189,7 @@ class MainActivity : AppCompatActivity() {
     private fun moveToResult() {
         val intent = Intent(this, ResultActivity::class.java).apply {
             putExtra(ResultActivity.EXTRA_RESULT, displayResult)
-            putExtra(ResultActivity.EXTRA_IMG, currentImageUri.toString())
+            currentImageUri?.let { putExtra(ResultActivity.EXTRA_IMG, it.toString()) }
         }
         startActivity(intent)
     }

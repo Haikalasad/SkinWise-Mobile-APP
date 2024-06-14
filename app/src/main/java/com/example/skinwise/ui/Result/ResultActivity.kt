@@ -3,8 +3,6 @@ package com.example.skinwise.ui.Result
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.skinwise.R
@@ -56,11 +54,11 @@ class ResultActivity : AppCompatActivity() {
 
     private suspend fun classifyImage(image: TensorImage): List<Classifications> {
         return withContext(Dispatchers.IO) {
-            val modelFile = FileUtil.loadMappedFile(this@ResultActivity, "model_with_metadata (2).tflite")
+            val modelFile = FileUtil.loadMappedFile(this@ResultActivity, "model_with_metadata.tflite")
             val options = ImageClassifier.ImageClassifierOptions.builder()
                 .setMaxResults(1)
                 .build()
-            val classifier = ImageClassifier.createFromBuffer(modelFile)
+            val classifier = ImageClassifier.createFromFile(this@ResultActivity, modelFile, options)
             classifier.classify(image)
         }
     }

@@ -10,7 +10,6 @@
         android:title="Rumah sakit" />
     <item
         android:id="@+id/action_scan"
-        android:icon="@drawable/baseline_add"
         android:title="Scanner" />
     <item
         android:id="@+id/action_consultation"

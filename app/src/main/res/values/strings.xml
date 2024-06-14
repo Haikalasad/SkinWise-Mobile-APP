@@ -33,7 +33,7 @@
     <string name="tittleArticle">Apakah Vitiligo Bisa Disembuhkan? Ini Faktanya</string>
     <string name="categoryArticle">Vitiligo</string>
     <string name="dateArticle">25 Juni 2023</string>
-    <string name="tittleHospitalSection">Rumah sakit favoritmu</string>
+    <string name="tittleHospitalSection">Rumah sakit</string>
     <string name="title">RS UNAIR</string>
     <string name="streetHospital">Jl. Teluk Nibung Utara No 39 Surabaya</string>
     <string name="tittleScanningSection">History Scanning</string>
@@ -83,4 +83,9 @@
     <string name="timestamp">timestamp</string>
     <string name="no_disease_detected">tidak ada penyakit terdeteksi</string>
     <string name="try_again">coba lagi</string>
+    <string name="confirmExit">Konfirmasi Keluar</string>
+    <string name="exit">Apakah anda yakin ingin keluar?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="stayLoggedIn">Tetap Login</string>
 </resources>
