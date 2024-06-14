@@ -166,15 +166,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notification" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/nextarticlefav"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:layout_marginEnd="24dp"
+        android:background="@color/white"
         android:src="@drawable/baseline_navigate_next_24"
         app:layout_constraintBottom_toBottomOf="@+id/articlefav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/articlefav" />
+        app:layout_constraintTop_toTopOf="@+id/articlefav"
+        android:contentDescription="Artikel Favorite" />
 
     <TextView
         android:id="@+id/hospitalfav"

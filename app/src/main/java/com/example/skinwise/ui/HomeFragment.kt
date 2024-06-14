@@ -1,30 +1,55 @@
 package com.example.skinwise.ui
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.skinwise.R
+import com.example.skinwise.data.pref.UserPreference
+import com.example.skinwise.data.pref.dataStore
 import com.example.skinwise.ui.article.ArticleActivity
 import com.example.skinwise.ui.hospital.HospitalActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+
 class HomeFragment : Fragment() {
+
+    private lateinit var userNameTextView: TextView
+    private lateinit var userPhotoImageView: ImageView
+    private lateinit var userPreference: UserPreference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val searchBar = view.findViewById<View>(R.id.searchBar)
         val searchView = view.findViewById<SearchView>(R.id.searchView)
+
+        userNameTextView = view.findViewById(R.id.nameProfile)
+        userPhotoImageView = view.findViewById(R.id.mainProfile)
+
+        val hintColor: Int = Color.WHITE
+        val searchTextView =
+            searchView.findViewById<View>(androidx.appcompat.R.id.search_src_text) as TextView
+        searchTextView.setHintTextColor(hintColor)
+
+        loadUserData()
+
         val textButton = view.findViewById<View>(R.id.textButton)
         val textButton2 = view.findViewById<View>(R.id.textButton2)
         val pictArticle = view.findViewById<View>(R.id.pictArticle)
@@ -43,8 +68,7 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, HospitalActivity::class.java)
             startActivity(intent)
         }
-        // Configure search bar and search view
-        searchBar.setOnClickListener {
+        searchView.setOnClickListener {
             searchView.visibility = View.VISIBLE
             searchView.requestFocus()
         }
@@ -67,11 +91,23 @@ class HomeFragment : Fragment() {
             }
         })
     }
-    private fun handleSearchQuery(query: String) {
-        // This function will handle the search logic
-        // For example, you can start a new activity with the search results
 
-        // Check if query is for articles or hospitals
+
+    private fun loadUserData() {
+        userPreference = context?.let { UserPreference(it.dataStore) }
+            ?: throw Exception("Invalid Activity")
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val session = userPreference.getSession().first()
+            userNameTextView.text = session.nama
+            Glide.with(requireContext()).load(session.photoUrl).placeholder(R.drawable.ic_baseline_account_circle_24) // Placeholder if image loading fails
+                .error(R.drawable.ic_baseline_account_circle_24).into(userPhotoImageView)
+        }
+
+    }
+
+    private fun handleSearchQuery(query: String) {
+
         if (query.contains("article_keyword", true)) {
             val intent = Intent(activity, ArticleActivity::class.java)
             intent.putExtra("QUERY", query)

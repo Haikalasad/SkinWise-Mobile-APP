@@ -21,7 +21,7 @@ import com.example.skinwise.R
 import com.example.skinwise.databinding.ActivityMainBinding
 import com.example.skinwise.ui.HomeFragment
 import com.example.skinwise.ui.ProfileFragment
-import com.example.skinwise.ui.Result.ResultActivity
+//import com.example.skinwise.ui.Result.ResultActivity
 import com.example.skinwise.ui.Consultation.ConsultationFragment
 import com.example.skinwise.ui.Result.CameraActivity
 import com.example.skinwise.ui.Result.CameraActivity.Companion.CAMERAX_RESULT
@@ -182,17 +182,17 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_PREVIEW && resultCode == RESULT_OK) {
-            moveToResult()
+//            moveToResult()
         }
     }
 
-    private fun moveToResult() {
-        val intent = Intent(this, ResultActivity::class.java).apply {
-            putExtra(ResultActivity.EXTRA_RESULT, displayResult)
-            currentImageUri?.let { putExtra(ResultActivity.EXTRA_IMG, it.toString()) }
-        }
-        startActivity(intent)
-    }
+//    private fun moveToResult() {
+//        val intent = Intent(this, ResultActivity::class.java).apply {
+//            putExtra(ResultActivity.EXTRA_RESULT, displayResult)
+//            currentImageUri?.let { putExtra(ResultActivity.EXTRA_IMG, it.toString()) }
+//        }
+//        startActivity(intent)
+//    }
 
     companion object {
         private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA

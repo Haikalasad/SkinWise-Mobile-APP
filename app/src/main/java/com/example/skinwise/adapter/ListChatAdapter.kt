@@ -82,7 +82,6 @@ class ListChatAdapter(private var chatList: List<ListChatModel>, private val cur
                 Glide.with(itemView.context)
                     .load(photoUrl)
                     .circleCrop()
-                    .placeholder(R.drawable.baseline_person_24)
                     .into(imageView)
             }
 

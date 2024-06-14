@@ -67,7 +67,7 @@ class ArticleAdapter(
 
                 coroutineScope.launch {
                     val isFavorite = favoriteArticleRepository.isArticleFavorite(article.title)
-                    val favoriteIcon = if (isFavorite) R.drawable.baseline_favorite_24 else R.drawable.baseline_favorite_border_24
+                    val favoriteIcon = if (isFavorite) R.drawable.baseline_bookmark_24 else R.drawable.baseline_bookmark_border_24
                     btnAddFavorite.setImageResource(favoriteIcon)
                 }
 
@@ -83,7 +83,7 @@ class ArticleAdapter(
 
                     article.isFavorite = !article.isFavorite
 
-                    val updatedFavoriteIcon = if (article.isFavorite) R.drawable.baseline_favorite_24 else R.drawable.baseline_favorite_border_24
+                    val updatedFavoriteIcon = if (article.isFavorite) R.drawable.baseline_bookmark_24 else R.drawable.baseline_bookmark_border_24
                     btnAddFavorite.setImageResource(updatedFavoriteIcon)
 
                     coroutineScope.launch {
@@ -93,7 +93,6 @@ class ArticleAdapter(
                         } else {
                             favoriteArticleRepository.deleteByTitle(article.title)
                             Toast.makeText(itemView.context, "${article.title} berhasil dihapus dari favorite", Toast.LENGTH_SHORT).show()
-
                         }
                     }
                 }

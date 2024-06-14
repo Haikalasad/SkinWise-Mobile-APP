@@ -41,28 +41,3 @@ class ArticleViewModel(private val articleRepository: ArticleRepository) : ViewM
     }
 }
 
-
-
-// Article ViewModel using API
-
-//class ArticleViewModel(private val repository: ArticleRepository) : ViewModel()  {
-//    private val _isLoading = MutableLiveData<Boolean>()
-//    val isLoading: LiveData<Boolean>
-//        get() = _isLoading
-//
-//    private val _articles = MutableLiveData<Result<ArticleResponse>>()
-//    val articles: LiveData<Result<ArticleResponse>> = _articles
-//
-//    fun fetchArticles(query: String) {
-//        viewModelScope.launch {
-//            val result = repository.getArticles(query)
-//            _articles.value = result
-//        }
-//    }
-//
-//    fun setLoading(loading: Boolean) {
-//        _isLoading.value = loading
-//    }
-//
-//
-//}

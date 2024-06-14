@@ -115,7 +115,7 @@ dependencies {
     implementation ("androidx.fragment:fragment-ktx:1.3.6")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
 
-    implementation ("com.github.yalantis:ucrop:2.2.8-native")
+
     implementation ("androidx.appcompat:appcompat:1.3.1")
 
     val cameraxVersion = "1.2.2"
@@ -127,5 +127,6 @@ dependencies {
 
     implementation("androidx.exifinterface:exifinterface:1.3.6")
     implementation ("com.google.guava:guava:31.0.1-android")
+
 
 }

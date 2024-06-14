@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/img_item_photo"
-            android:layout_width="100dp"
-            android:layout_height="105dp"
+            android:layout_width="70dp"
+            android:layout_height="75dp"
             android:scaleType="centerCrop"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
@@ -82,13 +82,12 @@
             card_view:layout_constraintTop_toBottomOf="@id/tv_receiver_name" />
 
 
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            card_view:layout_constraintGuide_begin="116dp" />
+            card_view:layout_constraintGuide_begin="78dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"

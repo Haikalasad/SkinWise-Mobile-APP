@@ -91,32 +91,21 @@
             app:srcCompat="@drawable/baseline_notification"
             app:tint="@color/black"/>
 
-        <com.google.android.material.search.SearchBar
-            android:id="@+id/searchBar"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:backgroundTint="@color/white"
-            app:strokeColor="@color/white"
-            app:strokeWidth="1dp"
-            android:maxLines="1"
-            android:text="@string/searchbarSearch"
-            app:layout_constraintTop_toBottomOf="@+id/layoutProfile" />
 
-        <com.google.android.material.search.SearchView
+        <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:background="@drawable/search_view_bg_home"
+            app:backgroundTint="#FFFFFF"
+            app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/layoutProfile"
+            app:queryHint="Cari rumah sakit atau artikel" />
+
+
 
         <TextView
             android:id="@+id/tittleArticleSection"
