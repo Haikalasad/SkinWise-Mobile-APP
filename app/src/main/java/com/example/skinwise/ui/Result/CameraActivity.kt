@@ -3,9 +3,6 @@ package com.example.skinwise.ui.Result
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.OrientationEventListener
-import android.view.Surface
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
@@ -16,12 +13,9 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import com.doanda.easymeal.ui.detection.result.DetectionResultActivity
 import com.example.skinwise.R
 import com.example.skinwise.databinding.ActivityCameraBinding
 import java.io.File
-import java.nio.file.Files.createFile
-import java.util.concurrent.Executor
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
