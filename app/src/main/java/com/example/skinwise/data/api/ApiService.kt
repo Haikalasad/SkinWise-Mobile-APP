@@ -34,10 +34,4 @@ interface ApiService {
 
     @GET("/doctors")
     suspend fun getDoctors() : DoctorResponse
-
-
-
-
-
-
 }

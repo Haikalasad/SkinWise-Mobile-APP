@@ -90,8 +90,8 @@
     <string name="stayLoggedIn">Tetap Login</string>
     <string name="take_photo">Ambil Foto</string>
     <string name="import_from_gallery">Import dari Galeri</string>
-    <string name="ingredient_not_recognized">Tidak yakin dengan Penyakit Anda?</string>
-    <string name="ingredient_not_recognized_desc">Silahkan mengupload gambar penyakit anda</string>
+    <string name="ingredient_not_recognized">Pindai Kulitmu dan Ketahui Penyakit Anda</string>
+    <string name="ingredient_not_recognized_desc">Kami punya fitur pemindaian foto kulit yang memberi deskripsi penyakit kulit dan tips pencegahan.</string>
     <string name="permission_camera_not_granted">Permssion Denied</string>
     <string name="import_gallery">Ambil dari Galeri</string>
     <string name="detecting">Mendeteksi</string>
