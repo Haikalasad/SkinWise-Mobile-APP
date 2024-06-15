@@ -1,5 +1,6 @@
 package com.example.skinwise.ui.result
 
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -28,6 +29,7 @@ class DetectionResultActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_PICTURE = "extra_picture"
+        const val EXTRA_IMAGE_URI = "extra_image_uri" // Tambahkan konstanta ini
         const val EXTRA_IS_FROM_GALLERY = "extra_is_from_gallery"
         const val EXTRA_IS_BACK_CAMERA = "extra_is_back_camera"
         private const val TAG = "DetectionResultActivity"
@@ -48,6 +50,14 @@ class DetectionResultActivity : AppCompatActivity() {
             intent.getSerializableExtra(EXTRA_PICTURE) as File
         }
         isBack = intent.getBooleanExtra(EXTRA_IS_BACK_CAMERA, true)
+
+
+        // Dapatkan URI gambar yang dikirim dari DetectionActivity
+        val imageUriString = intent.getStringExtra(EXTRA_IMAGE_URI)
+        imageUriString?.let {
+            val imageUri = Uri.parse(it)
+            binding.imageView.setImageURI(imageUri) // Tampilkan gambar di ImageView
+        }
 
         Executors.newSingleThreadExecutor().execute {
             file = reduceFileImage(file as File)
