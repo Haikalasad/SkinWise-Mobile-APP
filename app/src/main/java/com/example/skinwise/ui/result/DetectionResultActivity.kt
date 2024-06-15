@@ -1,29 +1,30 @@
 package com.example.skinwise.ui.result
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.media.ThumbnailUtils
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
-import com.example.skinwise.R
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
+import com.example.skinwise.data.api.ApiService
+import com.example.skinwise.data.api.response.DataPredict
 import com.example.skinwise.databinding.ActivityResultBinding
-import org.tensorflow.lite.task.vision.classifier.Classifications
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
+import java.util.concurrent.Executors
 
 class DetectionResultActivity : AppCompatActivity() {
     private val binding by lazy { ActivityResultBinding.inflate(layoutInflater) }
-    private val appExecutor: AppExecutors by lazy { AppExecutors() }
     private var file: File? = null
     private var isBack: Boolean = true
     private var compressingDone: MutableLiveData<Boolean> = MutableLiveData(false)
-    private var detectedIng: String? = null
-    private var labels: Array<String>? = null
-    private var confidences: FloatArray? = null
 
     companion object {
         const val EXTRA_PICTURE = "extra_picture"
@@ -48,66 +49,57 @@ class DetectionResultActivity : AppCompatActivity() {
         }
         isBack = intent.getBooleanExtra(EXTRA_IS_BACK_CAMERA, true)
 
-        appExecutor.diskIO.execute {
+        Executors.newSingleThreadExecutor().execute {
             file = reduceFileImage(file as File)
             compressingDone.postValue(true)
         }
 
         compressingDone.observe(this) { isDone ->
             if (isDone) {
-                file?.let { loadDetectionResults(it) }
+                file?.let { uploadImageAndClassify(it) }
             }
         }
     }
 
-    private fun loadDetectionResults(file: File) {
-        var image = BitmapFactory.decodeFile((file).path)
-        val dimension = Math.min(image.width, image.height)
-        image = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
-        image = Bitmap.createScaledBitmap(image, imageSize, imageSize, false)
-        showThumbnail(image)
-        classifyImage(image)
-    }
+    private fun uploadImageAndClassify(file: File) {
+        // Mengunggah gambar ke API dan mendapatkan hasil klasifikasi
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://35.219.121.162:3000")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
-    private fun showThumbnail(result: Bitmap) {
-        var resultShowed = result
-        val isFromGallery = intent.getBooleanExtra(EXTRA_IS_FROM_GALLERY, false)
-        if (!isFromGallery) {
-            resultShowed = rotateBitmap(resultShowed, isBack)
-        }
-        binding.imageView.setImageBitmap(resultShowed)
-    }
+        val apiService = retrofit.create(ApiService::class.java)
 
-    private fun classifyImage(image: Bitmap?) {
-        val imageUri = Uri.fromFile(file)  // Konversi file ke URI
-        val imageClassifierHelper = ImageClassifierHelper(
-            contextValue = this,
-            classifierListenerValue = object : ImageClassifierHelper.ClassifierListener {
-                override fun onError(errorMsg: String) {
-                    Log.d(TAG, "Error: $errorMsg")
-                    showToast(errorMsg)
-                }
+        val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+        val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+        val token = "Bearer <token>" // Ganti dengan token yang sesuai
 
-                override fun onResults(results: List<Classifications>?, inferenceTime: Long) {
-                    results?.let { showResults(it) }
-                }
+        lifecycleScope.launch {
+            try {
+                val response = apiService.uploadImage(token, body)
+                displayResults(response.data)
+            } catch (e: Exception) {
+                Log.e(TAG, "Upload or classification failed", e)
+                showToast("Failed to classify image")
             }
-        )
-        imageClassifierHelper.classifyStaticImage(imageUri)
+        }
     }
 
-    private fun showResults(results: List<Classifications>) {
-        val topResult = results[0]
-        val label = topResult.categories[0].label
-        val score = topResult.categories[0].score
+    private fun displayResults(data: DataPredict) {
+        val imageUrl = data.link
+        val name = data.name
+        val step = data.step
 
-        fun Float.formatToString(): String {
-            return String.format("%.2f%%", this * 100)
-        }
-        binding.disease.text = "$label ${score.formatToString()}"
+        binding.disease.text = name
+        binding.medicine.text = step
+
+        Glide.with(this)
+            .load(imageUrl)
+            .into(binding.imageView)
     }
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
+
