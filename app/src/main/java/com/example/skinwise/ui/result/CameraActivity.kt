@@ -1,4 +1,4 @@
-package com.example.skinwise.ui.Result
+package com.example.skinwise.ui.result
 
 import android.content.Intent
 import android.os.Build

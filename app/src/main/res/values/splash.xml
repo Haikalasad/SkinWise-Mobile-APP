@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Theme.AnimatedSplash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/blue_primary</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/avd_skinwise</item>
-        <item name="postSplashScreenTheme">@style/Theme.AnimatedSplash</item>
-    </style>
-</resources>

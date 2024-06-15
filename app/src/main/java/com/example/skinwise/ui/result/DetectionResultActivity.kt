@@ -1,27 +1,13 @@
-package com.example.skinwise.ui.Result
+package com.example.skinwise.ui.result
 
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.media.ThumbnailUtils
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
 import com.example.skinwise.R
-import com.example.skinwise.databinding.ActivityDetectionresultBinding
-import com.example.skinwise.ml.ModelWithMetadata2
-import com.example.skinwise.ui.main.MainActivity
-import com.example.skinwise.data.model.DetectionModel
 import com.example.skinwise.databinding.ActivityResultBinding
-import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.task.vision.classifier.Classifications
-import java.io.File
-import java.io.IOException
 
 class DetectionResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
@@ -29,8 +15,9 @@ class DetectionResultActivity : AppCompatActivity() {
     companion object {
         const val IMAGE_URI = "img_uri"
         const val TAG = "imagePicker"
-        const val RESULT_TEXT = "result_text"
-        const val REQUEST_HISTORY_UPDATE = 1
+        const val EXTRA_PICTURE = "extra_picture"
+        const val EXTRA_IS_FROM_GALLERY = "extra_is_from_gallery"
+        const val EXTRA_IS_BACK_CAMERA = "extra_is_back_camera"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
