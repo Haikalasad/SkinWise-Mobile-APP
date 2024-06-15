@@ -1,18 +1,8 @@
 package com.example.skinwise.ui.main
 
-import android.Manifest
-import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.widget.Toast
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.skinwise.R
@@ -20,11 +10,10 @@ import com.example.skinwise.databinding.ActivityMainBinding
 import com.example.skinwise.ui.HomeFragment
 import com.example.skinwise.ui.ProfileFragment
 import com.example.skinwise.ui.Consultation.ConsultationFragment
-import com.example.skinwise.ui.Result.DetectionActivity
+import com.example.skinwise.ui.result.DetectionActivity
 import com.example.skinwise.ui.hospital.HospitalFragment
 import com.example.skinwise.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

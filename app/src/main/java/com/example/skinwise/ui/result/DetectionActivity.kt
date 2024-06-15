@@ -1,4 +1,4 @@
-package com.example.skinwise.ui.Result
+package com.example.skinwise.ui.result
 
 import android.Manifest
 import android.app.Activity
@@ -29,17 +29,14 @@ class DetectionActivity : AppCompatActivity() {
 
     private fun setupView() {
         binding.cameraXButton.setOnClickListener {
-//            Toast.makeText(this, "Camera clcked", Toast.LENGTH_SHORT).show()
             startCameraX()
         }
         binding.galleryButton.setOnClickListener {
-//            Toast.makeText(this, "Gallery clcked", Toast.LENGTH_SHORT).show()
             startGallery()
         }
     }
 
     private fun startCameraX() {
-//        Toast.makeText(this@DetectionActivity, getString(R.string.opening_camera), Toast.LENGTH_SHORT).show()
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this@DetectionActivity,

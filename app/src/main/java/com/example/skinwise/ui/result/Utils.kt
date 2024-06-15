@@ -1,4 +1,4 @@
-package com.example.skinwise.ui.Result
+package com.example.skinwise.ui.result
 
 import android.app.Application
 import android.content.ContentResolver
