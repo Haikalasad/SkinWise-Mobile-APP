@@ -69,43 +69,6 @@
                     android:fontFamily="@font/inter_bold" />
             </LinearLayout>
 
-            <!-- Deskripsi penyakit -->
-            <TextView
-                android:id="@+id/descriptiontittle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/descriptiondiseasesection"
-                android:textSize="20sp"
-                android:fontFamily="@font/inter_bold" />
-
-            <TextView
-                android:id="@+id/descriptiondisease"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/descriptiondisease"
-                android:layout_marginTop="8dp"
-                android:textSize="12sp"
-                android:fontFamily="@font/inter_regular"/>
-
-            <!-- Faktor penyebab -->
-            <TextView
-                android:id="@+id/factortittle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/factortittle"
-                android:textSize="20sp"
-                android:fontFamily="@font/inter_bold" />
-
-            <TextView
-                android:id="@+id/factordesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/inter_regular"
-                android:text="@string/factordesc" />
 
             <!-- Pengobatan -->
             <TextView
@@ -117,6 +80,7 @@
                 android:fontFamily="@font/inter_bold" />
 
             <TextView
+                android:id="@+id/medicine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"

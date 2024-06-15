@@ -1,16 +1,11 @@
 package com.example.skinwise.data.api
 
-import android.content.Context
-import com.example.skinwise.data.pref.UserPreference
-import com.example.skinwise.data.pref.dataStore
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
+
 
 object ApiConfig {
 
