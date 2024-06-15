@@ -9,7 +9,7 @@
     <View
         android:id="@+id/viewBackground"
         android:layout_width="wrap_content"
-        android:layout_height="132dp"
+        android:layout_height="100dp"
         android:backgroundTint="@color/blue_primary"
         android:foregroundTint="@color/blue_primary"
         android:background="@color/blue_primary" />
@@ -34,13 +34,13 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/mainProfile"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="69dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/profile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/profile" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/layoutProfile"
@@ -48,9 +48,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/mainProfile"
         app:layout_constraintStart_toEndOf="@+id/mainProfile"
         app:layout_constraintTop_toTopOf="@+id/mainProfile"
-        app:layout_constraintBottom_toBottomOf="@+id/mainProfile">
+        app:layout_constraintVertical_bias="0.583">
 
         <TextView
             android:id="@+id/greetingProfile"
@@ -59,7 +60,7 @@
             android:fontFamily="@font/inter_regular"
             android:text="@string/greetingProfile"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/nameProfile"
@@ -69,10 +70,11 @@
             android:fontFamily="@font/inter_bold"
             android:text="@string/nameProfile"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
-    <ImageView
+    <ImageButton
+        android:id="@+id/editProfileBtn"
         android:layout_width="26dp"
         android:layout_height="26dp"
         app:tint="@color/white"
@@ -80,6 +82,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/layoutProfile"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="24dp"
+        android:background="@color/blue_primary"
         app:layout_constraintTop_toTopOf="@+id/layoutProfile" />
 
 
@@ -87,7 +90,7 @@
         android:id="@+id/accountSetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="24dp"
         android:fontFamily="@font/inter_regular"
         android:text="@string/accountSetting"

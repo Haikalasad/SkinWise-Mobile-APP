@@ -8,34 +8,19 @@ import com.example.skinwise.data.api.response.DoctorResponse
 import com.example.skinwise.data.api.response.HospitalResponse
 import com.example.skinwise.data.api.response.LoginResponse
 import com.example.skinwise.data.api.response.RegisterResponse
-import com.example.skinwise.data.model.DoctorModel
+import com.example.skinwise.data.api.response.updateResponse
 import com.example.skinwise.data.model.UserModel
 import com.example.skinwise.data.pref.UserPreference
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class Repository(private val preferences: UserPreference, private val apiService: ApiService) {
-
-//    fun getAllDoctors(): List<DoctorModel> {
-//        return doctors
-//    }
-//
-//    private val doctors: List<DoctorModel> = listOf(
-//        DoctorModel(
-//            doctorId ="1",
-//            name = "jhon doe",
-//            email = "jhon@gmail.com",
-//            photoUrl = "https://img.freepik.com/free-photo/smiling-doctor-with-strethoscope-isolated-grey_651396-974.jpg?w=1800&t=st=1717772918~exp=1717773518~hmac=fbef65044e0a888a9be4a5ebea2ca21c4725549b8be8d9bfe1c880165722b9d7"
-//
-//        ),
-//        DoctorModel(
-//            doctorId ="2",
-//            name = "Ini dokter 2",
-//            email = "jhon@gmail.com",
-//            photoUrl = "https://img.freepik.com/free-photo/smiling-doctor-with-strethoscope-isolated-grey_651396-974.jpg?w=1800&t=st=1717772918~exp=1717773518~hmac=fbef65044e0a888a9be4a5ebea2ca21c4725549b8be8d9bfe1c880165722b9d7"
-//
-//        )
-//
-//    )
     suspend fun register(nama:String,email:String,password:String,role:String) : Result<RegisterResponse> {
         return try{
             val response = apiService.register(nama,email,password,role)
@@ -88,6 +73,22 @@ class Repository(private val preferences: UserPreference, private val apiService
         } catch (e : Exception){
             Result.Error(e.message ?: "Unkown error occured")
 
+        }
+    }
+
+
+    suspend fun update(imageFile: MultipartBody.Part?, dataJson: RequestBody): Result<updateResponse> {
+        return try {
+            val response = withContext(Dispatchers.IO) {
+                if (imageFile != null) {
+                    apiService.update(imageFile, dataJson)
+                } else {
+                    apiService.update(null,dataJson)
+                }
+            }
+            Result.Success(response)
+        } catch (e: Exception) {
+            Result.Error(e.message ?: "Unknown error occurred")
         }
     }
 

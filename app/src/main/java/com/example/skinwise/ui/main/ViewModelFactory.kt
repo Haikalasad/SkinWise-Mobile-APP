@@ -10,6 +10,7 @@ import com.example.skinwise.ui.Consultation.ConsultationViewModel
 import com.example.skinwise.ui.article.ArticleViewModel
 import com.example.skinwise.ui.hospital.HospitalViewModel
 import com.example.skinwise.ui.login.LoginViewModel
+import com.example.skinwise.ui.profile.EditProfileViewModel
 import com.example.skinwise.ui.signup.SignupViewModel
 
 class ViewModelFactory private constructor(
@@ -25,6 +26,7 @@ class ViewModelFactory private constructor(
             modelClass.isAssignableFrom(ArticleViewModel::class.java) -> ArticleViewModel(articleRepository) as T
             modelClass.isAssignableFrom(HospitalViewModel::class.java) -> HospitalViewModel(repository) as T
             modelClass.isAssignableFrom(ConsultationViewModel::class.java) -> ConsultationViewModel(repository) as T
+            modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> EditProfileViewModel(repository) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }

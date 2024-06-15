@@ -4,8 +4,8 @@ data class UserModel(
 
     val token: String,
     val isLogin: Boolean,
-    val nama: String,
-    val email: String,
+    var nama: String,
+    var email: String,
     val photoUrl: String,
     val role: String,
     val subscriber: Boolean

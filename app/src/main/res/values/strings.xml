@@ -97,4 +97,11 @@
     <string name="detecting">Mendeteksi</string>
     <string name="open_camera_failed">Buka Kamera</string>
     <string name="detection_failed">Gagal Mendeteksi</string>
+    <string name="simpan">Simpan</string>
+    <string name="masukkan_kata_sandi_baru">Masukkan kata sandi baru</string>
+    <string name="masukkan_kata_sandi_lama">Masukkan kata sandi lama</string>
+
+
+
+    <string name="no_media_selected">Tidak ada gambar yang dipilih</string>
 </resources>

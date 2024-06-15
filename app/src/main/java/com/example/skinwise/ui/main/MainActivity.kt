@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.skinwise.R
 import com.example.skinwise.databinding.ActivityMainBinding
 import com.example.skinwise.ui.HomeFragment
-import com.example.skinwise.ui.ProfileFragment
+import com.example.skinwise.ui.profile.ProfileFragment
 import com.example.skinwise.ui.Consultation.ConsultationFragment
 import com.example.skinwise.ui.result.DetectionActivity
 import com.example.skinwise.ui.hospital.HospitalFragment
