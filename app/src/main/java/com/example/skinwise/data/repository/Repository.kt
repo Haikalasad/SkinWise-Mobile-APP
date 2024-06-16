@@ -7,6 +7,7 @@ import com.example.skinwise.data.api.ApiService
 import com.example.skinwise.data.api.response.DoctorResponse
 import com.example.skinwise.data.api.response.HospitalResponse
 import com.example.skinwise.data.api.response.LoginResponse
+import com.example.skinwise.data.api.response.PredictResponse
 import com.example.skinwise.data.api.response.RegisterResponse
 import com.example.skinwise.data.api.response.updateResponse
 import com.example.skinwise.data.model.UserModel
@@ -91,6 +92,21 @@ class Repository(private val preferences: UserPreference, private val apiService
             Result.Error(e.message ?: "Unknown error occurred")
         }
     }
+
+
+    suspend fun predict(imageFile: MultipartBody.Part): Result<PredictResponse> {
+        return try {
+            val response = apiService.uploadImage(imageFile)
+            if (response.status == "fail") {
+                Result.Error("Gagal melakukan prediksi")
+            } else {
+                Result.Success(response)
+            }
+        } catch (e: Exception) {
+            Result.Error(e.message ?: "Unknown error occurred")
+        }
+    }
+
 
     fun getUser(): LiveData<UserModel> {
         return preferences.getSession().asLiveData()

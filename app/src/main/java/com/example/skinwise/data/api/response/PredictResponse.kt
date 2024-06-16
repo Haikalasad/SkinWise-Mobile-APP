@@ -1,7 +1,10 @@
 package com.example.skinwise.data.api.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class PredictResponse(
 
 	@field:SerializedName("data")
@@ -12,8 +15,9 @@ data class PredictResponse(
 
 	@field:SerializedName("status")
 	val status: String
-)
+) : Parcelable
 
+@Parcelize
 data class DataPredict(
 
 	@field:SerializedName("name")
@@ -27,4 +31,4 @@ data class DataPredict(
 
 	@field:SerializedName("class")
 	val jsonMemberClass: Int
-)
+) : Parcelable

@@ -1,26 +1,48 @@
 package com.example.skinwise.ui.result
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.skinwise.R
+import com.example.skinwise.data.Result
+import com.example.skinwise.data.api.DetectionApiConfig
+import com.example.skinwise.data.api.detection.DetectionApiService
+import com.example.skinwise.data.api.response.PredictResponse
+import com.example.skinwise.data.pref.UserPreference
+import com.example.skinwise.data.pref.dataStore
 import com.example.skinwise.databinding.ActivityDetectionBinding
+import com.example.skinwise.di.Injection
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 class DetectionActivity : AppCompatActivity() {
 
-    private val binding by lazy { ActivityDetectionBinding.inflate(layoutInflater) }
+    private lateinit var predictApiService: DetectionApiService
+    private lateinit var userPreference: UserPreference
+    private lateinit var binding: ActivityDetectionBinding
+
+    private val viewModel: DetectionViewModel by viewModels {
+        PredictViewModelFactory.getInstance(Injection.providePredictRepo(this))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityDetectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        userPreference = UserPreference.getInstance(applicationContext.dataStore)
+
+        val token = runBlocking { userPreference.getSession().first().token }
+
+        predictApiService = DetectionApiConfig.getApiService(token)
 
         supportActionBar?.hide()
 
@@ -50,27 +72,52 @@ class DetectionActivity : AppCompatActivity() {
     }
 
     private fun startGallery() {
-        val intent = Intent()
-        intent.action = Intent.ACTION_GET_CONTENT
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
         val chooser = Intent.createChooser(intent, getString(R.string.import_gallery))
         launcherIntentGallery.launch(chooser)
     }
 
-    private val launcherIntentGallery = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode == Activity.RESULT_OK) {
-            val selectedImage: Uri = it.data?.data as Uri
-            val myFile = fromUriToFile(selectedImage, this@DetectionActivity)
-            val intent = Intent(this@DetectionActivity, DetectionResultActivity::class.java)
-            intent.putExtra(DetectionResultActivity.EXTRA_PICTURE, myFile)
-            intent.putExtra(DetectionResultActivity.EXTRA_IS_FROM_GALLERY, true)
-            startActivity(intent)
+    private val launcherIntentGallery =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val selectedImage: Uri? = result.data?.data
+                selectedImage?.let {
+                    val imageFile = fromUriToFile(it, this@DetectionActivity)
+                    viewModel.analyzeImage(imageFile, it) { result ->
+                        when (result) {
+                            is Result.Success -> navigateToDetectionResult(result.data, it)
+                            is Result.Error -> Toast.makeText(
+                                this@DetectionActivity,
+                                "Prediction failed: ${result.data}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            else -> {
+                                Toast.makeText(
+                                    this@DetectionActivity,
+                                    "Prediction failed",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+                } ?: run {
+                    Toast.makeText(
+                        this@DetectionActivity,
+                        "Failed to retrieve image",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
+
+    private fun navigateToDetectionResult(predictResponse: PredictResponse, imageUri: Uri) {
+        val intent = Intent(this@DetectionActivity, DetectionResultActivity::class.java)
+        intent.putExtra(DetectionResultActivity.EXTRA_PREDICTION_RESPONSE, predictResponse)
+        intent.putExtra(DetectionResultActivity.EXTRA_IMAGE_URI, imageUri.toString())
+        startActivity(intent)
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,

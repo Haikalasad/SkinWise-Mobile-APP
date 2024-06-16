@@ -1,5 +1,6 @@
 package com.example.skinwise.data.api
 
+import com.example.skinwise.data.api.detection.DetectionApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -7,12 +8,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-object ApiConfig {
+object DetectionApiConfig {
 
-    private const val BASE_URL = "http://34.101.250.159:3000"
     private const val PREDICT_BASE_URL = "http://35.219.121.162:3000"
 
-    fun getApiService(token: String, baseUrl: String = BASE_URL): ApiService {
+    fun getApiService(token: String, baseUrl: String = PREDICT_BASE_URL): DetectionApiService {
         val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         val authInterceptor = Interceptor { chain ->
             val req = chain.request()
@@ -31,11 +31,8 @@ object ApiConfig {
             .client(client)
             .build()
 
-        return retrofit.create(ApiService::class.java)
+        return retrofit.create(DetectionApiService::class.java)
     }
 
-    fun getPredictApiService(token: String): ApiService {
-        return getApiService(token, PREDICT_BASE_URL)
-    }
 }
 

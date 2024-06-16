@@ -11,6 +11,7 @@ import com.example.skinwise.ui.article.ArticleViewModel
 import com.example.skinwise.ui.hospital.HospitalViewModel
 import com.example.skinwise.ui.login.LoginViewModel
 import com.example.skinwise.ui.profile.EditProfileViewModel
+import com.example.skinwise.ui.result.DetectionViewModel
 import com.example.skinwise.ui.signup.SignupViewModel
 
 class ViewModelFactory private constructor(
@@ -38,7 +39,7 @@ class ViewModelFactory private constructor(
             return instance ?: synchronized(this) {
                 instance ?: ViewModelFactory(
                     Injection.provideRepo(context),
-                    Injection.provideArticleRepo(),
+                    Injection.provideArticleRepo()
                 )
             }.also { instance = it }
         }

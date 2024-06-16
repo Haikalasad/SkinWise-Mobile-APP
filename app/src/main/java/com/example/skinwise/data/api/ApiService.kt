@@ -53,7 +53,6 @@ interface ApiService {
     @Multipart
     @POST("/predict")
     suspend fun uploadImage(
-        @Header("Authorization") authHeader: String,
         @Part image: MultipartBody.Part
     ): PredictResponse
 }

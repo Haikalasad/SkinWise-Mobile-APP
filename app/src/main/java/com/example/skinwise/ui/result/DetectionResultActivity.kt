@@ -1,105 +1,57 @@
 package com.example.skinwise.ui.result
 
-import android.os.Build
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.lifecycleScope
+import com.example.skinwise.data.api.response.PredictResponse
+
 import com.bumptech.glide.Glide
-import com.example.skinwise.data.api.ApiService
-import com.example.skinwise.data.api.response.DataPredict
 import com.example.skinwise.databinding.ActivityResultBinding
-import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.File
-import java.util.concurrent.Executors
 
 class DetectionResultActivity : AppCompatActivity() {
-    private val binding by lazy { ActivityResultBinding.inflate(layoutInflater) }
-    private var file: File? = null
-    private var isBack: Boolean = true
-    private var compressingDone: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    companion object {
-        const val EXTRA_PICTURE = "extra_picture"
-        const val EXTRA_IS_FROM_GALLERY = "extra_is_from_gallery"
-        const val EXTRA_IS_BACK_CAMERA = "extra_is_back_camera"
-        private const val TAG = "DetectionResultActivity"
-        private const val imageSize = 224
-    }
+    private lateinit var binding: ActivityResultBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupData()
-    }
 
-    private fun setupData() {
-        file = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getSerializableExtra(EXTRA_PICTURE, File::class.java)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+        val predictResponse = intent.getParcelableExtra<PredictResponse>(EXTRA_PREDICTION_RESPONSE)
+        val imageUriString = intent.getStringExtra(EXTRA_IMAGE_URI)
+
+
+        if (predictResponse != null && imageUriString != null) {
+            displayPrediction(predictResponse, Uri.parse(imageUriString))
         } else {
-            @Suppress("DEPRECATION")
-            intent.getSerializableExtra(EXTRA_PICTURE) as File
-        }
-        isBack = intent.getBooleanExtra(EXTRA_IS_BACK_CAMERA, true)
-
-        Executors.newSingleThreadExecutor().execute {
-            file = reduceFileImage(file as File)
-            compressingDone.postValue(true)
-        }
-
-        compressingDone.observe(this) { isDone ->
-            if (isDone) {
-                file?.let { uploadImageAndClassify(it) }
-            }
+            Toast.makeText(this, "No prediction data found", Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
 
-    private fun uploadImageAndClassify(file: File) {
-        // Mengunggah gambar ke API dan mendapatkan hasil klasifikasi
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://35.219.121.162:3000")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    private fun displayPrediction(predictResponse: PredictResponse, imageUri: Uri) {
+        binding.disease.text = predictResponse.data.name
+        binding.medicine.text = predictResponse.data.step
 
-        val apiService = retrofit.create(ApiService::class.java)
-
-        val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
-        val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-        val token = "Bearer <token>" // Ganti dengan token yang sesuai
-
-        lifecycleScope.launch {
-            try {
-                val response = apiService.uploadImage(token, body)
-                displayResults(response.data)
-            } catch (e: Exception) {
-                Log.e(TAG, "Upload or classification failed", e)
-                showToast("Failed to classify image")
-            }
-        }
-    }
-
-    private fun displayResults(data: DataPredict) {
-        val imageUrl = data.link
-        val name = data.name
-        val step = data.step
-
-        binding.disease.text = name
-        binding.medicine.text = step
 
         Glide.with(this)
-            .load(imageUrl)
+            .load(imageUri)
             .into(binding.imageView)
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    companion object {
+        const val EXTRA_PREDICTION_RESPONSE = "prediction_response"
+        const val EXTRA_IMAGE_URI = "image_uri"
+        const val EXTRA_PICTURE = "camera_picture"
+        const val EXTRA_IS_BACK_CAMERA = "image_uri"
     }
 }
-

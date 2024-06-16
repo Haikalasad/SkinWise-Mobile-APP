@@ -22,7 +22,7 @@ import org.tensorflow.lite.task.vision.classifier.ImageClassifier
 class ImageClassifierHelper(
     val tresholdValue: Float = 0.1f,
     var maxResultsValue: Int = 3,
-    val modelNameValue: String = "model_with_metadata (3).tflite",
+    val modelNameValue: String = "model1.tflite",
     val contextValue: Context,
     val classifierListenerValue: ClassifierListener?
 ) {
