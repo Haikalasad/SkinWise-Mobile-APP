@@ -15,6 +15,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import android.Manifest
 import android.content.Intent
+import android.view.View
 import com.example.skinwise.ui.Consultation.ConsultationActivity
 import com.example.skinwise.ui.main.MainActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -43,11 +44,13 @@ class HospitalActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(upArrow)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
         getCurrentLocation()
 
     }
 
     private fun getCurrentLocation() {
+        viewModel.setLoading(true)
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED
         ) {
@@ -74,6 +77,7 @@ class HospitalActivity : AppCompatActivity() {
         }
     }
 
+
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
@@ -90,4 +94,6 @@ class HospitalActivity : AppCompatActivity() {
             }
         }
     }
+
+
 }

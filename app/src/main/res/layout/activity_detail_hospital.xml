@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.hospital.DetailHospitalActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@android:color/black">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Detail Rumah Sakit"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/pictHospital"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="16dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/tv_hospitalName"
+                android:layout_width="298dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="252dp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="@string/hospital_name"
+                android:textSize="20sp"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@id/iv_rate"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toBottomOf="@id/pictHospital" />
+
+
+            <ImageView
+                android:id="@+id/iv_rate"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/baseline_rate"
+                app:layout_constraintEnd_toStartOf="@id/tv_rate"
+                app:layout_constraintTop_toBottomOf="@id/pictHospital"
+                app:layout_constraintTop_toTopOf="@id/tv_hospitalName" />
+            <TextView
+                android:id="@+id/tv_hospital_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="@string/kota"
+                app:layout_constraintStart_toEndOf="@id/guideline3"
+                app:layout_constraintTop_toBottomOf="@id/tv_hospitalName" />
+
+
+            <TextView
+                android:id="@+id/tv_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/rate"
+                app:layout_constraintEnd_toStartOf="@id/guideline4"
+                app:layout_constraintTop_toBottomOf="@id/pictHospital"
+                app:layout_constraintTop_toTopOf="@id/tv_hospitalName" />
+
+            <TextView
+                android:id="@+id/tv_hospital_province"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/provinsi"
+                app:layout_constraintStart_toEndOf="@id/tv_hospital_city"
+                app:layout_constraintTop_toBottomOf="@id/tv_hospitalName" />
+
+
+            <ImageView
+                android:id="@+id/iv_dermatologist_avail"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/baseline_circle_24"
+                app:layout_constraintEnd_toStartOf="@id/tv_dermatologist_avail"
+                app:layout_constraintStart_toEndOf="@id/guideline3"
+                app:layout_constraintTop_toBottomOf="@id/tv_hospital_province"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/tv_dermatologist_avail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/dermatologist_available"
+                app:layout_constraintStart_toEndOf="@id/iv_dermatologist_avail"
+                app:layout_constraintTop_toBottomOf="@id/tv_hospital_province" />
+
+            <TextView
+                android:id="@+id/tv_lokasi_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="Lokasi"
+                app:layout_constraintTop_toBottomOf="@id/tv_dermatologist_avail"
+                app:layout_constraintStart_toEndOf="@id/guideline3" />
+
+
+
+            <ImageView
+                android:id="@+id/iv_maps"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="16dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toBottomOf="@id/tv_lokasi_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/maps" />
+
+
+
+            <TextView
+                android:id="@+id/tv_phone_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semi_bold"
+                android:textSize="16sp"
+                android:layout_marginTop="24dp"
+                android:text="Kontak"
+                app:layout_constraintTop_toBottomOf="@id/iv_maps"
+                app:layout_constraintStart_toEndOf="@id/guideline3"/>
+
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:textColor="@color/gray_500"
+                android:layout_marginTop="8dp"
+                android:text="@string/kontak_rumah_sakit"
+                app:layout_constraintTop_toBottomOf="@id/tv_phone_title"
+                app:layout_constraintStart_toEndOf="@id/guideline3"/>
+
+
+
+            <TextView
+                android:id="@+id/tv_additional_info_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="@string/info_tambahan"
+                app:layout_constraintTop_toBottomOf="@id/tv_phone"
+                app:layout_constraintStart_toEndOf="@id/guideline3"/>
+
+
+            <TextView
+                android:id="@+id/tv_additional_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:layout_marginTop="8dp"
+                android:autoLink="web"
+                android:textColor="@color/blue_primary"
+                android:text="@string/url_info_tambahan"
+                app:layout_constraintTop_toBottomOf="@id/tv_additional_info_title"
+                app:layout_constraintStart_toEndOf="@id/guideline3"/>
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="395dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/floating_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:layout_margin="24dp"-->
+<!--        android:foreground="@drawable/gmaps_icon"-->
+<!--        android:tint="#FFFFFF"-->
+<!--        app:backgroundTint="@color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

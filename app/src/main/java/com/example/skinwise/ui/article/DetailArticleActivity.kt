@@ -39,7 +39,6 @@ class DetailArticleActivity : AppCompatActivity() {
         binding.floatingButton.setOnClickListener{
             val intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)
-
         }
 
 

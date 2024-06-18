@@ -33,14 +33,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Hide the action bar
         supportActionBar?.hide()
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        // Set background to null
         bottomNavigationView.background = null
-        bottomNavigationView.menu.getItem(1).isEnabled = false
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             var selectedFragment: Fragment? = null
@@ -60,13 +57,12 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        // Set default fragment
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HomeFragment())
                 .commit()
         }
-        // Handle floating action button click
+
         binding.fabScan.setOnClickListener {
             goToDetection()
         }

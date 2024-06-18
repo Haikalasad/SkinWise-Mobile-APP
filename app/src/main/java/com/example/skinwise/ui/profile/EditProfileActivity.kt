@@ -1,9 +1,6 @@
 package com.example.skinwise.ui.profile
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Matrix
+
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -14,13 +11,13 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.exifinterface.media.ExifInterface
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.skinwise.R
 import com.example.skinwise.data.Result
 import com.example.skinwise.databinding.ActivityEditProfileBinding
 import com.example.skinwise.ui.main.ViewModelFactory
+import com.example.skinwise.ui.result.fromUriToFile
 import kotlinx.coroutines.launch
 import java.io.*
 import kotlin.math.ln
@@ -84,7 +81,7 @@ class EditProfileActivity : AppCompatActivity() {
             val email = binding.edEmail.text.toString()
 
             currentImageUri?.let { uri ->
-                val imageFile = uriToFile(uri, this).reduceImage()
+                val imageFile = fromUriToFile(uri, this)
                 lifecycleScope.launch {
                     viewModel.updateProfile(imageFile, name, email)
                 }
@@ -148,58 +145,4 @@ class EditProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun uriToFile(uri: Uri, context: Context): File {
-        val inputStream = context.contentResolver.openInputStream(uri)
-        val tempFile = createCustomTempFile(context)
-        inputStream?.use { input ->
-            FileOutputStream(tempFile).use { output ->
-                input.copyTo(output)
-            }
-        }
-        return tempFile
-    }
-
-    private fun createCustomTempFile(context: Context): File {
-        val timeStamp = System.currentTimeMillis()
-        val filesDir = context.externalCacheDir ?: context.cacheDir
-        return File.createTempFile("temp_$timeStamp", ".jpg", filesDir)
-    }
-
-    private fun File.reduceImage(): File {
-        val options = BitmapFactory.Options().apply {
-            inJustDecodeBounds = true
-            BitmapFactory.decodeFile(this@reduceImage.path, this)
-            val height = outHeight
-            val width = outWidth
-            val samples = 2.0.pow((ln(height / 1280.0) / ln(2.0) + ln(width / 1280.0) / ln(2.0)) / 2).roundToInt()
-            inJustDecodeBounds = false
-            inSampleSize = samples
-        }
-        var imageBitmap = BitmapFactory.decodeFile(this@reduceImage.path, options)
-
-        try {
-            val exif = ExifInterface(this@reduceImage.path)
-            val orientation = exif.getAttributeInt(
-                ExifInterface.TAG_ORIENTATION,
-                ExifInterface.ORIENTATION_NORMAL
-            )
-
-            val matrix = Matrix()
-            when (orientation) {
-                ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(90F)
-                ExifInterface.ORIENTATION_ROTATE_180 -> matrix.postRotate(180F)
-                ExifInterface.ORIENTATION_ROTATE_270 -> matrix.postRotate(270F)
-            }
-
-            imageBitmap = Bitmap.createBitmap(imageBitmap, 0, 0, imageBitmap.width, imageBitmap.height, matrix, true)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-
-        val outputStream = FileOutputStream(this@reduceImage)
-        imageBitmap?.compress(Bitmap.CompressFormat.JPEG, 80, outputStream)
-        outputStream.flush()
-        outputStream.close()
-        return this@reduceImage
-    }
 }

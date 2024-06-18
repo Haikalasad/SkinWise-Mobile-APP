@@ -20,14 +20,13 @@
 
         <ImageView
             android:id="@+id/img_item_photo"
-            android:layout_width="100dp"
-            android:layout_height="105dp"
-            android:scaleType="centerCrop"
+            android:layout_width="80dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="8dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
-
 
         <TextView
             android:id="@+id/tv_doctor_name"
@@ -38,9 +37,8 @@
             android:ellipsize="end"
             android:fontFamily="@font/inter_semi_bold"
             android:maxLines="2"
-            android:text="@string/article_title"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:text="@string/nama_dokter"
+            android:textSize="18sp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toEndOf="@id/guideline"
@@ -51,8 +49,6 @@
             android:id="@+id/btn_chat"
             android:layout_width="60dp"
             android:layout_height="23dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="184dp"
             android:background="@drawable/button_background"
             android:clickable="true"
             android:focusable="true"
@@ -60,8 +56,9 @@
             android:gravity="center"
             android:text="@string/chat"
             android:textColor="@color/white"
+            android:backgroundTint="@color/blue_primary"
             card_view:layout_constraintBottom_toBottomOf="@id/img_item_photo"
-            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@id/guideline"
             card_view:layout_constraintTop_toBottomOf="@id/tv_doctor_name"
             card_view:layout_constraintVertical_bias="1.0" />
 
@@ -70,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            card_view:layout_constraintGuide_begin="116dp" />
+            card_view:layout_constraintGuide_begin="96dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"

@@ -2,35 +2,6 @@ package com.example.skinwise.data.repository
 
 import com.example.skinwise.data.model.ArticleModel
 
-
-// Article Repository using API
-
-//class ArticleRepository(private val articleApiService: ArticleApiService) {
-//
-//    suspend fun getArticles(query: String): Result<ArticleResponse> {
-//        return withContext(Dispatchers.IO) {
-//            try {
-//                val response = articleApiService.getArticle(query).execute()
-//                if (response.isSuccessful) {
-//                    val body = response.body()
-//                    if (body != null) {
-//                        Result.Success(body)
-//                    } else {
-//                        Result.Error("Response body is null")
-//                    }
-//                } else {
-//                    Result.Error("Failed to fetch articles")
-//                }
-//            } catch (e: Exception) {
-//                Result.Error(e.message ?: "Unknown error occurred")
-//            }
-//        }
-//    }
-//}
-
-
-// Article Repository using Halodoc static data
-
 class ArticleRepository {
 
     fun getAllArticle(): List<ArticleModel> {
@@ -40,6 +11,11 @@ class ArticleRepository {
     fun getArticleById(id: Int): ArticleModel? {
         return articles.find { it.id == id }
     }
+
+    fun getArticleByCategory(category: String): ArticleModel? {
+        return articles.firstOrNull { it.category.equals(category, ignoreCase = true) }
+    }
+
     private val articles: List<ArticleModel> = listOf(
         ArticleModel(
             id = 1,

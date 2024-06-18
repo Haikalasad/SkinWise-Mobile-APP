@@ -8,5 +8,6 @@ data class updateResponse(
     val status : String? = null,
 
     @field:SerializedName("message")
-    val message: String? = null
+    val message: String? = null,
+
 )

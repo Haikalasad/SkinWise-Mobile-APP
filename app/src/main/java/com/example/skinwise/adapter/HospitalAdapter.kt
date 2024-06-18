@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.skinwise.data.api.response.HospitalItem
 
 import com.example.skinwise.databinding.ItemRowHospitalBinding
+import com.example.skinwise.ui.hospital.DetailHospitalActivity
 
 class HospitalAdapter : ListAdapter<HospitalItem,HospitalAdapter.MyViewHolder>(diffCallback) {
 
@@ -29,7 +30,6 @@ class HospitalAdapter : ListAdapter<HospitalItem,HospitalAdapter.MyViewHolder>(d
 
 
     class MyViewHolder(val binding : ItemRowHospitalBinding) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(item : HospitalItem){
             binding.tvHospitalName.text = item.nama
             binding.tvRate.text = item.rating.toString()
@@ -48,10 +48,20 @@ class HospitalAdapter : ListAdapter<HospitalItem,HospitalAdapter.MyViewHolder>(d
         val item = getItem(position)
         holder.bind(item)
 
-//        holder.itemView.setOnClickListener{
-//            val context = holder.itemView.context
-//            val intent = Intent(contex)
-//        }
+        holder.itemView.setOnClickListener{
+            val context = holder.itemView.context
+            val intent = Intent(context, DetailHospitalActivity::class.java)
+            intent.putExtra("hospital_name", item.nama)
+            intent.putExtra("hospital_kota", item.kota)
+            intent.putExtra("hospital_provinsi",item.provinsi)
+            intent.putExtra("hospital_rating", item.rating.toString())
+            intent.putExtra("hospital_info",item.informasi)
+            intent.putExtra("hospital_kontak",item.kontak)
+            intent.putExtra("derma_avail",item.dermatologistAvail)
+            intent.putExtra("hospital_image_url", item.urlGambar)
+            intent.putExtra("hospital_location", item.urlLokasi)
+            context.startActivity(intent)
+        }
     }
 
 

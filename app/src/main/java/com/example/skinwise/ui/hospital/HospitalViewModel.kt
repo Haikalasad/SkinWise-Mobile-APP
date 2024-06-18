@@ -1,5 +1,6 @@
 package com.example.skinwise.ui.hospital
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,12 +21,14 @@ class HospitalViewModel(private val hospitalRepository: Repository) : ViewModel(
     val hospitalResult: LiveData<Result<HospitalResponse>> = _hospitalResult
 
 
-    fun getHospital(kota : String) {
+    fun getHospital(kota: String) {
         viewModelScope.launch {
             val result = hospitalRepository.getHospital(kota)
+            Log.d("HospitalViewModel", "API result: $result")
             _hospitalResult.value = result
         }
     }
+
 
     fun setLoading(loading: Boolean) {
         _isLoading.value = loading
@@ -36,30 +39,3 @@ class HospitalViewModel(private val hospitalRepository: Repository) : ViewModel(
 
 
 
-
-
-//    private val _hospital = MutableLiveData<List<HospitalModel>>()
-//    val hospital: LiveData<List<HospitalModel>> = _hospital
-//
-//    private val _isLoading = MutableLiveData<Boolean>()
-//    val isLoading: LiveData<Boolean> = _isLoading
-//
-//    init {
-//        fetchHospitals()
-//    }
-//
-//    fun fetchHospitals(query: String = "") {
-//        viewModelScope.launch {
-//            _isLoading.value = true
-//            delay(1000)
-//            val hospitalList = hospitalRepository.getAllHospital().filter {
-//                it.hospitalName.contains(query, ignoreCase = true) || it.city.contains(query, ignoreCase = true)
-//            }
-//            _hospital.value = hospitalList
-//            _isLoading.value = false
-//        }
-//    }
-//    fun getHospitalById(id: Int): HospitalModel? {
-//
-//        return hospitalRepository.getArticleById(id)
-//    }

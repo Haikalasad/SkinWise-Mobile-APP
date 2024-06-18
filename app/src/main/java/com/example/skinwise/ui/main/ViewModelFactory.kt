@@ -1,8 +1,11 @@
 package com.example.skinwise.ui.main
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.skinwise.data.pref.UserPreference
+import com.example.skinwise.data.pref.dataStore
 import com.example.skinwise.data.repository.ArticleRepository
 import com.example.skinwise.data.repository.Repository
 import com.example.skinwise.di.Injection
@@ -17,6 +20,7 @@ import com.example.skinwise.ui.signup.SignupViewModel
 class ViewModelFactory private constructor(
     private val repository: Repository,
     private val articleRepository: ArticleRepository,
+    private val userPreference: UserPreference
 ) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -27,7 +31,7 @@ class ViewModelFactory private constructor(
             modelClass.isAssignableFrom(ArticleViewModel::class.java) -> ArticleViewModel(articleRepository) as T
             modelClass.isAssignableFrom(HospitalViewModel::class.java) -> HospitalViewModel(repository) as T
             modelClass.isAssignableFrom(ConsultationViewModel::class.java) -> ConsultationViewModel(repository) as T
-            modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> EditProfileViewModel(repository) as T
+            modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> EditProfileViewModel(repository,userPreference) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }
@@ -35,12 +39,14 @@ class ViewModelFactory private constructor(
     companion object {
         @Volatile
         private var instance: ViewModelFactory? = null
+
         fun getInstance(context: Context): ViewModelFactory {
             return instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(
-                    Injection.provideRepo(context),
-                    Injection.provideArticleRepo()
-                )
+                val dataStore = context.dataStore
+                val userPreference = UserPreference.getInstance(dataStore)
+                val repository = Injection.provideRepo(context)
+                val articleRepository = Injection.provideArticleRepo()
+                ViewModelFactory(repository, articleRepository, userPreference)
             }.also { instance = it }
         }
     }

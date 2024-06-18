@@ -40,6 +40,20 @@ class UserPreference(private val dataStore: DataStore<Preferences>) {
         }
     }
 
+
+
+    suspend fun updateUserInfo(name: String, email: String) {
+        dataStore.edit { preferences ->
+            preferences[NAME_KEY] = name
+            preferences[EMAIL_KEY] = email
+        }
+    }
+
+    suspend fun updatePhotoUrl(photoUrl: String) {
+        dataStore.edit { preferences ->
+            preferences[PHOTO_KEY] = photoUrl
+        }
+    }
     suspend fun saveUserInfo(token: String) {
         try {
             Log.d("UserPreferences", "Received token: $token")
@@ -59,12 +73,14 @@ class UserPreference(private val dataStore: DataStore<Preferences>) {
             val email: String? = claims["email", String::class.java]
             val password: String? = claims["password", String::class.java]
             val role: String? = claims["role", String::class.java]
+            val photoUrl : String = claims["foto",String::class.java]
             val subscriber: Boolean? = claims["subscriber", Integer::class.java]?.toInt() == 1
 
             Log.d("UserPreferences", "Claims parsed: $claims")
             Log.d("UserPreferences", "Claim nama: $nama")
             Log.d("UserPreferences", "Claim email: $email")
             Log.d("UserPreferences", "Claim password: $password")
+            Log.d("UserPreferences", "Claim foto: $photoUrl")
             Log.d("UserPreferences", "Claim role: $role")
             Log.d("UserPreferences", "Claim subscriber: $subscriber")
 
@@ -78,6 +94,7 @@ class UserPreference(private val dataStore: DataStore<Preferences>) {
                 preferences[IS_LOGIN_KEY] = true
                 preferences[NAME_KEY] = nama
                 preferences[EMAIL_KEY] = email
+                preferences[PHOTO_KEY] = photoUrl
                 preferences[ROLE_KEY] = role
                 preferences[SUBSCRIBER_KEY] = subscriber
             }

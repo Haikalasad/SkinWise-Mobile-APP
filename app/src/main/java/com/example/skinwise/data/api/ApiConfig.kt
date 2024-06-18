@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiConfig {
 
     private const val BASE_URL = "http://34.101.250.159:3000"
-    private const val PREDICT_BASE_URL = "http://35.219.121.162:3000"
+
 
     fun getApiService(token: String, baseUrl: String = BASE_URL): ApiService {
         val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -34,8 +34,5 @@ object ApiConfig {
         return retrofit.create(ApiService::class.java)
     }
 
-    fun getPredictApiService(token: String): ApiService {
-        return getApiService(token, PREDICT_BASE_URL)
-    }
 }
 

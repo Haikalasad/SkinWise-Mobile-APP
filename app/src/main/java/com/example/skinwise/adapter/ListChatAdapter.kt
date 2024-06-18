@@ -52,7 +52,7 @@ class ListChatAdapter(private var chatList: List<ListChatModel>, private val cur
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateChatList(newChatList: List<ListChatModel>) {
-        chatList = newChatList
+        chatList = newChatList.sortedByDescending { it.messages.lastOrNull()?.timestamp ?: 0 }
         notifyDataSetChanged()
     }
 

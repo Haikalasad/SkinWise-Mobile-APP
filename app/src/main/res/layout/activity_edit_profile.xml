@@ -146,7 +146,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/currentPassEditTextLayout"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -169,7 +169,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newPassEditTextLayout"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -187,7 +187,6 @@
             android:paddingStart="48dp"
             />
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <Button
         android:id="@+id/saveButton"

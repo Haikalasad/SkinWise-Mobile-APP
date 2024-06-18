@@ -79,7 +79,7 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <ImageButton
             android:id="@+id/floatingActionButton2"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -87,8 +87,10 @@
             android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:backgroundTint="@color/white"
-            app:srcCompat="@drawable/baseline_notification"
+            android:background="@drawable/bg_rounded_notif"
+            android:src="@drawable/baseline_notification"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
             app:tint="@color/black"/>
 
 
@@ -99,11 +101,13 @@
             android:layout_margin="24dp"
             android:background="@drawable/search_view_bg_home"
             app:backgroundTint="#FFFFFF"
+            android:textAppearance="@color/white"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutProfile"
-            app:queryHint="Cari rumah sakit atau artikel" />
+            app:queryHint="Cari rumah sakit atau artikel"
+            app:searchIcon="@drawable/baseline_search_24" />
 
 
 
@@ -196,67 +200,81 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        <Button
-            android:id="@+id/filterArticle"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:fontFamily="@font/inter_medium"
-            android:text="@string/filterArticle"
-            app:cornerRadius="8dp"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:layout_marginStart="24dp"
+        <HorizontalScrollView
+            android:id="@+id/category_slide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/tittleArticleSection"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/textButton"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:scrollbars="none">
 
-        <Button
-            android:id="@+id/filterArticle2"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/inter_medium"
-            android:text="@string/filterArticle"
-            android:textColor="@color/gray_400"
-            android:backgroundTint="@color/gray_200"
-            android:textSize="14sp"
-            app:cornerRadius="8dp"
-            style="@style/Widget.Material3.Button.TonalButton"
-            app:layout_constraintBottom_toBottomOf="@+id/filterArticle"
-            app:layout_constraintStart_toEndOf="@id/filterArticle"
-            app:layout_constraintTop_toTopOf="@+id/filterArticle" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/filterArticle3"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/inter_medium"
-            android:text="@string/filterArticle"
-            android:textColor="@color/gray_400"
-            android:backgroundTint="@color/gray_200"
-            app:cornerRadius="8dp"
-            android:textSize="14sp"
-            style="@style/Widget.Material3.Button.TonalButton"
-            app:layout_constraintBottom_toBottomOf="@+id/filterArticle2"
-            app:layout_constraintStart_toEndOf="@id/filterArticle2"
-            app:layout_constraintTop_toTopOf="@+id/filterArticle2" />
+                <Button
+                    android:id="@+id/btn_vitiligo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Vitiligo"
+                    app:cornerRadius="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@+id/textButton"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
-        <Button
-            android:id="@+id/filterArticle4"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/inter_medium"
-            android:text="@string/filterArticle"
-            app:cornerRadius="8dp"
-            android:textSize="14sp"
-            android:textColor="@color/gray_400"
-            android:backgroundTint="@color/gray_200"
-            style="@style/Widget.Material3.Button.TonalButton"
-            app:layout_constraintBottom_toBottomOf="@+id/filterArticle3"
-            app:layout_constraintStart_toEndOf="@id/filterArticle3"
-            app:layout_constraintTop_toTopOf="@+id/filterArticle3" />
+                <Button
+                    android:id="@+id/btn_ringworm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/gray_200"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Ringworm"
+                    android:textColor="@color/gray_400"
+                    android:textSize="14sp"
+                    app:cornerRadius="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/btn_vitiligo"
+                    app:layout_constraintTop_toBottomOf="@+id/textButton" />
+
+                <Button
+                    android:id="@+id/btn_melanoma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Melanoma"
+                    android:textColor="@color/gray_400"
+                    android:backgroundTint="@color/gray_200"
+                    android:textSize="14sp"
+                    app:cornerRadius="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textButton"
+                    app:layout_constraintStart_toEndOf="@+id/btn_ringworm"/>
+
+
+                <Button
+                    android:id="@+id/btn_infeksi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Infeksi Kulit"
+                    app:cornerRadius="8dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray_400"
+                    android:backgroundTint="@color/gray_200"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_melanoma"
+                    app:layout_constraintStart_toEndOf="@id/btn_melanoma"
+                    app:layout_constraintTop_toTopOf="@+id/btn_melanoma" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
 
         <ImageView
             android:id="@+id/pictArticle"
@@ -265,8 +283,9 @@
             android:src="@drawable/article"
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/filterArticle" />
+            app:layout_constraintTop_toBottomOf="@+id/category_slide" />
 
         <TextView
             android:id="@+id/categoryArticle"
@@ -340,15 +359,18 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
+            android:background="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tittleHospitalSection">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/hospital_image1"
                     android:layout_width="match_parent"
                     android:layout_height="92dp"
                     android:scaleType="centerCrop"
@@ -356,17 +378,18 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="8dp">
 
                     <TextView
                         android:id="@+id/tittleHospital"
-                        android:layout_width="89dp"
-                        android:layout_height="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@string/title"
                         android:textSize="13sp"
                         android:fontFamily="@font/inter_medium"
+                        android:maxLines="1"
                         android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                     <TextView
@@ -390,14 +413,17 @@
             android:layout_marginStart="24dp"
             app:layout_constraintStart_toEndOf="@id/card"
             app:layout_constraintTop_toTopOf="@+id/card"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/card">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/hospital_image2"
                     android:layout_width="match_parent"
                     android:layout_height="92dp"
                     android:scaleType="centerCrop"
@@ -405,16 +431,17 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="8dp">
 
                     <TextView
                         android:id="@+id/tittleHospital2"
-                        android:layout_width="89dp"
-                        android:layout_height="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@string/title"
                         android:textSize="13sp"
+                        android:maxLines="1"
                         android:fontFamily="@font/inter_medium"
                         android:textAppearance="?attr/textAppearanceTitleMedium" />
 

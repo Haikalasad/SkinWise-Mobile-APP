@@ -33,7 +33,7 @@ class DoctorAdapter : ListAdapter<DoctorsItem,DoctorAdapter.MyViewHolder>(diffCa
 
         fun bind(item : DoctorsItem){
             binding.tvDoctorName.text = item.uNama
-            Glide.with(binding.root).load(item.uFoto).into(binding.imgItemPhoto)
+            Glide.with(binding.root).load(item.uFoto).circleCrop().into(binding.imgItemPhoto)
         }
     }
 

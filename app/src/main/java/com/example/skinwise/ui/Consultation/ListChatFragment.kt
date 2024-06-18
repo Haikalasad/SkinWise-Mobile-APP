@@ -47,6 +47,7 @@ class ListChatFragment : Fragment() {
         val recyclerView = binding.recyclerViewChat
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        observeViewModel()
 
         CoroutineScope(Dispatchers.Main).launch {
             val session = userPreference.getSession().first()

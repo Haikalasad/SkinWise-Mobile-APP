@@ -10,20 +10,20 @@
     android:layout_marginTop="4dp"
     android:layout_marginEnd="8dp"
     android:layout_marginBottom="4dp"
-    card_view:cardCornerRadius="4dp">
+    android:background="#FFFFFF"
+    android:backgroundTint="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_margin="8dp"
-        android:padding="8dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
 
         <ImageView
             android:id="@+id/img_item_photo"
-            android:layout_width="70dp"
-            android:layout_height="75dp"
-            android:scaleType="centerCrop"
+            android:layout_width="60dp"
+            android:layout_height="65dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toStartOf="@+id/guideline"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
@@ -39,7 +39,7 @@
             android:fontFamily="@font/inter_semi_bold"
             android:maxLines="2"
             android:text="@string/nama_dokter"
-            android:textSize="16sp"
+            android:textSize="14sp"
             card_view:layout_constraintEnd_toStartOf="@id/tv_timestamp"
             card_view:layout_constraintHorizontal_bias="1.0"
             card_view:layout_constraintStart_toEndOf="@id/guideline"
@@ -64,23 +64,24 @@
             card_view:layout_constraintStart_toEndOf="@id/tv_receiver_name"
             card_view:layout_constraintTop_toTopOf="parent" />
 
+
         <TextView
             android:id="@+id/tv_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+
+            android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/img_item_photo"
             android:ellipsize="end"
             android:fontFamily="@font/inter_medium"
             android:maxLines="2"
             android:text="@string/chat"
-            android:textSize="16sp"
+            android:textSize="14sp"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="1.0"
+            card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toEndOf="@id/guideline"
             card_view:layout_constraintStart_toStartOf="@+id/guideline"
             card_view:layout_constraintTop_toBottomOf="@id/tv_receiver_name" />
-
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -94,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            card_view:layout_constraintGuide_begin="104dp" />
+            card_view:layout_constraintGuide_begin="86dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

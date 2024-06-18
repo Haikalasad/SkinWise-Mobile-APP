@@ -94,20 +94,6 @@ class Repository(private val preferences: UserPreference, private val apiService
     }
 
 
-    suspend fun predict(imageFile: MultipartBody.Part): Result<PredictResponse> {
-        return try {
-            val response = apiService.uploadImage(imageFile)
-            if (response.status == "fail") {
-                Result.Error("Gagal melakukan prediksi")
-            } else {
-                Result.Success(response)
-            }
-        } catch (e: Exception) {
-            Result.Error(e.message ?: "Unknown error occurred")
-        }
-    }
-
-
     fun getUser(): LiveData<UserModel> {
         return preferences.getSession().asLiveData()
     }

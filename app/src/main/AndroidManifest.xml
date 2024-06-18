@@ -5,11 +5,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28" />
 
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -23,14 +25,20 @@
         android:theme="@style/Theme.SkinWise"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.hospital.DetailHospitalActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/baseline_circle_notifications_24" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/blue_primary" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBAztQaCcQHlzkePYFpohEc43pcrgv3pIo" />
 
         <activity
             android:name=".ui.Consultation.ChatActivity"
@@ -47,16 +55,10 @@
         <activity
             android:name=".ui.profile.EditProfileActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.article.ArticleActivity"
             android:exported="false"
             android:theme="@style/SplashScreenTheme" />
-
-         <activity
-         android:name=".ui.hospital.HospitalActivity"
-         android:exported="false"/>
-
         <activity
             android:name=".ui.article.DetailArticleActivity"
             android:exported="false" />
@@ -82,7 +84,6 @@
             </intent-filter>
         </activity>
 
-
         <service
             android:name=".ui.Consultation.MyFirebaseMessagingService"
             android:exported="true">
@@ -90,7 +91,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

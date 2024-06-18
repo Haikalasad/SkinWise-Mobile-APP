@@ -25,7 +25,6 @@ import com.example.skinwise.ui.hospital.HospitalActivity
 import com.example.skinwise.ui.main.MainActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-
 class ArticleActivity : AppCompatActivity(), ArticleAdapter.ArticleClickListener, ArticleAdapter.FavoriteClickListener {
 
     private lateinit var binding: ActivityArticleBinding
@@ -48,6 +47,8 @@ class ArticleActivity : AppCompatActivity(), ArticleAdapter.ArticleClickListener
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = "Artikel"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val query = intent.getStringExtra("QUERY")
 
         val upArrow: Drawable? = ContextCompat.getDrawable(this, R.drawable.baseline_arrow_back_24)
         supportActionBar?.setHomeAsUpIndicator(upArrow)
@@ -78,7 +79,11 @@ class ArticleActivity : AppCompatActivity(), ArticleAdapter.ArticleClickListener
             }
         })
 
-        viewModel.fetchArticles()
+        query?.let {
+            binding.searchView.setQuery(it, true)
+        } ?: run {
+            viewModel.fetchArticles()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: android.view.Menu?): Boolean {
@@ -113,27 +118,16 @@ class ArticleActivity : AppCompatActivity(), ArticleAdapter.ArticleClickListener
         articleAdapter.updateFavoriteStatus(article.id, true)
     }
 
-
-
     override fun onArticleClicked(article: ArticleModel) {
         Toast.makeText(this, "Article clicked: ${article.title}", Toast.LENGTH_SHORT).show()
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
 
-    private fun observeLoading() {
-        viewModel.isLoading.observe(this) { isLoading ->
-            binding.loading.visibility = if (isLoading) View.VISIBLE else View.GONE
-        }
-    }
-
-
-    companion object{
+    companion object {
         val TAG = "ArticleActivity"
     }
-
 }
