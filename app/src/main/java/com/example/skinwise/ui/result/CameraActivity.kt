@@ -1,5 +1,6 @@
 package com.example.skinwise.ui.result
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -56,7 +57,11 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    goToResult(photoFile)
+                    val resultIntent = Intent().apply {
+                        putExtra("imagePath", photoFile.absolutePath)
+                    }
+                    setResult(Activity.RESULT_OK, resultIntent)
+                    finish()
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -68,17 +73,6 @@ class CameraActivity : AppCompatActivity() {
                 }
             }
         )
-    }
-
-    private fun goToResult(photoFile: File) {
-        val intent = Intent(this, DetectionResultActivity::class.java)
-        intent.putExtra(DetectionResultActivity.EXTRA_PICTURE, photoFile)
-        intent.putExtra(
-            DetectionResultActivity.EXTRA_IS_BACK_CAMERA,
-            cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
-        )
-        startActivity(intent)
-        finish()
     }
 
     override fun onResume() {

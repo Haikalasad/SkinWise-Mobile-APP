@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">SkinWise</string>
     <string name="login">Login</string>
     <string name="nama">Nama</string>
@@ -103,7 +103,7 @@
 
 
     <string name="no_media_selected">Tidak ada gambar yang dipilih</string>
-    <string name="infeksi_kulit" tools:ignore="ExtraTranslation">Infeksi Kulit</string>
+    <string name="infeksi_kulit">Infeksi Kulit</string>
     <string name="kota">Kota,</string>
     <string name="provinsi">Provinsi</string>
     <string name="dermatologist_available">Dermatologist Available</string>
@@ -111,4 +111,19 @@
     <string name="info_tambahan">Informasi tambahan :</string>
     <string name="url_info_tambahan">Url additional info</string>
     <string name="kontak_rumah_sakit">kontak rumah sakit</string>
+    <string name="skip">Skip</string>
+    <string name="next">Selanjutnya</string>
+    <string name="finish">Mulai Sekarang</string>
+    <string name="title_onboarding">"Selamat datang di "</string>
+    <string name="title_onboarding2">SkinWise</string>
+    <string name="description_onboarding">Aplikasi mobile pertama di Indonesia yang menyediakan layanan kesehatan kulit.</string>
+    <string name="description_onboarding2">Kami punya fitur pemindaian foto kulit yang memberi deskripsi penyakit kulit dan tips pencegahan.</string>
+    <string name="title_onboarding3">Pindai kulitmu dan</string>
+    <string name="title_onboarding4">ketahui</string>
+    <string name="title_onboarding5">Penyakit Kamu!</string>
+    <string name="title_onboarding6">Konsultasi</string>
+    <string name="title_onboarding7">dengan Dokter</string>
+    <string name="title_onboarding8">terkait Penyakit Kamu!</string>
+    <string name="description_onboarding3">Tidak perlu khawatir untuk menangani penyakit kulit yang anda alami, konsultasi dengan dokter kepercayaan kami</string>
+    <string name="history">Riwayat Scan Penyakit</string>
 </resources>
