@@ -11,6 +11,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.skinwise.databinding.ActivityWelcomeBinding
 import com.example.skinwise.ui.login.LoginActivity
+import com.example.skinwise.ui.main.MainActivity
 import com.example.skinwise.ui.signup.SignupActivity
 
 class WelcomeActivity : AppCompatActivity() {
@@ -47,6 +48,7 @@ class WelcomeActivity : AppCompatActivity() {
         binding.signupButton.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))
         }
+
     }
 
     private fun playAnimation() {

@@ -22,6 +22,7 @@ import com.example.skinwise.databinding.ActivityDetectionBinding
 import com.example.skinwise.di.Injection
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import java.io.File
 
 class DetectionActivity : AppCompatActivity() {
 
@@ -67,9 +68,44 @@ class DetectionActivity : AppCompatActivity() {
             )
         } else {
             val intent = Intent(this@DetectionActivity, CameraActivity::class.java)
-            startActivity(intent)
+            launcherIntentCameraX.launch(intent)
         }
     }
+
+    private val launcherIntentCameraX =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val imagePath = result.data?.getStringExtra("imagePath")
+                imagePath?.let {
+                    val imageFile = File(it)
+                    val imageUri = Uri.fromFile(imageFile)
+                    viewModel.analyzeImage(imageFile, imageUri) { result ->
+                        when (result) {
+                            is Result.Success -> navigateToDetectionResult(result.data, imageUri)
+                            is Result.Error -> Toast.makeText(
+                                this@DetectionActivity,
+                                "Prediction failed: ${result.data}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            else -> {
+                                Toast.makeText(
+                                    this@DetectionActivity,
+                                    "Prediction failed",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+                } ?: run {
+                    Toast.makeText(
+                        this@DetectionActivity,
+                        "Failed to retrieve image",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
 
     private fun startGallery() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)

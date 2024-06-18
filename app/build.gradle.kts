@@ -128,6 +128,9 @@ dependencies {
 
     implementation("androidx.exifinterface:exifinterface:1.3.6")
     implementation ("com.google.guava:guava:31.0.1-android")
+    implementation ("com.airbnb.android:lottie:5.2.0")
+
+
 
 
 }
