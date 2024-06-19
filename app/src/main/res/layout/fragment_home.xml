@@ -159,32 +159,36 @@
             android:layout_height="92dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
-            android:src="@drawable/penyakit"
+            android:scaleType="centerCrop"
+            android:src="@drawable/scan"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tittleScanningSection" />
 
+
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/inter_semi_bold"
-            android:text="@string/diseasename"
-            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Anda telah melakukan scanning"
+            android:textSize="18sp"
+
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView" />
 
         <TextView
+            android:id="@+id/tv_history_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/inter_medium"
             android:text="@string/datescan"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@+id/textView" />
-
-
 
         <Button
             android:id="@+id/textButton"

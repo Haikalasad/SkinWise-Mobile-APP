@@ -194,12 +194,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/articlefav" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/nexthospitalfav"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:src="@drawable/baseline_navigate_next_24"
         android:layout_marginEnd="24dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/hospitalfav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/hospitalfav" />

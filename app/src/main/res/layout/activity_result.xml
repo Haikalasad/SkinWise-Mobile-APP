@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/blue_primary"
+        app:titleTextColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -37,7 +38,7 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="173dp"
+                android:layout_height="220dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/penyakit" />
 
@@ -67,6 +68,7 @@
                     android:textColor="@color/blue_primary"
                     android:textSize="24sp"
                     android:fontFamily="@font/inter_bold" />
+
             </LinearLayout>
 
 
@@ -79,6 +81,8 @@
                 android:textSize="20sp"
                 android:fontFamily="@font/inter_bold" />
 
+
+
             <TextView
                 android:id="@+id/medicine"
                 android:layout_width="wrap_content"
@@ -89,13 +93,42 @@
                 android:text="@string/treatmentdetail" />
 
             <!-- Artikel Terkait -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/artikel_section"
+                android:layout_width="match_parent"
                 android:layout_marginTop="24dp"
-                android:textSize="24sp"
-                android:text="@string/recomendationArticle"
-                android:fontFamily="@font/inter_bold"/>
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/recomendationArticle"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_article"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/artikel_section"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btn_article"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/homearticlesessionSeeall"
+                    android:textColor="@color/blue_primary"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <!-- Artikel Terkait List -->
             <!-- Tambahkan item artikel terkait di sini -->
@@ -123,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="16sp"
-                        android:fontFamily="@font/inter_bold"
+                        android:fontFamily="@font/inter_semi_bold"
                         android:text="@string/tittleArticle" />
                     <TextView
                         android:id="@+id/dateArticle1"
@@ -160,7 +193,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="16sp"
-                        android:fontFamily="@font/inter_bold"
+                        android:fontFamily="@font/inter_semi_bold"
                         android:text="@string/tittleArticle" />
                     <TextView
                         android:id="@+id/dateArticle2"
@@ -178,57 +211,116 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:text="@string/HospitalSection"
                 android:textStyle="bold" />
 
             <!-- Rumah Sakit List -->
             <!-- Tambahkan item rumah sakit di sini -->
             <!-- Contoh rumah sakit 1 -->
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/hospital_section1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="8dp">
 
                 <ImageView
+                    android:id="@+id/iv_hospital1"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_marginEnd="8dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/illustration_hospital" />
+                    android:src="@drawable/illustration_hospital"
+                    app:layout_constraintStart_toStartOf="@id/hospital_section1"
+                    app:layout_constraintTop_toTopOf="@id/hospital_section1"
+                    />
 
                 <TextView
+                    android:id="@+id/tv_hospital1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="RS UNAIR\nJl. Dharmasraya\nRating: 4.5"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="8dp"
+                    android:text="Hospital name"
+                    app:layout_constraintTop_toTopOf="@id/iv_hospital1"
+                    app:layout_constraintStart_toEndOf="@id/iv_hospital1"
+                    android:fontFamily="@font/inter_bold" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_hospital1_address"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Alamat"
+                    app:layout_constraintTop_toBottomOf="@id/tv_hospital1"
+                    app:layout_constraintStart_toEndOf="@id/iv_hospital1"
+                    android:fontFamily="@font/inter_regular" />
 
-            <!-- Contoh rumah sakit 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/tv_hospital1_rate"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/rate"
+                    app:layout_constraintTop_toBottomOf="@id/tv_hospital1_address"
+                    app:layout_constraintStart_toEndOf="@id/iv_hospital1"
+                    android:fontFamily="@font/inter_regular" />
+
+
+
 
                 <ImageView
+                    android:id="@+id/iv_hospital2"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_marginEnd="8dp"
+
+                    android:layout_marginTop="16dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/illustration_hospital" />
+                    android:src="@drawable/illustration_hospital"
+                    app:layout_constraintStart_toStartOf="@id/hospital_section1"
+                    app:layout_constraintTop_toBottomOf="@id/iv_hospital1"
+                    />
 
                 <TextView
+                    android:id="@+id/tv_hospital2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="RS Premier\nJl. Nginden Intan Barat\nRating: 4.5"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="8dp"
+                    android:text="Hospital name"
+                    app:layout_constraintTop_toTopOf="@id/iv_hospital2"
+                    app:layout_constraintStart_toEndOf="@id/iv_hospital2"
+                    android:fontFamily="@font/inter_bold" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_hospital2_address"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Alamat"
+                    app:layout_constraintTop_toBottomOf="@id/tv_hospital2"
+                    app:layout_constraintStart_toEndOf="@id/iv_hospital2"
+                    android:fontFamily="@font/inter_regular" />
+
+
+                <TextView
+                    android:id="@+id/tv_hospital2_rate"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/rate"
+                    app:layout_constraintTop_toBottomOf="@id/tv_hospital2_address"
+                    app:layout_constraintStart_toEndOf="@id/iv_hospital2"
+                    android:fontFamily="@font/inter_regular" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </LinearLayout>
     </ScrollView>

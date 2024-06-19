@@ -26,6 +26,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.result.history.HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.hospital.favorite.FavoriteHospitalActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.hospital.DetailHospitalActivity"
             android:exported="false" />
 
@@ -35,7 +41,6 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/blue_primary" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBAztQaCcQHlzkePYFpohEc43pcrgv3pIo" />
@@ -48,6 +53,9 @@
             android:exported="false" />
         <activity
             android:name=".ui.result.DetectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.result.CameraActivity"
             android:exported="false" />
         <activity
             android:name=".ui.result.DetectionResultActivity"
@@ -67,7 +75,13 @@
             android:exported="false" />
         <activity
             android:name=".ui.SplashScreenActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.signup.SignupActivity"
             android:exported="false" />
@@ -79,13 +93,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.welcome.WelcomeActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
 
         <service
             android:name=".ui.Consultation.MyFirebaseMessagingService"

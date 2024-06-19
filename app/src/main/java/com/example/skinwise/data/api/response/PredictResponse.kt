@@ -30,5 +30,8 @@ data class DataPredict(
 	val step: String,
 
 	@field:SerializedName("class")
-	val jsonMemberClass: Int
+	val jsonMemberClass: Int,
+
+	@field:SerializedName("confidence")
+	val confidence: Double
 ) : Parcelable

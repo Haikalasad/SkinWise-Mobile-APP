@@ -12,6 +12,10 @@ class ArticleRepository {
         return articles.find { it.id == id }
     }
 
+    fun getArticlesByCategory(category: String): List<ArticleModel> {
+        return articles.filter { it.category.equals(category, ignoreCase = true) }
+    }
+
     fun getArticleByCategory(category: String): ArticleModel? {
         return articles.firstOrNull { it.category.equals(category, ignoreCase = true) }
     }

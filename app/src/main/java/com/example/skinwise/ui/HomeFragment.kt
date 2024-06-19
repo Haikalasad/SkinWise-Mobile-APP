@@ -1,5 +1,6 @@
 package com.example.skinwise.ui
 
+import android.app.Application
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -13,8 +14,11 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.skinwise.R
+import com.example.skinwise.data.database.HistoryScan.History
+import com.example.skinwise.data.database.HistoryScan.HistoryRepository
 import com.example.skinwise.data.pref.UserPreference
 import com.example.skinwise.data.pref.dataStore
 import com.example.skinwise.data.repository.ArticleRepository
@@ -24,10 +28,14 @@ import com.example.skinwise.ui.hospital.HospitalActivity
 import com.example.skinwise.ui.hospital.HospitalFragment
 import com.example.skinwise.ui.main.ViewModelFactory
 import com.example.skinwise.ui.hospital.HospitalViewModel
+import com.example.skinwise.ui.result.history.HistoryActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import kotlin.properties.Delegates
 
 class HomeFragment : Fragment() {
@@ -37,20 +45,17 @@ class HomeFragment : Fragment() {
     private lateinit var userPreference: UserPreference
     private lateinit var articleRepository: ArticleRepository
 
-    // Declare view elements for displaying article
     private lateinit var articleTitleTextView: TextView
     private lateinit var articleImageView: ImageView
     private lateinit var articleCategoryTextView: TextView
     private lateinit var articleDateTextView: TextView
     private var currentArticleId by Delegates.notNull<Int>()
 
-    // Declare buttons for categories
     private lateinit var btnRingworm: Button
     private lateinit var btnVitiligo: Button
     private lateinit var btnMelanoma: Button
     private lateinit var btnInfeksiKulit: Button
 
-    // Declare view elements for displaying hospital
     private lateinit var hospitalTitleTextView1: TextView
     private lateinit var hospitalStreetTextView1: TextView
     private lateinit var hospitalImage1 : ImageView
@@ -58,9 +63,14 @@ class HomeFragment : Fragment() {
     private lateinit var hospitalStreetTextView2: TextView
     private lateinit var hospitalImage2 : ImageView
 
+    private lateinit var historyDate :TextView
+
     private lateinit var searchView: SearchView
 
-    // ViewModel for Hospital
+    private lateinit var historyRepository: HistoryRepository
+
+
+
     private val hospitalViewModel: HospitalViewModel by viewModels { ViewModelFactory.getInstance(requireContext()) }
 
     override fun onCreateView(
@@ -83,11 +93,23 @@ class HomeFragment : Fragment() {
         articleCategoryTextView = view.findViewById(R.id.categoryArticle)
         articleDateTextView = view.findViewById(R.id.dateArticle)
 
+        historyDate = view.findViewById(R.id.tv_history_date)
+
 
         val hintColor: Int = Color.WHITE
         val searchTextView =
             searchView.findViewById<View>(androidx.appcompat.R.id.search_src_text) as TextView
         searchTextView.setHintTextColor(hintColor)
+
+        historyRepository = HistoryRepository(requireActivity().application)
+        historyRepository.recentHistory.observe(viewLifecycleOwner, Observer<List<History>> { historyList ->
+            if (historyList.isNotEmpty()) {
+                val recentHistory = historyList[0] // Ambil item pertama dari recent history
+                displayRecentHistory(recentHistory)
+            }
+        })
+
+
 
         setTextColors(searchView, Color.WHITE)
 
@@ -105,6 +127,11 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+
+        view.findViewById<View>(R.id.textButton3).setOnClickListener {
+            val intent = Intent(activity, HistoryActivity::class.java)
+            startActivity(intent)
+        }
         view.findViewById<View>(R.id.textButton2).setOnClickListener {
             val hospitalFragment = HospitalFragment()
             parentFragmentManager.beginTransaction()
@@ -152,7 +179,6 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        // Initialize hospital views
         hospitalTitleTextView1 = view.findViewById(R.id.tittleHospital)
         hospitalStreetTextView1 = view.findViewById(R.id.streetHospital)
         hospitalImage1 = view.findViewById(R.id.hospital_image1)
@@ -160,14 +186,13 @@ class HomeFragment : Fragment() {
         hospitalStreetTextView2 = view.findViewById(R.id.streetHospital2)
         hospitalImage2 = view.findViewById(R.id.hospital_image2)
 
-        // Load hospital data
         loadHospitalData()
 
     }
 
     override fun onResume() {
         super.onResume()
-        searchView.visibility = View.VISIBLE // Pastikan SearchView tetap terlihat saat kembali ke HomeFragment
+        searchView.visibility = View.VISIBLE
     }
 
     private fun loadUserData() {
@@ -289,6 +314,16 @@ class HomeFragment : Fragment() {
         }
 
         hospitalViewModel.getHospital("Surabaya")
+    }
+
+
+    private fun displayRecentHistory(history: History) {
+        val dateInMillis = history.date?.toLong()
+        val date = dateInMillis?.let { Date(it) }
+        val formattedDate = SimpleDateFormat("dd MMMM yyyy HH:mm", Locale.getDefault()).format(date)
+
+         historyDate.text= formattedDate
+
     }
 
 

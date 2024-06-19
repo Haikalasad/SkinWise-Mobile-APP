@@ -58,7 +58,7 @@ class HospitalFragment : Fragment() {
         factory = ViewModelFactory.getInstance(requireContext())
         setHasOptionsMenu(true)
 
-        hospitalAdapter = HospitalAdapter()
+        hospitalAdapter = HospitalAdapter(viewModel)
         binding.rvListHospital.adapter = hospitalAdapter
         binding.rvListHospital.layoutManager = LinearLayoutManager(requireContext())
 

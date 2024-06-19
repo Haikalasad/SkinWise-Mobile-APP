@@ -1,8 +1,8 @@
 package com.example.skinwise.ui.profile
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +16,7 @@ import com.example.skinwise.R
 import com.example.skinwise.data.pref.UserPreference
 import com.example.skinwise.data.pref.dataStore
 import com.example.skinwise.ui.article.favorite.FavoriteArticleActivity
+import com.example.skinwise.ui.hospital.favorite.FavoriteHospitalActivity
 import com.example.skinwise.ui.login.LoginActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,6 +44,7 @@ class ProfileFragment : Fragment() {
 
         val logoutButton = view.findViewById<View>(R.id.filledTonalButton)
         val articleFav  = view.findViewById<View>(R.id.nextarticlefav)
+        val hospitalFav = view.findViewById<View>(R.id.nexthospitalfav)
 
         userNameTextView = view.findViewById(R.id.nameProfile)
         userPhotoImageView = view.findViewById(R.id.mainProfile)
@@ -63,6 +65,11 @@ class ProfileFragment : Fragment() {
 
         articleFav.setOnClickListener {
             val intent = Intent(activity, FavoriteArticleActivity::class.java)
+            startActivity(intent)
+        }
+
+        hospitalFav.setOnClickListener{
+            val intent = Intent(activity,FavoriteHospitalActivity::class.java)
             startActivity(intent)
         }
 
@@ -107,12 +114,24 @@ class ProfileFragment : Fragment() {
     }
 
     private fun logout() {
-        val sharedPref = activity?.getSharedPreferences("session", Context.MODE_PRIVATE)
-        sharedPref?.edit()?.clear()?.apply()
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
 
-        val intent = Intent(activity, LoginActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
-        activity?.finish()
+                userPreference.logout()
+
+                val intent = Intent(activity, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                activity?.finish()
+            } catch (e: Exception) {
+                Log.e("ProfileFragment", "Failed to logout: ${e.message}")
+                Toast.makeText(
+                    requireContext(),
+                    "Failed to logout. Please try again.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
+
 }

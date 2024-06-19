@@ -35,7 +35,7 @@ class FavoriteHospitalsRepository(application: Application) {
         executorService.execute { mFavoriteHospitalDAO.deleteByNama(nama) }
     }
 
-    suspend fun isArticleFavorite(nama:String): Boolean {
+    suspend fun isHospitalFavorite(nama:String): Boolean {
         return withContext(Dispatchers.IO) {
             mFavoriteHospitalDAO.isFavoriteHospitals(nama)
         }
