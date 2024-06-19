@@ -11,4 +11,6 @@
     <color name="background_received">#E2E5EB</color>
     <color name="green">#13C20F</color>
     <color name="gray">#DADADA</color>
+    <color name="gray_light">#B0BEC5</color>
+    <color name="gray_dark">#455A64</color>
 </resources>
