@@ -19,16 +19,20 @@ class OnboardingViewPagerAdapter(
                 context.resources.getString(R.string.description_onboarding),
                 R.raw.hello
             )
-            1 -> OnboardingFragment1.newInstance(
-                context.resources.getString(R.string.title_onboarding2),
-                context.resources.getString(R.string.description_onboarding2),
-                R.raw.scan
+            1 -> OnboardingFragment2.newInstance(
+                context.resources.getString(R.string.title_onboarding3),  // Title1 sesuai XML
+                context.resources.getString(R.string.title_onboarding4),  // Title2 sesuai XML
+                context.resources.getString(R.string.title_onboarding5),  // Title3 sesuai XML
+                context.resources.getString(R.string.description_onboarding2),  // Description sesuai XML
+                R.raw.scan  // Image sesuai XML
             )
-            else -> OnboardingFragment1.newInstance(
-                context.resources.getString(R.string.title_onboarding3),
-                context.resources.getString(R.string.description_onboarding3),
+            else -> OnboardingFragment3.newInstance(
+                context.resources.getString(R.string.title_onboarding6),  // Title1 sesuai XML
+                context.resources.getString(R.string.title_onboarding7),  // Title2 sesuai XML
+                context.resources.getString(R.string.title_onboarding8),  // Title3 sesuai XML
+                context.resources.getString(R.string.description_onboarding3),  // Description sesuai XML
                 R.raw.doctor
-            )
+            )  // Image sesuai XML
         }
     }
 

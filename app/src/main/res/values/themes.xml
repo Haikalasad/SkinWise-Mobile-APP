@@ -1,13 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.SkinWise" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/blue_primary</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue_primary</item>
+        <item name="colorPrimaryVariant">@color/gray_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
     </style>
 
     <style name="Theme.SkinWise" parent="Base.Theme.SkinWise" />
-    <style name="SplashScreenTheme" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="SplashScreenTheme" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/blue_primary</item>
     </style>
 </resources>
+
