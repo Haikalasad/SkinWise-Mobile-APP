@@ -27,6 +27,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="60dp"
+        android:scrollbars="none"
         android:padding="16dp">
 
         <LinearLayout
@@ -85,12 +86,16 @@
 
             <TextView
                 android:id="@+id/medicine"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/inter_regular"
-                android:text="@string/treatmentdetail" />
+                android:text="@string/treatmentdetail"
+                android:gravity="start"
+                android:lineSpacingExtra="4dp"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:paddingBottom="8dp"/>
 
             <!-- Artikel Terkait -->
 
@@ -141,8 +146,8 @@
 
                 <ImageView
                     android:id="@+id/pictArticle1"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="90dp"
+                    android:layout_height="85dp"
                     android:layout_marginEnd="8dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/penyakit" />
@@ -154,17 +159,19 @@
                         android:id="@+id/tittlearticle1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+
                         android:textSize="16sp"
                         android:fontFamily="@font/inter_semi_bold"
                         android:text="@string/tittleArticle" />
+
                     <TextView
                         android:id="@+id/dateArticle1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inter_regular"
                         android:text="@string/dateArticle"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/inter_regular"/>
+                        android:textSize="14sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -178,8 +185,8 @@
 
                 <ImageView
                     android:id="@+id/pictArticle2"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="90dp"
+                    android:layout_height="85dp"
                     android:layout_marginEnd="8dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/penyakit" />
@@ -191,26 +198,30 @@
                         android:id="@+id/tittlearticle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+
                         android:textSize="16sp"
                         android:fontFamily="@font/inter_semi_bold"
                         android:text="@string/tittleArticle" />
+
                     <TextView
                         android:id="@+id/dateArticle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inter_regular"
                         android:text="@string/dateArticle"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/inter_regular"/>
+                        android:textSize="14sp" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <!-- Rumah Sakit Sekitar Anda -->
             <TextView
+                android:id="@+id/hospital_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
                 android:textSize="20sp"
                 android:text="@string/HospitalSection"
                 android:textStyle="bold" />
@@ -227,8 +238,8 @@
 
                 <ImageView
                     android:id="@+id/iv_hospital1"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="90dp"
+                    android:layout_height="85dp"
                     android:layout_marginEnd="8dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/illustration_hospital"
@@ -240,43 +251,47 @@
                     android:id="@+id/tv_hospital1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginStart="8dp"
+
+                    android:fontFamily="@font/inter_bold"
                     android:text="Hospital name"
-                    app:layout_constraintTop_toTopOf="@id/iv_hospital1"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/iv_hospital1"
-                    android:fontFamily="@font/inter_bold" />
+                    app:layout_constraintTop_toTopOf="@id/iv_hospital1" />
+
 
                 <TextView
                     android:id="@+id/tv_hospital1_address"
                     android:layout_width="0dp"
-                    android:layout_marginStart="8dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/inter_regular"
                     android:text="Alamat"
-                    app:layout_constraintTop_toBottomOf="@id/tv_hospital1"
                     app:layout_constraintStart_toEndOf="@id/iv_hospital1"
-                    android:fontFamily="@font/inter_regular" />
-
+                    app:layout_constraintTop_toBottomOf="@id/tv_hospital1" />
 
                 <TextView
                     android:id="@+id/tv_hospital1_rate"
                     android:layout_width="0dp"
-                    android:layout_marginStart="8dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/inter_regular"
                     android:text="@string/rate"
-                    app:layout_constraintTop_toBottomOf="@id/tv_hospital1_address"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_hospital1"
                     app:layout_constraintStart_toEndOf="@id/iv_hospital1"
-                    android:fontFamily="@font/inter_regular" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_hospital1_address" />
 
 
 
 
                 <ImageView
                     android:id="@+id/iv_hospital2"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="90dp"
+                    android:layout_height="85dp"
                     android:layout_marginEnd="8dp"
 
                     android:layout_marginTop="16dp"
@@ -290,17 +305,20 @@
                     android:id="@+id/tv_hospital2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_bold"
                     android:text="Hospital name"
-                    app:layout_constraintTop_toTopOf="@id/iv_hospital2"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/iv_hospital2"
-                    android:fontFamily="@font/inter_bold" />
+                    app:layout_constraintTop_toTopOf="@id/iv_hospital2" />
 
                 <TextView
                     android:id="@+id/tv_hospital2_address"
                     android:layout_width="0dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Alamat"
@@ -318,6 +336,7 @@
                     android:text="@string/rate"
                     app:layout_constraintTop_toBottomOf="@id/tv_hospital2_address"
                     app:layout_constraintStart_toEndOf="@id/iv_hospital2"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_hospital2"
                     android:fontFamily="@font/inter_regular" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

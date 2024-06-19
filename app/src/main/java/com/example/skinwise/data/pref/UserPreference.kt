@@ -79,7 +79,7 @@ class UserPreference(private val dataStore: DataStore<Preferences>) {
             Log.d("UserPreferences", "Claims parsed: $claims")
             Log.d("UserPreferences", "Claim nama: $nama")
             Log.d("UserPreferences", "Claim email: $email")
-            Log.d("UserPreferences", "Claim password: $password")
+            Log.d("UserPreferences", "Claim token: $token")
             Log.d("UserPreferences", "Claim foto: $photoUrl")
             Log.d("UserPreferences", "Claim role: $role")
             Log.d("UserPreferences", "Claim subscriber: $subscriber")

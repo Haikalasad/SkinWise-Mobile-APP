@@ -1755,6 +1755,297 @@ class ArticleRepository {
             date = "23 Februari 2024"
         ),
 
+        ArticleModel(
+            id = 31,
+            category = "Actinic Keratosis",
+            title = "Ini 10 Cara Mencegah Actinic Keratosis Pada Kulit",
+            content = "Halodoc, Jakarta - Keluhan pada kulit sebenarnya tak melulu berkaitan dengan panu, kurap, alergi, bisul, jerawat, atau eksim saja. Pernah mendengar penyakit kulit bernama actinic keratosis? Hati-hati, actinic keratosis ini bisa membuat kulit kasar, menebal, dan bersisik. \n" +
+                    "\n" +
+                    "Actinic keratosis umumnya disebabkan oleh paparan sinar matahari berlebih selama bertahun-tahun. Masalah kulit ini umumnya menyerang bagian kulit kepala, wajah, bibir, leher, lengan, sisi belakang tangan, telinga, dan tungkai. \n" +
+                    "\n" +
+                    "Hal yang perlu diingat, meski kasusnya sangat jarang terjadi, tapi actinic keratosis bisa berpotensi menyebabkan kanker. Lalu, bagaimana sih cara mencegah actinic keratosis pada kulit? \n" +
+                    "\n" +
+                    "Tips Simpel Mencegah Actinic Keratosis\n" +
+                    "Cara mencegah actinic keratosis sebenarnya sederhana. Hanya saja, harus benar-benar konsisten dilakukan tiap hari agar hasilnya efektif. Pertama, cara mencegah actinic keratosis dengan meminimalkan paparan sinar matahari secara langsung. Terutama hindari paparan sinar matahari antara jam 10 pagi dan jam 2 siang.\n" +
+                    "\n" +
+                    "Selanjutnya, ada hal yang harus dilakukan untuk mencegah penyakit kulit ini. Apa saja? Berikut ini tips mencegah actinic keratosis menurut ahli National Institutes of Health - MedlinePlus dan sumber lainnya:\n" +
+                    "\n" +
+                    "Hindari berada di bawah terik sinar matahari dalam waktu lama hingga mengalami sunburn atau sun tanning.  \n" +
+                    "Gunakan sunscreen (tabir surya) pada seluruh bagian kulit yang terpapar matahari termasuk juga bibir (dengan lip balm) juga dapat mengurangi risiko terjadinya actinic keratosis.\n" +
+                    "Sebaiknya pilih tabir surya yang mengandung proteksi terhadap UVA dan UVB. \n" +
+                    "Gunakan tabir surya dengan faktor perlindungan matahari (SPF) 30 atau lebih tinggi, aplikasikan setidaknya 15 hingga 30 menit sebelum paparan sinar matahari. Lalu, ulangi tiap 2 jam bila berkeringat atau basah. \n" +
+                    "Kenakan pakaian yang bisa menutup tubuh yang terpapar sinar matahari. Bisa juga menggunakan payung untuk mencegah paparan ultraviolet langsung ke kulit.\n" +
+                    "Kenakan topi dengan pinggiran setidaknya 2 inci (5 centimeter) yang melindungi telinga. \n" +
+                    "Bila sedang berenang atau berada di pantai, gunakan tabir surya yang tahan air selama 40 menit atau lebih.\n" +
+                    "Hindari menggunakan tanning bed atau tanning salons. Alat-alat ini bisa memancarkan sinar UV dan radiasi yang merusak kulit. \n" +
+                    "Ingat, bahwa cahaya dari matahari berpotensi membahayakan kulit, bukan panas atau teriknya. Jadi, kulit tetap berisiko meski suhunya ringan.\n" +
+                    " Lakukan pemeriksaan kulit secara berkala, terutama bila kulit bermasalah. \n" +
+                    "Jahatnya Sengatan Sinar UV\n" +
+                    "Mau tahu biang keladi utama dari masalah kulit ini? Sinar UV adalah pelaku utama munculnya actinic keratosis pada kulit pengidapnya. Pada dasarnya, kulit punya kemampuan untuk memperbaiki kerusakan minor tanpa pengobatan apa pun. \n" +
+                    "\n" +
+                    "Namun, bagi seseorang yang sering terpapar sinar matahari dalam jangka waktu lama, kemampuan kulit untuk menahan paparan sinar tersebut akan menurun. Nah, hal ini yang bisa mengakibatkan timbulnya actinic keratosis. \n" +
+                    "\n" +
+                    "Meski begitu, penyebab actinic keratosis sebenarnya tak hanya sinar UV saja. Ada juga beberapa faktor lainnya yang memicu masalah kulit ini, meski paparan sinar UV pada kulit mereka sangat rendah. Nah, berikut faktor lainnya: \n" +
+                    "\n" +
+                    "Mengonsumsi obat-obatan yang menekan sistem imun, seperti pada pengidap rheumatoid arthritis atau skleroderma. \n" +
+                    "Pengidap leukemia, HIV atau AIDS, atau yang memiliki sistem imun yang rendah. \n" +
+                    "Baru menjalankan transplantasi organ dikarenakan pengobatan lainnya tak berjalan dengan optimal. \n" +
+                    "Memiliki keluarga dengan riwayat actinic keratosis atau kanker kulit.\n" +
+                    "Sedang menjalani kemoterapi kanker.",
+            author = "Halodoc",
+            imageUrl = "https://d1bpj0tv6vfxyp.cloudfront.net/articles/2ce2f3c1-0bba-4fad-ab6f-6047f6e41c02_article_image_url.webp",
+            date = "13 Oktober 2022"
+        ),
+
+
+        ArticleModel(
+            id = 32,
+            category = "Actinic Keratosis",
+            title = "Waspada, Ini Komplikasi dari Actinic Keratosis",
+            content = "Halodoc, Jakarta – Banyak terjadi pada orang-orang yang hidup di negara tropis, actinic keratosis merupakan gangguan kulit yang ditandai dengan munculnya area kasar dan bersisik pada kulit. Area kulit yang rentan terserang gangguan kulit ini adalah yang sering terpapar matahari, seperti wajah, tangan, lengan, dan leher. \n" +
+                    "\n" +
+                    "Pada kebanyakan kasus, actinic keratosis bukanlah kanker. Penyakit kulit ini disebut tahap ‘in situ’ lesi karsinoma sel skuamosa, yang berarti lesi tersebut terbatas di satu lokasi dan tidak menyerang jaringan lainnya. Namun, jika tidak diobati, actinic keratosis dapat berkembang menjadi keganasan kulit, yang berujung pada kanker kulit karsinoma sel skuamosa.\n" +
+                    "\n" +
+                    "Baca juga: 7 Ciri Actinic Keratosis karena Sinar Matahari\n" +
+                    "\n" +
+                    "Oleh karena itu, penting untuk menyadari gejala actinic keratosis, dan mengonsultasikannya dengan dokter, guna memastikan diagnosis dini. Seperti disebutkan di awal, actinic keratosis muncul sebagai area kulit yang tebal, bersisik, dan kering, yang ukurannya kira-kira sebesar penghapus pensil yang kecil. Area bersisik ini kadang dapat terasa gatal atau panas. \n" +
+                    "\n" +
+                    "Seiring waktu, lesi tersebut dapat menghilang, membesar, tetap sama, ataupun berkembang menjadi kanker karsinoma sel skuamosa. Namun sayangnya, tidak ada cara untuk mengetahui lesi mana yang dapat berkembang menjadi kanker.\n" +
+                    "\n" +
+                    "Jadi, jika kamu menjumpai ada lesi bersisik dan kering pada salah satu bagian kulit kamu, sebaiknya segera diskusikan dengan dokter di aplikasi Halodoc. Diskusi dengan dokter kini dapat dilakukan dengan mudah, kapan dan di mana saja, lewat fitur Chat atau Voice/Video Call. Jika ingin melakukan pemeriksaan langsung, kamu bisa buat janji dengan dokter spesialis kulit di rumah sakit juga, lho. Yuk download aplikasinya di ponselmu!\n" +
+                    "\n" +
+                    "Baca juga: Bukan Cuma Sinar UV, Ini 2 Penyebab Actinic Keratosis\n" +
+                    "\n" +
+                    "Ketahui Penyebab dan Faktor Risiko Actinic Keratosis\n" +
+                    "Sebenarnya, ada cukup banyak hal yang dapat memicu terjadi actinic keratosis. Namun, paparan sinar matahari dalam waktu lama merupakan salah satu penyebab paling umum penyakit kulit ini. Pada beberapa kasus, actinic keratosis dapat disebabkan oleh paparan ekstensif terhadap X-ray atau sejumlah bahan kimia industri.\n" +
+                    "\n" +
+                    "Selain itu, ada juga beberapa faktor lain yang dapat meningkatkan risiko actinic keratosis, yaitu:\n" +
+                    "\n" +
+                    "Berusia di atas 60 tahun.\n" +
+                    "\n" +
+                    "Tinggal di iklim tropis dan cerah.\n" +
+                    "\n" +
+                    "Berkulit pucat atau bermata biru.\n" +
+                    "\n" +
+                    "Memiliki kulit yang mudah terbakar sinar matahari.\n" +
+                    "\n" +
+                    "Memiliki riwayat terbakar sinar matahari sebelumnya.\n" +
+                    "\n" +
+                    "Memiliki aktivitas yang sering terpapar sinar matahari dalam waktu lama.\n" +
+                    "\n" +
+                    "Terinfeksi human papilloma virus (HPV).\n" +
+                    "\n" +
+                    "Memiliki sistem kekebalan tubuh yang lemah. Bisa juga diakibatkan oleh kemoterapi, leukemia, AIDS atau obat-obatan transplantasi organ.\n" +
+                    "\n" +
+                    "Baca juga: Takut Kena Actinic Keratosis? Ini 7 Tips Mencegahnya\n" +
+                    "\n" +
+                    "Bisakah Actinic Keratosis Dicegah?\n" +
+                    "Cara terbaik untuk mencegah actinic keratosis adalah melindungi diri dari paparan sinar matahari. Berikut tips yang dapat dicoba:\n" +
+                    "\n" +
+                    "Cari tempat teduh, terutama pada waktu antara jam 10 pagi sampai 4 sore.\n" +
+                    "\n" +
+                    "Hindari prosedur tanning dan jangan pernah menggunakan tanning bed UV.\n" +
+                    "\n" +
+                    "Lindungi diri dengan pakaian tertutup ketika beraktivitas di luar, termasuk topi bertepi lebar dan kacamata UV-blocking.\n" +
+                    "\n" +
+                    "Gunakan tabir surya berspektrum luas (UVA/UVB) dengan SPF 30 atau lebih setiap sebelum beraktivitas di luar rumah. Oleskan teh tabir surya ke seluruh tubuh, setidaknya 30 menit sebelum pergi keluar rumah, dan oleskan kembali setiap dua jam atau setelah berenang atau berkeringat berlebihan.\n" +
+                    "\n" +
+                    "Sebisa mungkin, hindari bayi baru lahir dari cahaya matahari. \n" +
+                    "\n" +
+                    "Periksa kulit ke dokter dari kepala hingga kaki secara rutin, setiap bulannya.\n" +
+                    "\n",
+            author = "Halodoc",
+            imageUrl = "https://d1bpj0tv6vfxyp.cloudfront.net/articles/c94a497f-784d-4fff-8214-36adb0a9e347_article_image_url.webp",
+            date = "03 Oktober 2019"
+        ),
+
+        ArticleModel(
+            id = 33,
+            category = "Actinic Keratosis",
+            title = "Mau Terhindar dari Actinic Keratosis? Biasakan Konsumsi 8 Makanan Ini",
+            content = "Halodoc, Jakarta - Tinggal di perkotaan terkadang menjadi tantangan tersendiri bagi kesehatan kulit. Kamu akan lebih sering terpapar sinar UV dari matahari setiap harinya. Padahal, terlalu sering terpapar sinar UV yang berbahaya dapat meningkatkan risiko seseorang mengalami actinic keratosis. Kondisi ini ditandai dengan munculnya area yang kasar dan bersisik pada kulit yang sering terpapar matahari, terutama pada wajah, tangan, lengan, dan leher. Kondisi ini lebih sering terlihat pada orang yang berkulit pucat, berambut pirang, dan bermata terang.\n" +
+                    "\n" +
+                    "Agar terhindar dari kondisi kulit actinic keratosis, kamu perlu mengonsumsi makanan berikut ini:\n" +
+                    "\n" +
+                    "Biji Labu\n" +
+                    "Biji labu diketahui mengandung zinc, yaitu mineral yang memiliki manfaat sebagai antioksidan, anti-peradangan, melindungi efek radiasi sinar UV, mempercepat penyembuhan luka, dan meningkatkan sistem imun. Selain melindungi kulit wajah kamu yang rusak akibat paparan sinar matahari, biji labu juga bisa membantu memperlambat tumbuhnya jerawat akibat bakteri.\n" +
+                    "\n" +
+                    "Tomat\n" +
+                    "Semakin merah warna tomat, maka semakin bagus manfaatnya. Tomat mengandung likopen, yaitu jenis antioksidan yang mampu membantu melindungi kulit kamu dari sinar matahari. Dengan menambahkan saus tomat pada santapan kamu, maka akan membantu melindungi kulit kamu dari paparan matahari. Tomat lebih mudah diserap oleh tubuh kamu jika sudah dimasak, sebab proses memasak tersebut membantu likopen dikeluarkan oleh tomat itu sendiri.\n" +
+                    "\n" +
+                    "Baca juga: 7 Ciri Actinic Keratosis Karena Sinar Matahari\n" +
+                    "\n" +
+                    "Minyak Zaitun\n" +
+                    "Sudah banyak orang saat ini yang mulai mengganti margarin atau mentega berlemak biasa dengan minyak zaitun. Alasanya karena minyak zaitun lebih sehat. Perlu kamu tahu bahwa minyak zaitun juga mengandung lemak omega-3 yang tinggi, dilengkapi dengan antioksidan dan anti-peradangan. Jadi, minyak zaitun bukan saja mengurangi risiko kamu mengalami kanker kulit akibat paparan sinar UV, tapi juga dapat membantu kamu memperlambat tanda-tanda penuaan pada kulit.\n" +
+                    "\n" +
+                    "Green Tea dan White Tea\n" +
+                    "Green tea dan white tea diketahui kaya akan polifenol (terutama catechins) yang bermanfaat untuk mencegah pertumbuhan sel kanker. Mungkin saja kanker tersebut diakibatkan oleh efek pancaran sinar UV.\n" +
+                    "\n" +
+                    "Kunyit\n" +
+                    "Kandungan kurkumin pada kunyit merupakan komponen yang bisa melindungi tubuh kamu dari kerusakan akibat radikal bebas dari sinar UV. Kunyit mengandung komponen antioksidan yang sangat ampuh untuk melawan penyakit akibat radikal bebas.\n" +
+                    "\n" +
+                    "Baca juga: Takut Kena Actinic Keratosis? Ini 7 Tips Mencegahnya\n" +
+                    "\n" +
+                    "Almond\n" +
+                    "Salah satu jenis kacang-kacangan yang dipercaya mampu mencegah sunburn adalah kacang almond. Kacang ini menjadi salah satu sumber vitamin E terbaik, almond bekerja sebagai antioksidan dan sunscreen alami. Di samping itu, almond juga mengandung quercetin yang bisa melindungi kulit dari kerusakan yang disebabkan oleh sinar UV. Kamu dapat mengonsumsi almond secara langsung atau bisa juga yang telah diolah menjadi susu dan minyak.\n" +
+                    "\n" +
+                    "Sayur Brokoli\n" +
+                    "Brokoli mengandung banyak serat yang dapat membantu mencegah kanker dan mencegah pertumbuhan sel yang tidak sehat yang bisa jadi disebabkan oleh pancaran sinar UV.\n" +
+                    "\n" +
+                    "Baca juga: Sinar Matahari Sebabkan Actinic Keratosis\n" +
+                    "\n" +
+                    "Raspberry\n" +
+                    "Saat terpapar sinar UV, maka produksi matrix metalloproteinase enzymes (MMP) pada tubuh kamu merusak kolagen pada kulit. Raspberry mengandung antioksidan yang disebut ellagic acid, yang dapat mencegah produksi enzim MMP ini. Raspberry juga kaya kan vitamin C, yang dapat membantu menyerang kerusakan DNA di sel kulit.",
+            author = "Halodoc",
+            imageUrl = "https://d1bpj0tv6vfxyp.cloudfront.net/articles/f23d6547-04be-42ca-be80-08c4e2c1e295_article_image_url.webp",
+            date = "26 Maret 2019"
+        ),
+
+
+
+        ArticleModel(
+            id = 34,
+            category = "Melanoma",
+            title = "Langkah Pengobatan Melanoma yang Bisa Dilakukan",
+            content = "Halodoc, Jakarta – Melanoma merupakan jenis kanker yang menyerang kulit dan berkembang di sel pigmen kulit bernama melanosit. Sel melanosit bertugas untuk menghasilkan melanin yang berperan menyerap sinar ultraviolet dan melindungi kulit dari kerusakan. Jenis kanker ini tergolong langka, tetapi sangat berbahaya dan harus diwaspadai. Gejala utama penyakit ini adalah munculnya bintik atau tahi lalat yang tidak normal di permukaan kulit. \n" +
+                    "\n" +
+                    "Sayangnya, hingga kini belum diketahui secara pasti apa yang menjadi penyebab kanker ini bisa terjadi. Namun, risiko penyakit ini disebut meningkat akibat mutasi genetik pada seseorang. Selain itu, sering berjemur di bawah matahari dan terkena radiasi sinar matahari juga disebut bisa meningkatkan risiko kanker melanoma karena bisa merusak DNA yang bisa memengaruhi gen dan memicu kanker. Pengobatan penyakit ini tergantung pada tingkat keparahan kanker melanoma yang terjadi. \n" +
+                    "\n" +
+                    "Baca juga: Apakah Tahi Lalat Berbahaya?\n" +
+                    "\n" +
+                    "Stadium Kanker Melanoma dan Cara Pengobatannya \n" +
+                    "Pengobatan jenis kanker ini tergantung pada kondisi tubuh dan stadium kanker yang menyerang. Kanker melanoma sendiri dibagi ke dalam tahapan alias stadium, mulai dari yang terendah, yaitu stadium 0, hingga yang paling tinggi stadium 4. Stadium merupakan tingkat yang digunakan untuk menggambarkan tingkat keparahan dan sejauh mana penyebaran kanker terjadi. Penanganan utama untuk kondisi ini adalah melalui prosedur operasi. Berikut ini cara penanganan kanker melanoma berdasarkan stadiumnya: \n" +
+                    "\n" +
+                    "Stadium 1 \n" +
+                    "Kanker melanoma yang masih berada di stadium awal atau stadium 1 biasanya ditangani dengan operasi. Cara ini dilakukan untuk mengangkat sel-sel melanoma yang ada. Operasi pada kanker melanoma stadium 1 biasanya dilakukan dengan pembiusan lokal atau total. Setelah diangkat, kemungkinan melanoma stadium 1 untuk kembali sangat kecil, sehingga jarang dibutuhkan penanganan atau pengobatan lanjutan. \n" +
+                    "\n" +
+                    "Stadium 2 dan 3 \n" +
+                    "Tidak berbeda jauh dengan stadium 1, pada tahap ini melanoma juga ditangani melalui operasi pengangkatan. Namun, jika melanoma ternyata sudah menyebar ke nodus limfa terdekat, mungkin akan dibutuhkan operasi lanjutan untuk mengangkat kanker di bagian tersebut. Sayangnya, prosedur ini berisiko mengganggu sistem limfatik dan menyebabkan penimbunan cairan di tubuh. \n" +
+                    "\n" +
+                    "Baca juga: Kenali 9 Gejala Kanker Kulit yang Jarang Disadari\n" +
+                    "\n" +
+                    "Stadium 4\n" +
+                    "Stadium 4 merupakan tahap paling parah dari kanker kulit melanoma. Pada tahap ini, melanoma dibagi ke dalam dua kelompok, yaitu melanoma yang sudah menyebar ke bagian tubuh lain dan melanoma yang muncul kembali setelah sebelumnya dilakukan pengobatan. Kabar buruknya, melanoma yang sudah sampai pada tahap ini kemungkinan besar tidak bisa disembuhkan. \n" +
+                    "\n" +
+                    "Penanganan atau pengobatan yang dilakukan hanya untuk memperlambat penyebaran kanker, mengurangi gejala yang dialami, dan memperpanjang masa hidup pengidap kanker kulit melanoma. Pada tahap ini, operasi mungkin akan dilakukan untuk mengangkat melanoma yang muncul jauh dari tempat pertama kali sel kanker ditemukan. \n" +
+                    "\n" +
+                    "Selain prosedur operasi, kanker melanoma juga bisa ditangani dengan beberapa cara pengobatan lain. Untuk mengurangi efek dari gejala yang muncul, penyakit ini bisa ditangani dengan radioterapi, imunoterapi, serta konsumsi obat-obatan tertentu sesuai rekomendasi dokter. ",
+            author = "Halodoc",
+            imageUrl = "https://d1bpj0tv6vfxyp.cloudfront.net/articles/0b95e0f5-b823-40d0-b7ec-63ddc989d8a3_article_image_url.webp",
+            date = "30 Agustus 2019"
+        ),
+
+
+        ArticleModel(
+            id = 35,
+            category = "Melanoma",
+            title = "Kanker Kulit Melanoma, Ketahui Beberapa Gejala Kemunculannya",
+            content = "Halodoc, Jakarta – Sebaiknya selalu gunakan tabir surya dan pakaian yang menutup kulit saat kamu akan melakukan berbagai kegiatan di luar rumah.\n" +
+                    "\n" +
+                    "Paparan sinar matahari secara langsung yang berlangsung cukup lama ternyata dapat membahayakan kesehatan kulit. Kanker kulit melanoma menjadi gangguan kesehatan yang rentan terjadi akibat paparan sinar UV berlebih.\n" +
+                    "\n" +
+                    "Kamu bisa mengetahui berbagai cara yang bisa dilakukan untuk mencegah kanker kulit melanoma agar terhindar dari penyakit ini.\n" +
+                    "\n" +
+                    "Selain itu, tidak ada salahnya mengetahui beberapa gejala yang terkait dengan gejala kanker kulit melanoma agar kondisi tersebut dapat diatasi dengan lebih dini. Yuk, simak lebih banyak mengenai gejala kanker kulit melanoma, di sini!\n" +
+                    "\n" +
+                    "Gejala Kanker Kulit Melanoma\n" +
+                    "Kanker kulit melanoma menjadi salah satu jenis kanker kulit yang berbahaya. Kanker melanoma berkembang pada sel melanosit yang berfungsi untuk memproduksi melanin sebagai pigmen yang memberikan warna pada kulit.\n" +
+                    "\n" +
+                    "Umumnya, kanker kulit melanoma terjadi akibat paparan radiasi sinar UV berulang kali dalam durasi yang cukup panjang. Selain itu, faktor lain seperti sering mengalami sunburn pada bagian kulit juga memicu risiko kanker kulit melanoma. \n" +
+                    "\n" +
+                    "Lalu, apa saja gejala yang dialami oleh pengidap kanker kulit melanoma? Gejala utama dari kanker kulit melanoma adalah munculnya tahi lalat atau bercak hitam pada kulit. Selain itu, adanya perubahan pada tahi lalat yang kamu miliki menjadi gejala lain dari kanker kulit melanoma.\n" +
+                    "\n" +
+                    "Umumnya, tahi lalat atau bercak hitam akan muncul pada bagian kulit yang terbuka atau lebih sering terpapar sinar matahari. Tahi lalat yang muncul akibat kanker kulit melanoma memiliki bentuk yang tidak sempurna dan terdiri dari beberapa warna yang berbeda.\n" +
+                    "\n" +
+                    "Selain itu, ukurannya bisa lebih besar jika dibandingkan dengan tahi lalat yang normal. Terkadang tahi lalat terasa gatal dan mengeluarkan darah. \n" +
+                    "\n" +
+                    "Berikut ini ciri-ciri tahi lalat kanker kulit melanoma menggunakan metode ABCDE, yaitu:\n" +
+                    "\n" +
+                    "1. A untuk Asymmetry atau Asimetri\n" +
+                    "Tahi lalat memiliki bentuk yang tidak simetri dan tidak beraturan. Kedua sisi tahi lalat tidak akan serupa.\n" +
+                    "\n" +
+                    "2. B untuk Border atau Pinggiran\n" +
+                    "Biasanya tahi lalat yang menjadi ciri kanker kulit melanoma memiliki pinggiran kasar, tidak rata, berlekuk, hingga terlihat samar.\n" +
+                    "\n" +
+                    "3. C untuk Color atau Warna\n" +
+                    "Tahi lalat memiliki beberapa warna di dalamnya, seperti hitam, putih, abu-abu, hingga kebiruan.\n" +
+                    "\n" +
+                    "4. D untuk Diameter atau Garis Tengah\n" +
+                    "Tahi lalat yang menjadi tanda kanker kulit melanoma memiliki diameter lebih dari 6 sentimeter. Namun, terkadang kanker kulit melanoma juga memiliki diameter lebih kecil dari 6 sentimeter.\n" +
+                    "\n" +
+                    "5. E untuk Evolution atau Perubahan pada Tahi Lalat\n" +
+                    "Tahi lalat mengalami perubahan bentuk dan ukuran setelah beberapa waktu. Biasanya, tahi lalat akan terlihat membesar atau melebar. Perubahan juga ditandai dengan rasa gatal dan mudah berdarah.\n" +
+                    "\n" +
+                    "Itulah yang perlu kamu waspadai terkait tanda dari kanker kulit melanoma. Bukan hanya pada bagian tubuh yang sering terpapar sinar matahari, gejala kanker kulit melanoma juga bisa terjadi pada beberapa bagian tubuh lainnya, seperti mata, telapak tangan atau kaki, area kemaluan wanita, hingga selaput lendir pada mulut, hidung, hingga tenggorokan.\n" +
+                    "\n" +
+                    "Kanker kulit melanoma bisa dicegah dengan menghindari paparan sinar matahari secara langsung. Gunakan pakaian yang nyaman dan menutup bagian tubuh dengan baik. Kamu juga bisa menggunakan topi saat berkegiatan di luar rumah.\n" +
+                    "\n" +
+                    "Jangan lupa gunakan tabir surya untuk wajah maupun tubuh. Hal ini juga bisa menjadi cara pencegahan kanker kulit melanoma. ",
+            author = "Halodoc",
+            imageUrl = "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2021/12/13151313/Kanker-Kulit-Melanoma-Ketahui-Beberapa-Gejala-Kemunculannya.jpg.webp",
+            date = "14 Desember 2021"
+        ),
+
+        ArticleModel(
+            id = 36,
+            category = "Melanoma",
+            title = "Jenis-Jenis Kanker Kulit Melanoma dan Cara Mencegahnya",
+            content = "Halodoc, Jakarta – Melanoma adalah jenis kanker kulit yang berkembang di sel yang memproduksi melanin, yaitu pigmen yang memberi warna pada kulit kamu. Kanker kulit ini juga bisa terbentuk di mata, dan pada kasus yang jarang terjadi di dalam tubuh kamu, seperti di hidung atau tenggorokan.\n" +
+                    "\n" +
+                    "Melanoma merupakan jenis kanker kulit yang paling serius. Kanker ini bisa bertumbuh dan menghancurkan jaringan di sekitarnya. Itu juga bisa menyebar (bermetastasis ke bagian tubuh yang lain. Kanker kulit yang disebut juga dengan cutaneous melanoma ini juga dikelompokkan menjadi beberapa jenis. Lantas, adakah cara untuk mencegah melanoma? Simak ulasannya di sini.\n" +
+                    "\n" +
+                    "Jenis Kanker Kulit Melanoma\n" +
+                    "Ada 4 jenis utama kanker kulit melanoma, yaitu:\n" +
+                    "\n" +
+                    "1. Melanoma Penyebaran Superfisial\n" +
+                    "Ini adalah jenis kanker kulit melanoma yang paling umum. Sekitar 70 persen dari semua melanoma berjenis penyebaran superfisial.\n" +
+                    "\n" +
+                    "Melanoma yang menyebar secara superfisial cenderung tumbuh ke luar (disebut juga pertumbuhan radial) dan ke seluruh permukaan kulit. Namun, kanker juga bisa mulai tumbuh ke dalam kulit atau disebut pertumbuhan vertikal. \n" +
+                    "\n" +
+                    "Jenis kanker kulit melanoma ini seringkali berbentuk datar dan tipis (tebalnya kurang dari 1 milimeter) dengan batas yang tidak rata. Warnanya bisa bervariasi dan memiliki nuansa yang berbeda dari merah, biru, coklat, hitam, abu-abu, dan putih. Terkadang, melanoma yang menyebar superfisial dimulai dari tahi lalat yang sudah ada di kulit.\n" +
+                    "\n" +
+                    "Melanoma yang menyebar secara superfisial biasanya berkembang di bagian tengah tubuh, lengan, dan kaki. Biasanya, kanker ini terjadi di punggung pada pria dan kaki pada wanita.\n" +
+                    "\n" +
+                    "2. Melanoma Nodular\n" +
+                    "Melanoma nodular adalah jenis kanker kulit melanoma kedua yang paling umum. Sekitar 15–20 persen dari semua kanker kulit melanoma berjenis nodular.\n" +
+                    "\n" +
+                    "Melanoma nodular tumbuh ke dalam kulit. Kanker ini tumbuh dan menyebar lebih cepat daripada jenis kanker kulit melanoma lainnya. Melanoma nodular adalah pertumbuhan yang menonjol dari kulit (polipoid). Pertumbuhannya bisa berbentuk, seperti jamur dengan batang atau tangkai. Warnanya biasanya hitam, tetapi terkadang bisa berwarna merah, merah muda atau warna yang sama dengan kulit kamu.\n" +
+                    "\n" +
+                    "Melanoma nodular biasanya berkembang di wajah, dada, atau punggung. Kanker ini bisa ditemukan di area kulit yang tidak terkena sinar matahari.\n" +
+                    "\n" +
+                    "3. Lentigo Maligna Melanoma\n" +
+                    "Lentigo maligna melanoma paling sering berkembang pada orang tua. Jenis kanker kulit melanoma ini biasanya muncul sebagai bercak cokelat yang besar, datar, dengan batas yang tidak rata. Kanker ini cenderung menjadi lebih gelap saat tumbuh dan bisa memiliki banyak variasi coklat atau hitam.\n" +
+                    "\n" +
+                    "Lentigo maligna melanoma biasanya tumbuh ke luar permukaan kulit selama bertahun-tahun, sebelum mulai tumbuh ke dalam kulit. Jenis kanker kulit ini biasanya berkembang pada area kulit yang sering terpapar sinar matahari tanpa pelindung, seperti wajah, telinga, dan lengan.\n" +
+                    "\n" +
+                    "4. Melanoma Lentiginosa Akral\n" +
+                    "Melanoma lentiginosa akral paling sering terjadi pada orang dengan kulit gelap, seperti mereka yang berasal dari keturunan Afrika, Asia, dan Hispanik. Ini tidak terkait dengan terkena sinar matahari.\n" +
+                    "\n" +
+                    "Melanoma lentiginosa akral muncul sebagai bintik kecil datar pada kulit yang berubah warna yang seringkali berwarna coklat tua atau hitam. Biasanya tumbuh ke luar di permukaan kulit untuk waktu yang lama sebelum mulai tumbuh ke dalam kulit.\n" +
+                    "\n" +
+                    "Melanoma lentiginosa akral biasanya berkembang di telapak kaki, di telapak tangan, atau di bawah kuku. Kanker kulit melanoma ini seringkali sulit terdeteksi karena sulit untuk melihat area abnormal pada telapak kaki atau di bawah kuku.\n" +
+                    "\n" +
+                    "Cara Mencegahnya\n" +
+                    "Berikut ini beberapa cara yang bisa kamu lakukan untuk mencegah melanoma dan jenis kanker kulit lainnya:\n" +
+                    "\n" +
+                    "Kurangi Berkegiatan di Luar Rumah saat Tengah Hari\n" +
+                    "Menghindari paparan sinar matahari yang kuat membantu mencegah kamu mengalami sunburn yang bisa menyebabkan kerusakan kulit dan meningkatkan risiko terkena kanker kulit. Paparan sinar matahari yang terakumulasi dari waktu ke waktu juga bisa menyebabkan kanker kulit.\n" +
+                    "\n" +
+                    "Karena itu, hindarilah berkegiatan di luar ruangan pada siang hari, di saat matahari sedang bersinar dengan terik. \n" +
+                    "\n" +
+                    "Gunakan Tabir Surya\n" +
+                    "Jangan lupa juga untuk menggunakan tabir surya dengan SPF minimal 30, bahkan pada hari berawan.\n" +
+                    "\n" +
+                    "Kenakan Pakaian yang Tertutup\n" +
+                    "Saat beraktivitas di luar rumah pada siang hari, kenakanlah pakaian gelap dengan jahitan yang rapat yang menutupi lengan dan kaki kamu, serta topi bertepi lebar untuk melindungi mata.\n" +
+                    "\n" +
+                    "Amati Perubahan yang Terjadi pada Kulit\n" +
+                    "Periksa kulit kamu sesering mungkin untuk menemukan pertumbuhan kulit baru atau perubahan pada tahi lalat, bintik-bintik, benjolan dan tanda lahir yang ada. Dengan bantuan cermin, periksalah wajah, leher, telinga, dan kulit kepala kamu. Periksa juga bagian tengah tubuh kamu, lengan, dan kaki.",
+            author = "Halodoc",
+            imageUrl = "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2022/01/26023004/Jenis-Jenis-Kanker-Kulit-Melanoma-dan-Cara-Mencegahnya.jpg.webp",
+            date = "14 Desember 2021"
+        ),
+
 
 
         )

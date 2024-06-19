@@ -42,10 +42,6 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/blue_primary" />
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBAztQaCcQHlzkePYFpohEc43pcrgv3pIo" />
-
         <activity
             android:name=".ui.Consultation.ChatActivity"
             android:exported="false" />

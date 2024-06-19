@@ -1,5 +1,6 @@
 package com.example.skinwise.ui.result
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -25,6 +26,7 @@ import com.example.skinwise.ui.hospital.HospitalViewModel
 import com.example.skinwise.ui.main.ViewModelFactory
 import com.example.skinwise.data.Result
 import com.example.skinwise.data.database.HistoryScan.History
+import com.example.skinwise.ui.article.ArticleActivity
 import com.example.skinwise.ui.result.history.HistoryViewModel
 
 class DetectionResultActivity : AppCompatActivity() {
@@ -70,6 +72,7 @@ class DetectionResultActivity : AppCompatActivity() {
 
             displayArticlesByDisease(diseaseName ?: "")
 
+
         } else {
             val predictResponse = intent.getParcelableExtra<PredictResponse>(EXTRA_PREDICTION_RESPONSE)
             val imageUriString = intent.getStringExtra(EXTRA_IMAGE_URI)
@@ -97,6 +100,12 @@ class DetectionResultActivity : AppCompatActivity() {
             }
         })
         hospitalViewModel.getHospital("Surabaya")
+
+
+        binding.btnArticle.setOnClickListener {
+            val intent = Intent(this, ArticleActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 
@@ -133,7 +142,7 @@ class DetectionResultActivity : AppCompatActivity() {
         binding.medicine.text = predictResponse.data.step
 
 
-        displayArticlesByDisease("Vitiligo")
+        displayArticlesByDisease(diseaseName)
 
         Glide.with(this)
             .load(imageUri)

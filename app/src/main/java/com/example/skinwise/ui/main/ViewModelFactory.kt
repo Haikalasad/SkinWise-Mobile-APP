@@ -48,9 +48,10 @@ class ViewModelFactory private constructor(
                 val userPreference = UserPreference.getInstance(dataStore)
                 val repository = Injection.provideRepo(context)
                 val articleRepository = Injection.provideArticleRepo()
-                val favoriteHospitalRepo = Injection.provideFavoriteHospitalRepo(context.applicationContext) // Gunakan applicationContext di sini
-                ViewModelFactory(repository, articleRepository, favoriteHospitalRepo, userPreference)
-            }.also { instance = it }
+                val favoriteHospitalRepo = Injection.provideFavoriteHospitalRepo(context.applicationContext) // Use applicationContext here
+                ViewModelFactory(repository, articleRepository, favoriteHospitalRepo, userPreference).also { instance = it }
+            }
         }
+
     }
 }
