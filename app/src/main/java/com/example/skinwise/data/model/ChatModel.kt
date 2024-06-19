@@ -32,11 +32,11 @@ data class ChatModel(
 }
 
 data class ListChatModel(
-    val chatId: String = "", // Document ID of the chat
-    val user1Id: String = "", // ID pengguna 1
-    val user2Id: String = "", // ID pengguna 2
-    val lastMessage: String = "", // Pesan terakhir
-    val lastMessageTimestamp: Long = 0L, // Timestamp pesan terakhir
-    val participants: List<String> = emptyList(), // Daftar partisipan
-    val messages: List<ChatModel> = emptyList() // Daftar pesan dalam chat
+    val chatId: String = "",
+    val user1Id: String = "",
+    val user2Id: String = "",
+    val lastMessage: String = "",
+    val lastMessageTimestamp: Long = 0L,
+    val participants: List<String> = emptyList(),
+    val messages: List<ChatModel> = emptyList()
 )

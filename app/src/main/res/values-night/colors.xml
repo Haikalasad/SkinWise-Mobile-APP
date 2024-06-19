@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FFFFFFFF</color> <!-- White for black text in day mode -->
-    <color name="white">#FF000000</color> <!-- Black for white text in day mode -->
-    <color name="blue_primary">#0A47A1</color> <!-- Darker shade of blue for night mode -->
-    <color name="gray_disabled">#B0B0B0</color> <!-- Lighter gray for disabled elements in night mode -->
-    <color name="gray_500">#A0A0A0</color> <!-- Lighter gray for general text in night mode -->
-    <color name="gray_300">#3A3A3A</color> <!-- Darker gray for background elements in night mode -->
-    <color name="gray_200">#2A2A2A</color> <!-- Even darker gray for background elements in night mode -->
-    <color name="gray_400">#6A6A6A</color> <!-- Slightly lighter gray for text in night mode -->
-    <color name="background_received">#1C1C1C</color> <!-- Dark background for received messages -->
-    <color name="green">#0B8A07</color> <!-- Darker green for night mode -->
-    <color name="gray">#2A2A2A</color> <!-- Darker gray for general background elements in night mode -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue_primary">#1564ED</color>
+    <color name="gray_disabled">#424242</color>
+    <color name="gray_500">#878787</color>
+    <color name="gray_300">#E0E0E0</color>
+    <color name="gray_200">#F5F5F5</color>
+    <color name="gray_400">#A0A6B1</color>
+    <color name="background_received">#E2E5EB</color>
+    <color name="green">#13C20F</color>
+    <color name="gray">#DADADA</color>
+    <color name="gray_light">#B0BEC5</color>
+    <color name="gray_dark">#455A64</color>
 </resources>
